@@ -60,7 +60,7 @@ bootstrap_registry() {
     read -r -d '' MODULE_LIST <<-'EOF'
         # ИМЯ_МОДУЛЯ       LOAD_LIB   LOAD_CONF
         utils              yes        no
-        backup             yes        yes
+        backup             yes        no
         installer          yes        no
         telegram           no         no
 EOF
@@ -78,7 +78,6 @@ EOF
     done <<< "${MODULE_LIST}"
 }
 
-
 # Глобальный обработчик завершения
 _cleanup() {
     local exit_code=$?
@@ -87,3 +86,7 @@ _cleanup() {
 }
 
 trap _cleanup EXIT
+
+# Инициализация (вызов)
+init_system
+log_info "--- Ядро успешно подключено в защищенном режиме. ---"

@@ -108,7 +108,8 @@ VIMRC
 
 # Далее код может использовать функции ядра, например log_info
 main_vim() {
-    log_info "--- Ядро успешно подключено в защищенном режиме. ---"
+    
+    
 
     #echo "--- Проверка наличия прав root ---"
 
@@ -127,7 +128,7 @@ main_vim() {
  
     log_info "--- Создаем новый файл конфигурации ~/.vimrc ---"
     #deploy_vim_config
-    envsubst < "${ROOT_DIR}/template/vim/vimrc.tpl > ~/.vimrc"
+    envsubst < "${ROOT_DIR}/template/vim/vimrc.tpl" > ~/.vimrc
 
     log_info "--- Устанавливаем права доступа ---"
     chmod 644 ~/.vimrc
