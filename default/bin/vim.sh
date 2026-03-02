@@ -108,8 +108,6 @@ VIMRC
 
 # Далее код может использовать функции ядра, например log_info
 main_vim() {
-    
-    
 
     #echo "--- Проверка наличия прав root ---"
 
@@ -128,7 +126,13 @@ main_vim() {
  
     log_info "--- Создаем новый файл конфигурации ~/.vimrc ---"
     #deploy_vim_config
-    envsubst < "${ROOT_DIR}/template/vim/vimrc.tpl" > ~/.vimrc
+    export AUTHOR=$(id -un) #Имя текущего пользователя системы
+    export LAST_MODIFIED=$(date '+%Y-%m-%d') #Текущая дата изменения
+    #envsubst '$AUTHOR $LAST_MODIFIED' < "${ROOT_DIR}/template/vim/vimrc.tpl" > "$HOME/.vimrc"
+    update_configs \
+        "${ROOT_DIR}/template/vim/vimrc.tpl" \
+        "$HOME/.vimrc" \
+        "AUTHOR|LAST_MODIFIED"  # Список переменных через ИЛИ
 
     log_info "--- Устанавливаем права доступа ---"
     chmod 644 ~/.vimrc

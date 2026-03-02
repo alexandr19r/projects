@@ -1,6 +1,6 @@
 " ~/.vimrc - индивидуальные настройки Vim
-" Автор: [Aleksandr]
-" Last Modified: 2026-02-19
+" Author: [${AUTHOR}]
+" Last Modified: ${LAST_MODIFIED}
 
 " --- ОСНОВНЫЕ НАСТРОЙКИ ---
 syntax on            " Включить подсветку синтаксиса

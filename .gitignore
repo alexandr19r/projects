@@ -1,4 +1,4 @@
 # --- Игнорировать папку для разных доработок ---
 tmp/
-launch.json
 .vscode/
+.gitconfig
