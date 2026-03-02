@@ -91,3 +91,58 @@ get_file_size() {
 draw_line() {
     printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' "${1:-=}"
 }
+
+# ДРУГИЕ ФУНКЦИИ
+
+# Функция проверяет существование папки и создает при необходимости
+# В случае ошибки прерывает выполнение
+ensure_dir_exists() {
+  local dir_path="$1"
+  
+  # -p уже проверяет существование, поэтому if [[ ! -d ]] не обязателен
+  if mkdir -p "$dir_path" 2>/dev/null; then
+    # Выводим сообщение только если папка реально была создана (опционально)
+    log_debug "Директория готова: $dir_path"
+    return 0
+  else
+    # Сигнализируем об ошибке, но не убиваем весь скрипт
+    log_error "Ошибка прав доступа к '$dir_path'" >&2
+    return 1
+  fi
+}
+
+# Функция для генерации конфигов из шаблонов
+# Использование: update_configs "путь/к/шаблону" "путь/к/цели" "MY_|AUTHOR|ROOT_DIR|LAST_MODIFIED"
+update_configs() {
+    local tpl_file="$1"   # Первый аргумент: файл-шаблон (.tpl)
+    local dest_file="$2"  # Второй аргумент: куда сохранить результат
+    local var_list="$3"   # Третий аргумент: список переменных для подстановки
+
+    # 1. Проверка существования шаблона
+    if [[ ! -f "$tpl_file" ]]; then
+        log_error "Шаблон не найден: $tpl_file"
+        return 1
+    fi
+
+    # Проверка наличия переменных в списке
+    if [[ -z "$var_list" ]]; then
+        log_error "Список переменных для замены пуст"
+        return 1
+    fi
+
+    # 2. Подготовка списка переменных (только экспортированные и нужные нам)
+    # Фильтруем по префиксам (например, MY_ или системные AUTHOR, ROOT_DIR)
+    local vars_to_subst
+    vars_to_subst=$(printf '$%s ' $(env | cut -d= -f1 | grep -E "^($var_list)"))
+
+    # 3. Создание директории назначения, если её нет (например для ~/.ssh/config)
+    mkdir -p "$(dirname "$dest_file")"
+
+    # 4. Основная магия envsubst
+    if envsubst "$vars_to_subst" < "$tpl_file" > "$dest_file"; then
+        echo "[SUCCESS] Файл обновлен: $dest_file"
+    else
+        log_error "Ошибка при генерации: $dest_file"
+        return 1
+    fi
+}
