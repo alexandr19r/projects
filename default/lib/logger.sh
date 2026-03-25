@@ -5,7 +5,12 @@
 readonly _LOGGER_SH_=1
 
 # Пред-инициализация конфигурации
-LOG_TO_CONSOLE=true
+# Устанавливаем дефолт ТОЛЬКО если переменная не была задана ранее
+: "${PROJECT_NAME:=default}"
+
+: "${LOG_TO_CONSOLE:=true}" 
+: "${DEBUG_MODE:=false}"
+: "${LOG_TO_FILE:=false}"
 
 # Цвета
 readonly C_RES='\033[0m'
@@ -17,11 +22,25 @@ readonly C_MAG='\033[0;35m'
 
 # Инициализация конфигурации по умолчанию (если не определено)
 init_logger() {
-    PROJECT_NAME="${PROJECT_NAME:-default_project}"
-    LOG_TO_CONSOLE="${LOG_TO_CONSOLE:-true}"
-    LOG_TO_FILE="${LOG_TO_FILE:-false}"
+    # Формируем финальный путь к логу, если он не был жестко задан в конфиге
     LOG_FILE="${LOG_FILE:-${ROOT_DIR}/var/log/${PROJECT_NAME}.log}"
-    DEBUG_MODE="${DEBUG_MODE:-false}"
+    
+    # Подготовка файловой системы
+    if [[ "$LOG_TO_FILE" == "true" ]]; then
+        # Создаем дерево директорий
+        if ! mkdir -p "$(dirname "$LOG_FILE")" 2>/dev/null; then
+            echo -e "\e[31m[ERROR] Ошибка прав: невозможно создать путь для лога $LOG_FILE\e[0m" >&2
+            LOG_TO_FILE=false
+            return 1
+        fi
+        
+        # Проверяем возможность записи в сам файл (touch)
+        if ! touch "$LOG_FILE" 2>/dev/null; then
+            echo -e "\e[31m[ERROR] Нет прав на запись в файл лога: $LOG_FILE\e[0m" >&2
+            LOG_TO_FILE=false
+            return 1
+        fi
+    fi
 }
 
 _log_base() {
@@ -30,13 +49,16 @@ _log_base() {
     local formatted_msg="[$timestamp] [$level] $message"
 
     # Вывод в консоль (с цветами)
-    if [[ "$LOG_TO_CONSOLE" == "true" ]]; then
+    # Вывод в STDERR (стандарт для логов), чтобы не мешать выводу данных в STDOUT
+   if [[ "$LOG_TO_CONSOLE" == "true" ]]; then
         echo -e "${color}${formatted_msg}${C_RES}" >&2
     fi
 
     # Вывод в файл (без цветов)
     if [[ "$LOG_TO_FILE" == "true" ]]; then
-        echo "$formatted_msg" >> "$LOG_FILE"
+        # Используем printf или следим, чтобы в сообщении не было спецсимволов
+        # echo "$formatted_msg" >> "$LOG_FILE"
+        printf "%s\n" "$formatted_msg" >> "$LOG_FILE" 2>/dev/null
     fi
 }
 

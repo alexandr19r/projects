@@ -7,17 +7,11 @@ readonly _UTILS_SH_=1
 # --- СИСТЕМНЫЕ ПРОВЕРКИ ---
 
 # Проверка наличия прав (root)
-# Просто возвращает true/false, ничего не прерывая
-is_root() {
-    [[ $EUID -eq 0 ]]
-}
+is_root() { [[ $EUID -eq 0 ]]; }
 
+# Прерывание выполнения, если не root
 check_root() {
-    if ! is_root; then
-        # Мы используем функцию логгера, так как utils загружается после core
-        log_error "Эта операция требует прав суперпользователя (root)."
-        exit 1
-    fi
+    is_root || { log_error "Операция требует прав root."; exit 1; }
 }
 
 # Проверка наличия утилиты в системе
@@ -94,52 +88,31 @@ draw_line() {
 
 # ДРУГИЕ ФУНКЦИИ
 
-# Универсальная функция для подготовки путей
-# Использование: ensure_path_exists "/путь/к/объекту" "тип(dir|file)" "владелец" "права"
-# Пример: ensure_path_exists "/etc/bind/zones" "dir" "root:bind" "750" или "2750", префикс 2 -  SGID (g+s)
+# Универсальный конструктор путей
+# Аргументы: path, type(dir|file), owner(user:group), mode(octal)
 ensure_path_exists() {
-    local path="$1"
-    local type="$2"      # dir или file
-    local owner="${3:-root:root}" # по умолчанию root
-    local mode="$4"      # права (опционально)
+    local path="$1" type="${2:-dir}" owner="${3:-root:root}" mode="$4"
 
-    # 1. Создание объекта, если его нет
-    if [[ "$type" == "dir" && ! -d "$path" ]]; then
-        log_info "Создание директории: $path"
-        mkdir -p "$path" || { log_error "Не удалось создать директорию $path"; return 1; }
-    elif [[ "$type" == "file" && ! -f "$path" ]]; then
-        log_info "Создание файла: $path"
-        # Сначала убедимся, что родительская папка есть (рекурсия)
-        ensure_path_exists "$(dirname "$path")" "dir" "$owner" "755"
-        touch "$path" || { log_error "Не удалось создать файл $path"; return 1; }
+    # Создание объекта
+    if [[ "$type" == "dir" ]]; then
+        mkdir -p "$path" || { log_error "Ошибка mkdir: $path"; return 1; }
     else
-        log_info "Объект уже существует: $path"
-        return 0 # Объект уже существует, выходим тихо
+        # Создаем родительскую директорию без рекурсии через mkdir -p
+        mkdir -p "$(dirname "$path")" && touch "$path" || { log_error "Ошибка touch: $path"; return 1; }
     fi
 
-    # 2. Установка владельца и прав (только если объект был создан или изменен)
+    # Применение владельца и прав (всегда, для гарантии консистентности)
     chown "$owner" "$path"
     [[ -n "$mode" ]] && chmod "$mode" "$path"
     
-    log_debug "Настроены права для $path ($owner, ${mode:-default})"
-    return 0
+    log_debug "Путь готов: $path ($type, $owner, ${mode:-default})"
 }
 
-# Функция проверяет существование папки и создает при необходимости
-# В случае ошибки прерывает выполнение
+# Упрощенная обертка для директорий (Strict mode)
+# Прерывает выполнение, если папку создать нельзя
 ensure_dir_exists() {
-  local dir_path="$1"
-  
-  # -p уже проверяет существование, поэтому if [[ ! -d ]] не обязателен
-  if mkdir -p "$dir_path" 2>/dev/null; then
-    # Выводим сообщение только если папка реально была создана (опционально)
-    log_debug "Директория готова: $dir_path"
-    return 0
-  else
-    # Сигнализируем об ошибке, но не убиваем весь скрипт
-    log_error "Ошибка прав доступа к '$dir_path'" >&2
-    return 1
-  fi
+    local dir_path="$1"
+    ensure_path_exists "$dir_path" "dir" || { log_error "Критическая ошибка доступа: $dir_path"; exit 1; }
 }
 
 # Функция для генерации конфигов из шаблонов
@@ -149,7 +122,7 @@ update_configs() {
     local dest_file="$2"  # Второй аргумент: куда сохранить результат
     local var_list="$3"   # Третий аргумент: список переменных для подстановки
 
-    # 1. Проверка существования шаблона
+    # Проверка существования шаблона
     if [[ ! -f "$tpl_file" ]]; then
         log_error "Шаблон не найден: $tpl_file"
         return 1
@@ -161,19 +134,23 @@ update_configs() {
         return 1
     fi
 
-    # 2. Подготовка списка переменных (только экспортированные и нужные нам)
+    # Подготовка списка переменных (только экспортированные и нужные нам)
     # Фильтруем по префиксам (например, MY_ или системные AUTHOR, ROOT_DIR)
     local vars_to_subst
-    vars_to_subst=$(printf '$%s ' $(env | cut -d= -f1 | grep -E "^($var_list)"))
+    # vars_to_subst=$(printf '$%s ' $(env | cut -d= -f1 | grep -E "^($var_list)"))
+    vars_to_subst=$(compgen -v | grep -E "^($var_list)" | sed 's/^/$/' | tr '\n' ' ')
 
-    # 3. Создание директории назначения, если её нет (например для ~/.ssh/config)
+    # Создание директории назначения, если её нет (например для ~/.ssh/config)
     mkdir -p "$(dirname "$dest_file")"
 
-    # 4. Основная магия envsubst
-    if envsubst "$vars_to_subst" < "$tpl_file" > "$dest_file"; then
-        echo "[SUCCESS] Файл обновлен: $dest_file"
+    # Генерация через временный файл (атомарность)
+    local tmp_file="${dest_file}.tmp"
+    if envsubst "$vars_to_subst" < "$tpl_file" > "$tmp_file"; then
+        mv "$tmp_file" "$dest_file"
+        log_ok "Конфиг обновлен: $dest_file"
     else
-        log_error "Ошибка при генерации: $dest_file"
+        rm -f "$tmp_file"
+        log_error "Сбой envsubst для: $dest_file"
         return 1
     fi
 }
@@ -183,26 +160,21 @@ update_configs() {
 get_next_serial() {
     local zone_file="$1"
     local today=$(date +"%Y%m%d")
-    local new_serial
-
-    # 1. Проверяем, существует ли файл и есть ли в нем 10-значное число (Serial)
+    local old_serial
+    
+    # Ищем 10 цифр, которые обычно помечены комментарием Serial
     if [[ -f "$zone_file" ]]; then
-        local old_serial=$(grep -oE '[0-9]{10}' "$zone_file" | head -n1)
-        
-        # 2. Если старый сериал совпадает с сегодняшней датой (начало строки)
-        if [[ "$old_serial" == "$today"* ]]; then
-            # Увеличиваем число на 1 (например, 2024052001 -> 2024052002)
-            new_serial=$((old_serial + 1))
-        else
-            # Если день сменился, начинаем с 01
-            new_serial="${today}01"
-        fi
-    else
-        # 3. Если файла нет, создаем первый сериал для текущего дня
-        new_serial="${today}01"
+        old_serial=$(grep -iE '[0-9]{10}.*;.*serial' "$zone_file" | grep -oE '[0-9]{10}' | head -n1)
     fi
 
-    echo "$new_serial"
+    # Если старый сериал найден и он сегодняшний
+    if [[ -n "$old_serial" && "$old_serial" == "$today"* ]]; then
+        # 10# форсирует десятичную систему, игнорируя ведущие нули
+        echo $((10#$old_serial + 1))
+    else
+        # Если день сменился или файла нет
+        echo "${today}01"
+    fi
 }
 
 # Функция-помощник для IPv6, которая выводит "красивый список" всех текущих аренд (IP + DUID) 
