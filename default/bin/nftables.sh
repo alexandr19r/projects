@@ -37,29 +37,42 @@ main_nftables() {
         log_warn "DHCP_INTERFACE не задан. Авто-определение: $DHCP_INTERFACE"
     fi
 
-    log_info "--- Установка Firewall (nftables) ---"
-
     # Установка пакета
+    log_info "--- Установка Firewall (nftables) и зависимостей ---"
     install_list "${PACKAGES}" || return 1
     
-    # Транзакционная настройка по списку
+    # Запуск начала транзакции
     begin_transaction
+    
+    # Инициализируем модуль бэкапа (создаем временные папки)
+    init_backup
+    
+    # Загрузка списка инфраструктуры nftables
+    local nftables_list
+    nftables_list="${ROOT_DIR}/config/nftables/nftables.list"
 
-    # Динамическое резервное копирование и подготовка структуры логов
-    log_info "--- Создаем backup версию ---"
-    
+    # Поверяем корректность загрузки списка инфраструктуры nftables
+    if [[ !-f "$nftables_list" ]]; then
+        log_warn "Реестр $nftables_list не найден, бэкап конфигураций пропущен."
+        return 1
+    fi
+
+    # Читаем только строки с типом 'file', извлекаем путь (3-я колонка)
     # Добавляем в бэкап все файлы, которые прописаны в массиве как цели (dest_path)
-    for entry in "${NFTABLES_CONFIG_MAP[@]}"; do
-        local dest_path=$(echo "$entry" | cut -d'|' -f2)
-        [[ -f "$dest_path" ] ] && add_to_staging "$dest_path"
+    local files_to_back
+    files_to_back=$(grep -vE '^(#|$)' "$nftables_list" | awk '$1 == "file" {print $3}')
+
+    log_info "--- Создаем backup версию ---"
+    for file_path in $files_to_back; do
+        if [[ -f "$file_path" ]]; then
+            log_debug "Добавление в бэкап: $file_path"
+            add_to_staging "$file_path"
+        fi
     done
-    # Финализируем процесс
-    finalize_backup
-    
-    log_info "--- Настройка инфраструктуры Firewall (nftables) ---"
     
     # Читаем реестр и вызываем add_item для каждой строки
-    grep -vE '^(#|$)' "$INFRA_LIST" | while read -r type tpl dest mode owner dep attr desc vars; do
+    log_info "--- Настройка инфраструктуры Firewall (nftables) ---"
+    grep -vE '^(#|$)' "$nftables_list" | while read -r type tpl dest mode owner dep attr desc vars; do
         if ! add_item "$type" "$tpl" "$dest" "$mode" "$owner" "$dep" "$attr" "$desc" "$vars"; then
             log_error "Сбой при настройке: $desc"
             rollback_transaction
@@ -70,9 +83,13 @@ main_nftables() {
     # Проверка синтаксиса nftables перед фиксацией (Commit)
     if nft -c -f /etc/nftables.conf; then
         log_info "[OK] Синтаксис nftables корректен."
+        # Финализируем бекап
+        finalize_backup
+        # Применяем изменения
         commit_transaction
     else
         log_error "Критическая ошибка в правилах nftables! Откат..."
+        # Выполняем откат изменений
         rollback_transaction
         return 1
     fi
