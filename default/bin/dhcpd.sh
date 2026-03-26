@@ -1,44 +1,12 @@
 #!/bin/bash
-# [dhcpd.sh] файл установки редактора dhcpd
+# [dhcpd.sh] - Развертывание сервера dhcpd (ISC-DHCP-SERVER + RADVD)
 
 # Инициализация переменных
 PROJECT_NAME="isc-dhcp-server"
+PACKAGES="isc-dhcp-server radvd rsyslog"
 
 # --- ПЕРЕМЕННЫЕ НАСТРОЙКИ ---
-export DHCP_INTERFACE="eth0"
-export YOUR_DOMAIN="home.local"         # Ваш локальный домен (например, corp.local)
-# --- Переменные IPv4 ---
-export YOUR_SERVER_IP="10.10.100.1"     # IP-адрес вашего сервера
-export YOUR_NETWORK_ADDR="10.10.100.0"
-export YOUR_BROADCAST="${YOUR_NETWORK_ADDR%.*}.255"
-export YOUR_NETMASK="255.255.255.0"
-export YOUR_GATEWAY="10.10.100.2"
-export DHCP_RANGE_START="10.10.100.100"
-export DHCP_RANGE_END="10.10.100.200"
-export GOOGLE_DNS="8.8.8.8"
-# --- Настройки серверов сети ---
-export GW_MAC="00:15:5D:00:03:04"
-export GW_IP="10.10.100.2"
-export DEVSRV_MAC="00:15:5D:00:6A:02"
-export DEVSRV_IP="10.10.100.3"
-export SRV1C_MAC="00:15:5D:00:6A:03"
-export SRV1C_IP="10.10.100.4"
-# --- Переменные IPv6 ---
-export YOUR_SERVER_IPV6="fd00:db9:aaaa::1"
-export YOUR_NETWORK_IPV6="fd00:db9:aaaa::/64"
-export YOUR_GATEWAY_IPV6="fd00:db9:aaaa::2"
-export DHCP6_RANGE_START="fd00:db9:aaaa::100"
-export DHCP6_RANGE_END="fd00:db9:aaaa::200"
-# --- Настройки серверов сети ---
-export GW_DUID="00:01:00:01:2B:4C:09:F1:34:6F:24:6B:C1:95"
-export GW_IPV6="fd00:db9:aaaa::2"
-export DEVSRV_DUID="00:01:00:01:2A:E1:6D:49:00:15:5D:00:6A:02"
-export DEVSRV_IPV6="fd00:db9:aaaa::3"
-export SRV1C_DUID="00:01:00:01:2A:99:15:B6:00:15:5D:00:67:00"
-export SRV1C_IPV6="fd00:db9:aaaa::4"
-# --- Данные модификации файлов ---
-export AUTHOR=$(id -un) #Имя текущего пользователя системы
-export LAST_MODIFIED=$(date '+%Y-%m-%d') #Текущая дата изменения
+# см. [dhcp.env]
 
 # Профессиональный стандарт 2026 с использование readlink -f
 # shellcheck source=../lib/core.sh
@@ -46,48 +14,6 @@ if ! source "$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")/lib/core.sh" 2>/
     printf "\033[0;31m[FATAL]\033[0m Ядро системы не найдено в корне проекта..\n" >&2
     exit 1
 fi
-
-enable_ipv6_forwarding() {
-    log_info "--- Включение пересылки (Forwarding) IPv6 в ядре ---"
-
-    # 1. Мгновенная активация
-    sysctl -w net.ipv6.conf.all.forwarding=1 > /dev/null
-
-    # 2. Сохранение после перезагрузки
-    local sysctl_file="/etc/sysctl.d/99-ipv6-forwarding.conf"
-    echo "net.ipv6.conf.all.forwarding=1" > "$sysctl_file"
-    
-    # Применяем настройки из всех файлов sysctl
-    sysctl -p "$sysctl_file" > /dev/null
-}
-
-setup_ipv6_gateway() {
-    # Переменная YOUR_GATEWAY_IPV6 должна быть экспортирована (например, fc00:db9:aaaa::2)
-    local ext_gw="${YOUR_GATEWAY_IPV6}"
-    local iface="${DHCP_INTERFACE}"
-
-    log_info "--- Настройка маршрута по умолчанию через $ext_gw ---"
-
-    if [[ -z "$ext_gw" ]]; then
-        log_error "Переменная YOUR_GATEWAY_IPV6 не задана. Роутинг не настроен."
-        return 1
-    fi
-
-    # Устанавливаем маршрут по умолчанию (удаляем старый, ставим новый)
-    ip -6 route del default dev "$iface" 2>/dev/null
-    ip -6 route add default via "$ext_gw" dev "$iface"
-
-    # Настройка NAT66 (Masquerade), чтобы клиенты могли выходить в интернет
-    if command -v ip6tables >/dev/null; then
-        log_info "Включение NAT66 (Masquerade) через ip6tables..."
-        # Очищаем старое правило, чтобы не дублировать
-        ip6tables -t nat -D POSTROUTING -o "$iface" -j MASQUERADE 2>/dev/null
-        # Добавляем актуальное
-        ip6tables -t nat -A POSTROUTING -o "$iface" -j MASQUERADE
-    else
-        log_warn "Утилита ip6tables не найдена. NAT66 не настроен."
-    fi
-}
 
 DHCP_CONFIG_MAP=(
     "system/rsyslog_dhcp|/etc/rsyslog.d/dhcpd.conf|Настройка логов DHCP (local7)|\
@@ -108,65 +34,67 @@ GW_DUID|GW_IPV6|DEVSRV_DUID|DEVSRV_IPV6"
 
 main_dhcpd() {
     
-    log_info "--- НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<"
+    log_info ">>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<"
 
+    # Проверка прав и зависимостей
     log_info "--- Проверка наличия прав root ---"
     check_root || return 1
 
-    # Установка необходимых пакетов
-    log_info "--- Установка ПО ---"
-    install_list "${PROJECT_NAME} radvd rsyslog" || return 1
+    # Загружаем переменные окружения
+    log_info "--- Загрузка переменных из настроек приложения ---"
+    load_env "${ROOT_DIR}/config/dhcp/dhcp.env"
 
-    # Подготовка системы (DNS и Роутинг)
-    enable_ipv6_forwarding      # Включаем форвардинг для radvd
-    setup_ipv6_gateway          # Настраиваем роутинг на внешний шлюз
+    # Проверка и автоматическое определение интерфейса
+    log_info "--- Проверка и автоматическое определение интерфейса ---"
+    if [[ -z "$DHCP_INTERFACE" ]]; then
+        export DHCP_INTERFACE=$(ip -4 route ls | grep default | awk '{print $5}' | head -n1)
+        log_warn "DHCP_INTERFACE не задан. Авто-определение: $DHCP_INTERFACE"
+    fi
+
+    # Установка пакета
+    log_info "--- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---"
+    install_list "${PACKAGES}" || return 1
+
+    # Запуск начала транзакции
+    begin_transaction
     
-    # Создаем backup настроек
+    # Инициализируем модуль бэкапа (создаем временные папки)
+    init_backup
+    
+    # Загрузка списка инфраструктуры dhcp
+    local dhcp_list
+    dhcp_list="${ROOT_DIR}/config/dhcp/dhcp.list"
+
+    # Поверяем корректность загрузки списка инфраструктуры dhcp
+    if [[ !-f "$dhcp_list" ]]; then
+        log_warn "Реестр $dhcp_list не найден, бэкап конфигураций пропущен."
+        return 1
+    fi
+
+    # Читаем только строки с типом 'file', извлекаем путь (3-я колонка)
+    # Добавляем в бэкап все файлы, которые прописаны в массиве как цели (dest_path)
+    local files_to_back
+    files_to_back=$(grep -vE '^(#|$)' "$dhcp_list" | awk '$1 == "file" {print $3}')
+
     log_info "--- Создаем backup версию ---"
-    
-    # Добавляем папку в backup
-    add_to_staging "/etc/default/isc-dhcp-server"
-    add_to_staging "/etc/dhcp/"
-    add_to_staging "/etc/radvd.conf"
-    add_to_staging "/etc/rsyslog.d/dhcpd.conf"
-    add_to_staging "/etc/logrotate.d/dhcpd"
-    # Финализируем процесс
-    finalize_backup
-
-    # Создание структуры (только один раз)
-    log_info "--- Создаем все необходимые каталоги ---"
-
-    # Создаем папку для логов DHCP
-    # Владелец: root (или syslog), группа: adm, права: 750
-    ensure_path_exists "/var/log/dhcp" "dir" "syslog:adm" "750"
-    # Создаем сам файл лога
-    # Владелец: syslog (т.к. пишет rsyslog), группа: adm, права: 640
-    ensure_path_exists "/var/log/dhcp/dhcpd.log" "file" "syslog:adm" "640"
-
-    # Цикл генерации конфигураций
-    log_info "--- Генерация конфигурационных файлов ---"
-    for entry in "${DHCP_CONFIG_MAP[@]}"; do
-        # Разбираем строку: tpl (1), dest (2), desc (3), а остальное (vars) идет в 'rest'
-        IFS='|' read -r tpl_name dest_path description vars_list <<< "$entry"
-
-        # Если переменных много, мы берем всё, что идет после 3-го разделителя
-        # Это позволяет писать "VAR1|VAR2|VAR3" без ограничений
-        local target_vars=$(echo "$entry" | cut -d'|' -f4-)
-        
-        # Снимаем блокировку (для resolv.conf)
-        [ -f "$dest_path" ] && chattr -i "$dest_path" 2>/dev/null
-        
-        log_info "Применяю: $description -> $dest_path"
-        update_configs "${ROOT_DIR}/template/${tpl_name}.tpl" "$dest_path" "$target_vars"
-        
-        # Установка прав
-        if [[ "$dest_path" == "/etc/dhcp/"* ]]; then
-            chown root:root "$dest_path" && chmod 644 "$dest_path"
-        elif [[ "$dest_path" == "/etc/resolv.conf" ]]; then
-            chown root:root "$dest_path" && chmod 644 "$dest_path"
-            chattr +i "$dest_path" 2>/dev/null
+    for file_path in $files_to_back; do
+        if [[ -f "$file_path" ]]; then
+            log_debug "Добавление в бэкап: $file_path"
+            add_to_staging "$file_path"
         fi
     done
+
+    
+    # Читаем реестр и вызываем add_item для каждой строки
+    log_info "--- Настройка инфраструктуры Firewall (nftables) ---"
+    grep -vE '^(#|$)' "$dhcp_list" | while read -r type tpl dest mode owner dep attr desc vars; do
+        if ! add_item "$type" "$tpl" "$dest" "$mode" "$owner" "$dep" "$attr" "$desc" "$vars"; then
+            log_error "Сбой при настройке: $desc"
+            rollback_transaction
+            return 1
+        fi
+    done || return 1 # Выход из main если цикл вернул ошибку
+    
 
     # Перезапуск и проверка служб
     log_info "--- Перезапуск служб ---"

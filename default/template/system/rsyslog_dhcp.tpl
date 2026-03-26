@@ -4,6 +4,6 @@
 # Last Modified: ${LAST_MODIFIED}
 
 # Направляем сообщения с меткой local7 в отдельный файл
-local7.*    /var/log/dhcp/dhcpd.log
+local7.*    ${RSYSLOG_DHCP}
 # Остановка дальнейшей обработки, чтобы не дублировать в syslog
 & stop

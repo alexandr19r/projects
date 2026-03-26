@@ -3,7 +3,7 @@
 # Author: [${AUTHOR}]
 # Last Modified: ${LAST_MODIFIED}
 
-/var/log/dhcp/dhcpd.log {
+${RSYSLOG_DHCP} {
     daily
     rotate 7
     # ВАЖНО: Создавать новый файл с правами владелец syslog, группа adm
