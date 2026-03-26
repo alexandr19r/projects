@@ -1,8 +1,9 @@
 # [nftables.list] - Инфраструктура для nftables
 #
-# TYPE | TPL_NAME                     | DEST_PATH                     | MODE | OWNER      | DEPEND | ATTR | DESC                                            | VARS
-dir    | none                         | /var/log/nftables             | 750  | syslog:adm | none   | none | "Папка логов NFTables"                          | none
-file   | none                         | /var/log/nftables/nftables.log| 640  | syslog:adm | none   | none | "Файл логов NFTables"                           | none
-file   | system/rsyslog_nftables      | /etc/rsyslog.d/nftables.conf  | 644  | root:root  | none   | none | "Настройка логирования Firewall (local0)"       | AUTHOR|LAST_MODIFIED|RSYSLOG_NFTABLES
-file   | system/logrotate_nftables    | /etc/logrotate.d/nftables     | 644  | root:root  | none   | none | "Настройка ротация файлов логирования Firewall" | AUTHOR|LAST_MODIFIED|RSYSLOG_NFTABLES
-file   | network/nftables.conf        | /etc/nftables.conf            | 750  | root:root  | none   | none | "Конфигурация правил NFTABLES"                  | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE
+# TYPE | TPL_NAME                     | DEST_PATH                             | MODE | OWNER      | DEPEND | ATTR | DESC                                            | VARS
+dir    | none                         | /var/log/nftables                     | 750  | syslog:adm | none   | none | "Папка логов NFTables"                          | none
+file   | none                         | /var/log/nftables/nftables.log        | 640  | syslog:adm | none   | none | "Файл логов NFTables"                           | none
+file   | system/rsyslog_nftables      | /etc/rsyslog.d/nftables.conf          | 644  | root:root  | none   | none | "Настройка логирования Firewall (local0)"       | AUTHOR|LAST_MODIFIED|RSYSLOG_NFTABLES
+file   | system/logrotate_nftables    | /etc/logrotate.d/nftables             | 644  | root:root  | none   | none | "Настройка ротация файлов логирования Firewall" | AUTHOR|LAST_MODIFIED|RSYSLOG_NFTABLES
+file   | network/nftables.conf        | /etc/nftables.conf                    | 750  | root:root  | none   | none | "Конфигурация правил NFTABLES"                  | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE
+file   | system/sysctl_router         | /etc/sysctl.d/99-nftables-router.conf | 644  | root:root  | none   | none | "Настройка ядра для форвардинга"                | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE

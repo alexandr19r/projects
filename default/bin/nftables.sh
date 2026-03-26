@@ -1,5 +1,5 @@
 #!/bin/bash
-# [nftables.sh] файл установки редактора nftables
+# [nftables.sh] - Развертывание шлюза NFTables (MITM Router)
 
 # Инициализация переменных проекта
 PROJECT_NAME="nftables"
@@ -20,7 +20,7 @@ fi
 
 main_nftables() {
     
-    log_info ">>> НАЧАЛО РАЗВЕРТЫВАНИЯ FIREWALL (nftables) <<<-"
+    log_info ">>> НАЧАЛО РАЗВЕРТЫВАНИЯ FIREWALL (nftables)  <<<-"
 
     # Проверка прав и зависимостей
     log_info "--- Проверка наличия прав root ---"
@@ -94,7 +94,23 @@ main_nftables() {
         return 1
     fi
 
+    # Разрешает ядру пересылать IPv4-пакеты между интерфейсами (или внутри одного).
+    # Без этого цепочка 'forward' в nftables будет игнорироваться, и интернет у клиентов пропадет.
+    sysctl -w net.ipv4.ip_forward=1
+
+    # Аналогичное разрешение для протокола IPv6. 
+    # Позволяет серверу работать как полноценный Dual-Stack маршрутизатор.
+    sysctl -w net.ipv6.conf.all.forwarding=1
+
+    # Запрещает серверу сообщать клиентам, что роутер находится в той же подсети.
+    # Если оставить '1', сервер отправит клиенту ICMP Redirect, и клиент пойдет к роутеру 
+    # напрямую, минуя твой сервер и правила фильтрации.
+    sysctl -w net.ipv4.conf.all.send_redirects=0
+
     # Включение и перезапуск
+    log_info "--- Перезапуск сетевых служб ---"
+    # Применяем настройки ядра (sysctl)
+    sysctl --system > /dev/null
     # Перезапуск сервисов
     systemctl restart rsyslog
     systemctl enable --now nftables
