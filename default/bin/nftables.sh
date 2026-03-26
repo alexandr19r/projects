@@ -6,10 +6,7 @@ PROJECT_NAME="nftables"
 PACKAGES="nftables rsyslog"
 
 # --- ПЕРЕМЕННЫЕ НАСТРОЙКИ ---
-# export DHCP_INTERFACE="eth0"
-# --- Данные модификации файлов ---
-# export AUTHOR=$(id -un) #Имя текущего пользователя системы
-# export LAST_MODIFIED=$(date '+%Y-%m-%d') #Текущая дата изменения
+# см. [nftables.env]
 
 # Профессиональный стандарт 2026 с использование readlink -f
 # shellcheck source=../lib/core.sh
@@ -93,19 +90,6 @@ main_nftables() {
         rollback_transaction
         return 1
     fi
-
-    # Разрешает ядру пересылать IPv4-пакеты между интерфейсами (или внутри одного).
-    # Без этого цепочка 'forward' в nftables будет игнорироваться, и интернет у клиентов пропадет.
-    sysctl -w net.ipv4.ip_forward=1
-
-    # Аналогичное разрешение для протокола IPv6. 
-    # Позволяет серверу работать как полноценный Dual-Stack маршрутизатор.
-    sysctl -w net.ipv6.conf.all.forwarding=1
-
-    # Запрещает серверу сообщать клиентам, что роутер находится в той же подсети.
-    # Если оставить '1', сервер отправит клиенту ICMP Redirect, и клиент пойдет к роутеру 
-    # напрямую, минуя твой сервер и правила фильтрации.
-    sysctl -w net.ipv4.conf.all.send_redirects=0
 
     # Включение и перезапуск
     log_info "--- Перезапуск сетевых служб ---"
