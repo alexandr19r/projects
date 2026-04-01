@@ -17,14 +17,14 @@ option dhcp-renewal-time 3600;
 option dhcp-rebinding-time 7200;
 
 # Настройки DNS для IPv6
-option dhcp6.name-servers ${YOUR_SERVER_IPV6}, 2001:4860:4860::8888;
-option dhcp6.domain-search "${YOUR_DOMAIN}";
+option dhcp6.name-servers ${SERVER_IP_V6}, 2001:4860:4860::8888;
+option dhcp6.domain-search "${LOCAL_DOMAIN}";
 option dhcp6.info-refresh-time 21600;
 
 allow leasequery;
 
 # Описание подсети
-subnet6 ${YOUR_NETWORK_IPV6} {
+subnet6 ${LOCAL_SUBNET_V6} {
     # Динамический диапазон (смещаем, чтобы не занять статические IP)
     range6 ${DHCP6_RANGE_START} ${DHCP6_RANGE_END};
 }
@@ -34,15 +34,15 @@ host gw {
     host-identifier option dhcp6.client-id ${GW_DUID};
     
     # Фиксированный IPv6 адрес
-    fixed-address6 ${GW_IPV6};
+    fixed-address6 ${GW_IP_V6};
 }
 
 host devsrv {
     host-identifier option dhcp6.client-id ${DEVSRV_DUID};
-    fixed-address6 ${DEVSRV_IPV6};
+    fixed-address6 ${DEVSRV_IP_V6};
 }
 
 host srv1C {
     host-identifier option dhcp6.client-id ${SRV1C_DUID};
-    fixed-address6 ${SRV1C_IPV6};
+    fixed-address6 ${SRV1C_IP_V6};
 }

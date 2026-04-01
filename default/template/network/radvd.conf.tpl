@@ -16,7 +16,7 @@ interface ${DHCP_INTERFACE} {
     MinRtrAdvInterval 3;
     MaxRtrAdvInterval 10;
 
-    prefix ${YOUR_NETWORK_IPV6} {
+    prefix ${LOCAL_SUBNET_V6} {
         AdvOnLink on;
         
         # Если вы хотите, чтобы адреса выдавал ТОЛЬКО DHCP, ставьте off.

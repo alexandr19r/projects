@@ -78,36 +78,62 @@ main_nftables() {
     done || return 1 # Выход из main если цикл вернул ошибку
     
     # Проверка синтаксиса nftables перед фиксацией (Commit)
-    if nft -c -f /etc/nftables.conf; then
-        log_info "[OK] Синтаксис nftables корректен."
-        # Финализируем бекап
-        finalize_backup
-        # Применяем изменения
-        commit_transaction
-    else
-        log_error "Критическая ошибка в правилах nftables! Откат..."
+    local HAS_ERROR=false
+
+    # 3. Проверка NFTables
+    log_info "Валидация NFTables..."
+    if ! nft -c -f "/etc/nftables.conf" >/dev/null 2>&1; then
+        log_error "Синтаксическая ошибка в /etc/nftables.conf"
+        nft -c -f "/etc/nftables.conf" 2>&1 | log_debug
+        HAS_ERROR=true
+    fi
+
+    # 4. Проверка Rsyslog
+    log_info "Валидация Rsyslog..."
+    if ! rsyslogd -N1 >/dev/null 2>&1; then
+        log_error "Критическая ошибка в конфигурации Rsyslog"
+        rsyslogd -N1 2>&1 | log_debug
+        HAS_ERROR=true
+    fi
+
+    # --- ОТКАТ ТРАНЗАКЦИИ ---
+    if [[ "$HAS_ERROR" == "true" ]]; then
+        log_error "Тестирование провалено. Инициирую ROLLBACK..."
         # Выполняем откат изменений
         rollback_transaction
         return 1
     fi
 
-    # Включение и перезапуск
-    log_info "--- Перезапуск сетевых служб ---"
-    # Применяем настройки ядра (sysctl)
-    sysctl --system > /dev/null
-    # Перезапуск сервисов
-    systemctl restart rsyslog
-    systemctl enable --now nftables
+    log_ok "Все тесты пройдены. Фиксация изменений..."
+    # Финализируем бекап
+    finalize_backup
+    # Применяем изменения
+    commit_transaction
+    
+    # Перезапуск и проверка служб
+    log_info "--- Активация и проверка сервисов ---"
+    local services=("rsyslog" "nftables")
 
-    if systemctl is-active --quiet nftables; then
-        log_info "[SUCCESS] Firewall активен и защищает систему."
-    else
-        log_error "Не удалось запустить nftables."
-        return 1
-    fi
+    for svc in "${services[@]}"; do
+        # 1. Сначала делаем enable, чтобы служба стартовала после перезагрузки
+        systemctl enable "$svc" >/dev/null 2>&1
+        
+        # 2. Перезапуск
+        if systemctl restart "$svc"; then
+            # 3. Дополнительная проверка: активна ли она на самом деле
+            if systemctl is-active --quiet "$svc"; then
+                log_ok "Служба [$svc] успешно запущена и добавлена в автозагрузку."
+            else
+                log_error "Служба [$svc] формально стартовала, но сейчас неактивна."
+            fi
+        else
+            log_error "Критический сбой при запуске $svc. Код ошибки: $?"
+            log_debug "Вывод диагностики: $(journalctl -u "$svc" -n 20 --no-pager)"
+        fi
+    done
 
     log_info ">>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ FIREWALL (nftables) <<<"
 
 }
 
-main_nftables
+main_nftables "$@"

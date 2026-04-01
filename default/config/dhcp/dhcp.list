@@ -1,10 +1,11 @@
 # [dhcp.list] - Инфраструктура для dhcp
 #
-# TYPE | TPL_NAME             | DEST_PATH                     | MODE | OWNER      | DEPEND | ATTR | DESC                           | VARS
-dir    | none                 | /var/log/dhcp                 | 750  | syslog:adm | none   | none | "Папка логов DHCP"             | none
-file   | rsyslog_dhcp         | /etc/rsyslog.d/dhcpd.conf     | 644  | root:root  | none   | none | "Настройка логов (local7)"     | AUTHOR|LAST_MODIFIED
-file   | logrotate_dhcp       | /etc/logrotate.d/dhcpd        | 644  | root:root  | none   | none | "Ротация логов DHCP"           | AUTHOR|LAST_MODIFIED
-file   | radvd_conf           | /etc/radvd.conf               | 644  | root:root  | none   | none | "Анонсы IPv6 (RADVD)"          | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE|LOCAL_SUBNET_V6
-file   | isc_dhcp_server      | /etc/default/isc-dhcp-server  | 644  | root:root  | none   | none | "Интерфейсы DHCP"              | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE
-file   | dhcpd_conf           | /etc/dhcp/dhcpd.conf          | 644  | root:root  | none   | none | "Конфигурация DHCPv4"          | AUTHOR|LAST_MODIFIED|SERVER_IP_V4|GOOGLE_DNS|YOUR_DOMAIN|LOCAL_SUBNET_V4|YOUR_NETMASK|YOUR_BROADCAST|ROUTER_IP_V4|DHCP_RANGE_START|DHCP_RANGE_END|GW_MAC|ROUTER_IP_V4|DEVSRV_MAC|DEVSRV_IP|SRV1C_MAC|SRV1C_IP
-file   | dhcpd6_conf          | /etc/dhcp/dhcpd6.conf         | 644  | root:root  | none   | none | "Конфигурация DHCPv6"          | AUTHOR|LAST_MODIFIED|SERVER_IP_V6|YOUR_DOMAIN|LOCAL_SUBNET_V6|DHCP6_RANGE_START|DHCP6_RANGE_END|GW_DUID|ROUTER_IP_V6|DEVSRV_DUID|DEVSRV_IPV6
+# TYPE | TPL_NAME                  | DEST_PATH                     | MODE | OWNER      | DEPEND | ATTR | DESC                           | VARS
+dir    | none                      | /var/log/dhcp                 | 750  | syslog:adm | none   | none | "Папка логов DHCP"             | none
+file   | none                      | /var/log/dhcp/dhcp.log        | 640  | syslog:adm | none   | none | "Файл логов DHCP"              | none
+file   | system/rsyslog_dhcp       | /etc/rsyslog.d/dhcpd.conf     | 644  | root:root  | none   | none | "Настройка логов (local7)"     | AUTHOR|LAST_MODIFIED|RSYSLOG_DHCP
+file   | system/logrotate_dhcp     | /etc/logrotate.d/dhcpd        | 644  | root:root  | none   | none | "Ротация логов DHCP"           | AUTHOR|LAST_MODIFIED|RSYSLOG_DHCP
+file   | network/radvd.conf        | /etc/radvd.conf               | 644  | root:root  | none   | none | "Анонсы IPv6 (RADVD)"          | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE|LOCAL_SUBNET_V6
+file   | dhcp/isc-dhcp-server      | /etc/default/isc-dhcp-server  | 644  | root:root  | none   | none | "Интерфейсы DHCP"              | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE
+file   | dhcp/dhcpd.conf           | /etc/dhcp/dhcpd.conf          | 644  | root:root  | none   | none | "Конфигурация DHCPv4"          | AUTHOR|LAST_MODIFIED|SERVER_IP_V4|GOOGLE_DNS|LOCAL_DOMAIN|LOCAL_SUBNET_V4|LOCAL_NETMASK|LOCAL_BROADCAST|ROUTER_IP_V4|DHCP_RANGE_START|DHCP_RANGE_END|GW_MAC|GW_IP_V4|DEVSRV_MAC|DEVSRV_IP_V4|SRV1C_MAC|SRV1C_IP_V4
+file   | dhcp/dhcpd6.conf          | /etc/dhcp/dhcpd6.conf         | 644  | root:root  | none   | none | "Конфигурация DHCPv6"          | AUTHOR|LAST_MODIFIED|SERVER_IP_V6|LOCAL_DOMAIN|LOCAL_SUBNET_V6|DHCP6_RANGE_START|DHCP6_RANGE_END|GW_DUID|GW_IP_V6|DEVSRV_DUID|DEVSRV_IP_V6|SRV1C_DUID|SRV1C_IP_V6
