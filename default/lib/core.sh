@@ -35,7 +35,7 @@ init_system() {
     log_debug "Импортирована библиотека loader.sh"
 
     # Подключаем конфигурационный файл
-    if [[ ! -f "${conf_dir}/settings.conf}" ]]; then
+    if [[ ! -f "${conf_dir}/settings.conf" ]]; then
         log_error "Критическая ошибка: конфигурационный файл settings.conf не найден!"
         exit 1
     fi
