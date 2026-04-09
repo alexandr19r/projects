@@ -49,7 +49,7 @@ main_dhcpd() {
     dhcp_list="${ROOT_DIR}/config/dhcp/dhcp.list"
 
     # Поверяем корректность загрузки списка инфраструктуры dhcp
-    if [[ !-f "$dhcp_list" ]]; then
+    if [[ ! -f "$dhcp_list" ]]; then
         log_warn "Реестр $dhcp_list не найден, бэкап конфигураций пропущен."
         return 1
     fi
