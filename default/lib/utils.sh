@@ -1,7 +1,7 @@
 #!/bin/bash
 # [utils.sh] - Профессиональный инструментарий хелперов v2026.1
 
-[[ -n "${_UTILS_SH_}" ]] && return
+[[ -n "${_UTILS_SH_:-}" ]] && return
 readonly _UTILS_SH_=1
 
 # --- СИСТЕМНЫЕ ПРОВЕРКИ ---

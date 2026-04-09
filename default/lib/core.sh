@@ -2,7 +2,7 @@
 # [core.sh] - Точка сборки системы
 
 # Защита от повторного подключения
-[[ -n "${_CORE_SH_}" ]] && return 0
+[[ -n "${_CORE_SH_:-}" ]] && return 0
 readonly _CORE_SH_=1
 
 set -euo pipefail

@@ -1,7 +1,7 @@
 #!/bin/bash
 # [logger.sh] - Модуль профессионального логирования
 
-[[ -n "${_LOGGER_SH_}" ]] && return 0
+[[ -n "${_LOGGER_SH_:-}" ]] && return 0
 readonly _LOGGER_SH_=1
 
 # Пред-инициализация конфигурации

@@ -1,7 +1,7 @@
 #!/bin/bash
 # [backup.sh] - Профессиональный модуль ротации и архивации
 
-[[ -n "${_BACKUP_SH_}" ]] && return
+[[ -n "${_BACKUP_SH_:-}" ]] && return
 readonly _BACKUP_SH_=1
 
 # --- 1. Инициализация переменных ---

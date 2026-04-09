@@ -1,7 +1,7 @@
 #!/bin/bash
 # [transaction.sh] - Модуль атомарных изменений системы
 
-[[ -n "${_TRANSACTION_SH_}" ]] && return 0
+[[ -n "${_TRANSACTION_SH_:-}" ]] && return 0
 readonly _TRANSACTION_SH_=1
 
 TRANSACTION_ACTIVE=false

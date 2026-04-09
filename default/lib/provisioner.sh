@@ -1,7 +1,7 @@
 #!/bin/bash
 # [provisioner.sh] - Высокоуровневая настройка инфраструктуры
 
-[[ -n "${_PROVISIONER_SH_}" ]] && return 0
+[[ -n "${_PROVISIONER_SH_:-}" ]] && return 0
 readonly _PROVISIONER_SH_=1
 
 # Основная функция развертывания элемента

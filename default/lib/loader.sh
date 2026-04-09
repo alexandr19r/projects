@@ -1,7 +1,7 @@
 #!/bin/bash
 # [loader.sh] - Управление зависимостями
 
-[[ -n "${_LOADER_SH_}" ]] && return 0
+[[ -n "${_LOADER_SH_:-}" ]] && return 0
 readonly _LOADER_SH_=1
 
 # Массив для отслеживания уже загруженных библиотек

@@ -1,7 +1,7 @@
 #!/bin/bash
 # [installer.sh] - Профессиональный менеджер пакетов v2026
 
-[[ -n "${_INSTALLER_SH_}" ]] && return
+[[ -n "${_INSTALLER_SH_:-}" ]] && return
 readonly _INSTALLER_SH_=1
 
 # Настройки модуля
