@@ -4,6 +4,6 @@
 # Last Modified: ${LAST_MODIFIED}
 
 # Направляем сообщения с меткой local6 в отдельный файл
-local6.*    /var/log/named/named.log
+local6.*    ${RSYSLOG_DNS}
 # Остановка дальнейшей обработки, чтобы не дублировать в syslog
 & stop

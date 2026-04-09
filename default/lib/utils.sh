@@ -229,3 +229,82 @@ show_dhcp4_leases() {
     }' "$lease_file" | sort -u -t'|' -k1,1
     echo -e "----------------------------------------------------------\n"
 }
+
+# Функция для генерации нибблов (полубайтов) IPv6 для зоны .ip6.arpa
+# Аргумент 1: IPv6 адрес или префикс
+# Аргумент 2: Режим (network или host)
+# Аргумент 3: Длина префикса (например, 64)
+ipv6_to_nibbles() {
+    local ip="$1"
+    local mode="$2"
+    local prefix_len="$3"
+
+    python3 -c "
+import ipaddress
+ip_str = '$ip'
+try:
+    # Приводим к полному виду (32 знака)
+    addr = ipaddress.IPv6Address(ip_str.split('/')[0]).exploded.replace(':', '')
+    # Инвертируем и разделяем точками
+    nibbles = '.'.join(addr[::-1])
+    
+    # Вычисляем количество нибблов для сетевой и хостовой части
+    # Каждый ниббл - это 4 бита
+    net_nibbles = $prefix_len // 4
+    
+    if '$mode' == 'network':
+        # Берем ПРАВУЮ часть (так как адрес уже инвертирован)
+        print('.'.join(nibbles.split('.')[-net_nibbles:]))
+    else:
+        # Берем ЛЕВУЮ часть (хостовая часть)
+        print('.'.join(nibbles.split('.')[:-net_nibbles]))
+except:
+    pass
+"
+}
+
+# [.env]
+# Формат: NAME:IP4:IP6 (через пробел)
+# export EXTRA_HOSTS_DATA="gw:10.10.100.2:fc00:db9:aaaa::2 devsrv:10.10.100.3:fc00:db9:aaaa::3 srv1c:10.10.100.4:fc00:db9:aaaa::4"
+generate_dns_blocks() {
+    local forward="" rev4="" rev6=""
+    
+    # Берем данные из .env (NAME:IP4:IP6)
+    for entry in $EXTRA_HOSTS_DATA; do
+        local name=$(echo "$entry" | cut -d: -f1)
+        local ip4=$(echo "$entry" | cut -d: -f2)
+        local ip6=$(echo "$entry" | cut -d: -f3)
+
+        # 1. Прямая зона
+        forward+="${name}    IN    A       ${ip4}\n"
+        forward+="${name}    IN    AAAA    ${ip6}\n"
+
+        # 2. Реверс IPv4 (последний октет)
+        rev4+="$(echo "$ip4" | cut -d. -f4)    IN    PTR    ${name}.${LOCAL_DOMAIN}.\n"
+
+        # 3. Реверс IPv6 (инверсия хост-части)
+        # Вызываем нашу функцию из utils.sh
+        local nibbles_host=$(ipv6_to_nibbles "$ip6" "host" 64)
+        rev6+="${nibbles_host}    IN    PTR    ${name}.${LOCAL_DOMAIN}.\n"
+    done
+
+    # Экспортируем для envsubst
+    export DNS_FORWARD_BLOCK=$(printf "$forward")
+    export DNS_REV4_BLOCK=$(printf "$rev4")
+    export DNS_REV6_BLOCK=$(printf "$rev6")
+}
+
+generate_ipv6_pool() {
+    local pool=""
+    # Диапазон от 100 до 1FF (в десятичной это 256-511)
+    for i in $(seq 256 511); do
+        # Переводим число в hex (4 знака) и инвертируем с точками
+        # 0x1a2 -> 2.a.1.0
+        local hex=$(printf "%04x" $i)
+        local nibbles=$(echo "$hex" | sed 's/./&./g' | rev | cut -c 2-)
+        
+        # Добавляем оставшиеся нули до 16 нибблов (для префикса /64)
+        pool+="${nibbles}.0.0.0.0.0.0.0.0.0.0.0.0    IN    PTR    host-${hex}.${LOCAL_DOMAIN}.\n"
+    done
+    export DNS_REV6_POOL=$(printf "$pool")
+}

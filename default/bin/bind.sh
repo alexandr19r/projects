@@ -1,38 +1,13 @@
 #!/bin/bash
-# [bind.sh] файл установки редактора bind9
+# [bind.sh] - Развертывание сервера DNS (BIND9)
 
 # Инициализация переменных
 PROJECT_NAME="bind9"
+PACKAGES="bind9 rsyslog"
 
 # --- ПЕРЕМЕННЫЕ НАСТРОЙКИ ---
-export YOUR_DOMAIN="home.local"         # Ваш локальный домен (например, corp.local)
-export YOUR_SERVER_IP="10.10.100.1"     # IP-адрес вашего сервера
-export YOUR_NETWORK="10.10.100.0/24"    # Ваша локальная сеть (например, 192.168.1.0/24)
-export YOUR_REVERSE_OCTET="100.10.10"   # Обратный порядок октетов сети (например, 1.168.192 для 192.168.1.x)
-export YOUR_NETWORK_V6="fd00:0db9:aaaa::/64" # Ваша локальная сеть IPv6 (например, fd00:0db9:aaaa::/64)
-export YOUR_REVERSE_V6_OCTET="a.a.a.a.9.b.d.0.0.0.d.f" # Обратный порядок октетов сети IPv6 (например, a.a.a.a.9.b.d.0.0.0.c.f для fc00:0db9:aaaa::/48)
-export FORWARDER_DNS1="8.8.8.8"         # Внешний DNS 1 (Google DNS)
-export FORWARDER_DNS2="8.8.4.4"         # Внешний DNS 2
-#FOLDER_RELEASE="release"         # Папка для текущей конфигурации
-#FOLDER_BACKUP="backup"           # Папка для backup
-export AUTHOR=$(id -un) #Имя текущего пользователя системы
-export LAST_MODIFIED=$(date '+%Y-%m-%d') #Текущая дата изменения
-# --- ФОРМИРОВАНИЕ СЕРИЙНОГО НОМЕРА ВЕРСИИ ---
-# Серийный номер версии файлов зон
-export SERIALNUMBER=$(get_next_serial "/etc/bind/zones/db.localhost")
-# Извлекаем последний октет IP для PTR записи
-export LAST_OCTET=$(echo "$YOUR_SERVER_IP" | cut -d. -f4)
-# Хостовая часть (для PTR конкретного сервера ::1)
-# Это 16 нибблов (64 бита) в обратном порядке
-export LAST_OCTET_V6="1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0" # ------------------------------
+# см. [bind.env]
 
-# Инициализируем ядро системы lib/core.sh
-# source "$(dirname "$0")/lib/core.sh"
-# Профессиональное безопасное подключение без переменных
-#if ! source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/lib/core.sh" 2>/dev/null; then
-#    printf "\033[0;31m[CRITICAL]\033[0m Core system failure: Cannot locate or load kernel from source.\n" >&2
-#    exit 1
-#fi
 # Профессиональный стандарт 2026 с использование readlink -f
 # shellcheck source=../lib/core.sh
 if ! source "$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")/lib/core.sh" 2>/dev/null; then
@@ -73,172 +48,233 @@ disable_dns_managers() {
     fi
 }
 
-# Определяем список файлов для настройки
-# Формат: "имя_файла|доп_переменные|описание"
-BIND_CONFIG_MAP=(
-    "system/rsyslog_bind|/etc/rsyslog.d/named.conf|Настройка логов BIND9 (local6)|\
-AUTHOR|LAST_MODIFIED"
-    "system/logrotate_bind|/etc/logrotate.d/named|Ротация логов BIND9|\
-AUTHOR|LAST_MODIFIED"
-    "system/resolv.conf|/etc/resolv.conf|Системный резолвер|\
-AUTHOR|LAST_MODIFIED|YOUR_DOMAIN"
-    "bind/named.conf|/etc/bind/named.conf|Главный файл конфигурации|\
-AUTHOR|LAST_MODIFIED"
-    "bind/named.conf.options|/etc/bind/named.conf.options|Настройка ACL trusted|\
-AUTHOR|LAST_MODIFIED|YOUR_NETWORK|FORWARDER_DNS1|FORWARDER_DNS2"
-    "bind/named.conf.logging|/etc/bind/named.conf.logging|Настройка логирования|\
-AUTHOR|LAST_MODIFIED"
-    "bind/zones/named.conf.local|/etc/bind/zones/named.conf.local|Описание локальных зон|\
-AUTHOR|LAST_MODIFIED"
-    "bind/zones/named.conf.zones|/etc/bind/zones/named.conf.zones|Описание зон ${YOUR_DOMAIN}|\
-AUTHOR|LAST_MODIFIED|YOUR_DOMAIN|YOUR_NETWORK|YOUR_REVERSE_OCTET|YOUR_NETWORK_V6|YOUR_REVERSE_V6_OCTET"
-    "bind/zones/db.localhost|/etc/bind/zones/db.local|Локальная зона прямого просмотра|\
-AUTHOR|LAST_MODIFIED|SERIALNUMBER"
-    "bind/zones/db.0.0.127|/etc/bind/zones/db.127|Локальная зона IPv4 реверс|\
-AUTHOR|LAST_MODIFIED|SERIALNUMBER"
-    "bind/zones/db.ip6.0|/etc/bind/zones/db.ip6.arpa|Локальная зона IPv6 реверс|\
-AUTHOR|LAST_MODIFIED|SERIALNUMBER"
-    # Файлы пользовательских зон (используем метку DOMAIN для подстановки в пути)
-    "bind/zones/db.DOMAIN|/etc/bind/zones/db.DOMAIN|Зона прямого просмотра ${YOUR_DOMAIN}|\
-AUTHOR|LAST_MODIFIED|SERIALNUMBER|YOUR_DOMAIN|YOUR_SERVER_IP"
-    "bind/zones/db.rev.DOMAIN|/etc/bind/zones/db.rev.DOMAIN|Зона IPv4 реверс ${YOUR_REVERSE_OCTET}|\
-AUTHOR|LAST_MODIFIED|SERIALNUMBER|YOUR_REVERSE_OCTET|YOUR_DOMAIN|LAST_OCTET"
-    "bind/zones/db.rev6.DOMAIN|/etc/bind/zones/db.rev6.DOMAIN|Зона IPv6 реверс ${YOUR_REVERSE_V6_OCTET}|\
-AUTHOR|LAST_MODIFIED|SERIALNUMBER|YOUR_REVERSE_V6_OCTET|YOUR_DOMAIN|LAST_OCTET_V6"
-)
-
 # Далее код может использовать функции ядра, например log_info
 main_bind9() {
     
-    log_info "--- НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<"
+    log_info ">>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<"
 
-    # Проверяем наличие прав
+    # Проверка прав и зависимостей
     log_info "--- Проверка наличия прав root ---"
-
-    check_root || return 1 
+    check_root || return 1
 
     # Сначала убираем "умные" службы resolv
     log_info "--- Отключаем умные службы resolv ---"
-
     disable_dns_managers
 
-    # Устанавливаем bind9 (в Debian это dns)
-    log_info "--- Устанавливаем приложение ${PROJECT_NAME} ---"
+    # Загружаем переменные окружения
+    log_info "--- Загрузка переменных из настроек приложения ---"
+    load_env "${ROOT_DIR}/config/bind/bind.env"
 
-    install_list "${PROJECT_NAME} rsyslog"
-
-    # Создаем backup настроек
-    log_info "--- Создаем backup версию ---"
+    # Установка пакета
+    log_info "--- Установка DNS (${PROJECT_NAME}) и зависимостей ---"
+    install_list "${PACKAGES}" || return 1
     
-    # Добавляем папку в backup
-    add_to_staging "/etc/bind"
-    add_to_staging "/etc/resolv.conf"
-    add_to_staging "/etc/rsyslog.d/named.conf"
-    add_to_staging "/etc/logrotate.d/named"
-    # Финализируем процесс
-    finalize_backup
+    # Запуск начала транзакции
+    begin_transaction
 
-    # Создание структуры (только один раз)
-    log_info "--- Создаем все необходимые каталоги ---"
-
-    # Создаем папку /etc/bind/zones
-    ensure_path_exists "/etc/bind/zones" "dir" "root:bind" "2750"
-    # Обеспечиваем членство в группе (выполняется один раз)
-    usermod -aG adm syslog 2>/dev/null    
-    # Создаем папку /var/log/named
-    ensure_path_exists "/var/log/named" "dir" "bind:adm" "770"
-    # Создаем файл /var/log/named/queries.log
-    ensure_path_exists "/var/log/named/queries.log" "file" "bind:adm" "640"
-    # Создаем файл /var/log/named/named.log
-    ensure_path_exists "/var/log/named/named.log" "file" "syslog:adm" "640"
+    # Инициализируем модуль бэкапа (создаем временные папки)
+    init_backup
     
-    log_info ">>> Начинаю массовую генерацию конфигураций BIND..."
+    # Загрузка списка инфраструктуры bind
+    local bind_list
+    bind_list="${ROOT_DIR}/config/bind/bind.list"
 
-    for entry in "${BIND_CONFIG_MAP[@]}"; do
-        # Разрезаем строку на части по разделителю |
-        # Используем IFS (Internal Field Separator) временно для этой команды
-        IFS='|' read -r tpl_name dest_path description vars_list <<< "$entry"
-
-        # 2. Магия подстановки для путей (заменяем метку DOMAIN на реальный домен)
-        # Если в пути есть слово DOMAIN, оно заменится на значение переменной YOUR_DOMAIN
-        local final_dest="${dest_path//DOMAIN/$YOUR_DOMAIN}"
-        
-        # 3. Получаем список переменных для envsubst (всё, что после 3-го разделителя)
-        local target_vars=$(echo "$entry" | cut -d'|' -f4-)
-
-        # 4. Снимаем блокировку chattr -i (актуально для /etc/resolv.conf)
-        [ -f "$final_dest" ] && chattr -i "$final_dest" 2>/dev/null
-
-        # 5. Генерация файла
-        # Извлечь имя файла (аналог basename):
-        # FILENAME="${FILE_PATH##*/}" (удалить всё ДО последнего /)
-        log_info "--- $description (${dest_file##*/}) ---"
-        update_configs \
-            "${ROOT_DIR}/template/${tpl_name}.tpl" \
-            "$final_dest" \
-            "$target_vars"
-
-        # 6. Установка прав доступа
-        if [[ -f "$final_dest" ]]; then
-            # Настраиваем права только на ФАЙЛ, не трогая ПАПКУ (она уже настроена)
-            if [[ "$final_dest" == "/etc/bind/"* ]]; then
-                chown root:bind "$final_dest"
-                
-                if [[ "$final_dest" == *"/db."* ]]; then
-                    # Файлы зон: 660 или 664 (зависит от того, должны ли их видеть другие)
-                    # Раз у папки 2750, логично поставить 660 или 640
-                    chmod 660 "$final_dest" 
-                else
-                    chmod 644 "$final_dest"
-                fi
-            elif [[ "$final_dest" == "/etc/resolv.conf" ]]; then
-                chown root:root "$final_dest" && chmod 644 "$final_dest"
-                chattr +i "$final_dest" 2>/dev/null
-            else
-                chown root:root "$final_dest" && chmod 644 "$final_dest"
-            fi
-        fi
-    done
-
-    log_info "--- Проверка конфигурационных файлов BIND9 ---"
-
-    # Проверка общей структуры (подтянет все include)
-    if named-checkconf /etc/bind/named.conf; then
-        log_info "[OK] Синтаксис конфигов корректен"
-    else
-        log_error "Ошибка в named.conf" && return 1
+    # Поверяем корректность загрузки списка инфраструктуры bind
+    if [[ !-f "$bind_list" ]]; then
+        log_warn "Реестр $bind_list не найден, бэкап конфигураций пропущен."
+        return 1
     fi
 
-    # Проверка файлов зон (КРИТИЧНО)
-    log_info "--- Проверка файлов зон ---"
-    named-checkzone "${YOUR_DOMAIN}" "/etc/bind/zones/db.${YOUR_DOMAIN}" || return 1
-    named-checkzone "${YOUR_REVERSE_OCTET}.in-addr.arpa" "/etc/bind/zones/db.rev.${YOUR_DOMAIN}" || return 1
-    named-checkzone "${YOUR_REVERSE_V6_OCTET}.ip6.arpa" "/etc/bind/zones/db.rev6.${YOUR_DOMAIN}" || return 1
+    # Читаем только строки с типом 'file', извлекаем путь (3-я колонка)
+    # Добавляем в бэкап все файлы, которые прописаны в массиве как цели (dest_path)
+    local files_to_back
+    files_to_back=$(grep -vE '^(#|$)' "$bind_list" | awk '$1 == "file" {print $3}')
 
-    # Перезапуск и проверка служб
-    log_info "--- Перезапуск служб ---"
-    local services=("rsyslog" "bind9")
+    log_info "--- Создаем backup версию ---"
+    for file_path in $files_to_back; do
+        if [[ -f "$file_path" ]]; then
+            log_debug "Добавление в бэкап: $file_path"
+            add_to_staging "$file_path"
+        fi
+    done
     
-    for svc in "${services[@]}"; do
-        systemctl restart "$svc"
-        systemctl enable "$svc"
-        if systemctl is-active --quiet "$svc"; then
-            log_info "[OK] Служба $svc запущена."
-        else
-            log_error "Ошибка запуска $svc. Проверь journalctl -u $svc"
+    # Читаем реестр и вызываем add_item для каждой строки
+    log_info "--- Настройка инфраструктуры DNS (bind) ---"
+    grep -vE '^(#|$)' "$bind_list" | while read -r type tpl dest mode owner dep attr desc vars; do
+        # Магия подстановки для путей (заменяем метку DOMAIN на реальный домен)
+        # Если в пути есть слово DOMAIN, оно заменится на значение переменной YOUR_DOMAIN
+        local final_dest="${dest//DOMAIN/$LOCAL_DOMAIN}"
+
+        if ! add_item "$type" "$tpl" "$final_dest" "$mode" "$owner" "$dep" "$attr" "$desc" "$vars"; then
+            log_error "Сбой при настройке: $desc"
+            rollback_transaction
+            return 1
+        fi
+    done || return 1 # Выход из main если цикл вернул ошибку
+    
+    # --- ВАЛИДАЦИЯ DNS (BIND9) ---
+    # Проверка синтаксиса bind перед фиксацией (Commit)
+    log_info "Валидация конфигурации BIND9..."
+    local HAS_ERROR=false
+
+    # Общая проверка синтаксиса всех конфигов
+    if ! named-checkconf /etc/bind/named.conf >/dev/null 2>&1; then
+        log_error "Критическая ошибка в структуре named.conf или include-файлах"
+        named-checkconf /etc/bind/named.conf 2>&1 | log_debug
+        HAS_ERROR=true
+    fi
+
+    # Проверка системных зон (internal)
+    log_info "Проверка системных зон (internal)..."
+    
+    # Проверка зоны root hints (только наличие файла)
+    if [[ ! -f "/usr/share/dns/root.hints" ]]; then
+        log_error "Файл корневых подсказок (root.hints) не найден!"
+        HAS_ERROR=true
+    fi
+
+    # Массив пар: "Имя зоны" "Путь к файлу"
+    declare -A INTERNAL_CHECKS=(
+        ["localhost"]="/etc/bind/zones/internal/db.localhost"
+        ["127.in-addr.arpa"]="/etc/bind/zones/internal/db.127"
+        ["0.in-addr.arpa"]="/etc/bind/zones/internal/db.0"
+        ["255.in-addr.arpa"]="/etc/bind/zones/internal/db.255"
+        ["0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa"]="/etc/bind/zones/internal/db.ip6.0"
+    )
+
+    for szone in "${!INTERNAL_CHECKS[@]}"; do
+        local zfile="${INTERNAL_CHECKS[$szone]}"
+        
+        if [[ ! -f "$zfile" ]]; then
+            log_error "Файл базы данных для зоны $szone отсутствует: $zfile"
+            HAS_ERROR=true
+            continue
+        fi
+
+        if ! named-checkzone "$szone" "$zfile" >/dev/null 2>&1; then
+            log_error "Ошибка валидации системной зоны: $szone ($zfile)"
+            named-checkzone "$szone" "$zfile" 2>&1 | log_debug
+            HAS_ERROR=true
         fi
     done
 
-    log_info "--- Тестирование DNS-сервера (nslookup) ---"
+    # Проверка пользовательских зон (master)
+    log_info "Проверка рабочих зон (master)..."
     
-    # Указываем сервер явно через IP, чтобы не зависеть от /etc/resolv.conf
-    nslookup "${YOUR_DOMAIN}" "${YOUR_SERVER_IP}"
-    nslookup "${YOUR_SERVER_IP}" "${YOUR_SERVER_IP}"
+    # Прямая зона
+    if ! named-checkzone "$LOCAL_DOMAIN" "/etc/bind/zones/master/db.$LOCAL_DOMAIN" >/dev/null 2>&1; then
+        log_error "Ошибка в файле прямой зоны: db.$LOCAL_DOMAIN"
+        named-checkzone "$LOCAL_DOMAIN" "/etc/bind/zones/master/db.$LOCAL_DOMAIN" 2>&1 | log_debug
+        HAS_ERROR=true
+    fi
 
-    log_info "====================================================="
-    log_info "Настройка DNS-сервера завершена. Проверьте вывод выше."
-    log_info "====================================================="
+    # Обратная зона IPv4
+    local REV4_ZONE="$REVERSE_OCTET_V4.in-addr.arpa"
+    if ! named-checkzone "$REV4_ZONE" "/etc/bind/zones/master/db.rev4.$LOCAL_DOMAIN" >/dev/null 2>&1; then
+        log_error "Ошибка в файле обратной зоны IPv4"
+        named-checkzone "$REV4_ZONE" "/etc/bind/zones/master/db.rev4.$LOCAL_DOMAIN" 2>&1 | log_debug
+        HAS_ERROR=true
+    fi
 
+    # Обратная зона IPv6
+    local REV6_ZONE="$REVERSE_OCTET_V6.ip6.arpa"
+    if ! named-checkzone "$REV6_ZONE" "/etc/bind/zones/master/db.rev6.$LOCAL_DOMAIN" >/dev/null 2>&1; then
+        log_error "Ошибка в файле обратной зоны IPv6"
+        named-checkzone "$REV6_ZONE" "/etc/bind/zones/master/db.rev6.$LOCAL_DOMAIN" 2>&1 | log_debug
+        HAS_ERROR=true
+    fi
+
+    # Проверка прав доступа к папке логов (критично для старта)
+    if [[ ! -w "/var/log/named" ]]; then
+        log_error "У пользователя $(whoami) или группы bind нет прав на запись в /var/log/named"
+        HAS_ERROR=true
+    fi
+
+    # --- ОТКАТ ТРАНЗАКЦИИ ---
+    if [[ "$HAS_ERROR" == "true" ]]; then
+        log_error "Тестирование провалено. Инициирую ROLLBACK..."
+        # Выполняем откат изменений
+        rollback_transaction
+        return 1
+    fi
+
+    log_ok "Все тесты пройдены. Фиксация изменений..."
+    # Финализируем бекап
+    finalize_backup
+    # Применяем изменения
+    commit_transaction
+
+    # Перезапуск и проверка служб
+    log_info "--- Активация и проверка сервисов ---"
+    local services=("rsyslog" "bind9")
+
+    for svc in "${services[@]}"; do
+        # Сначала делаем enable, чтобы служба стартовала после перезагрузки
+        systemctl enable "$svc" >/dev/null 2>&1
+        
+        # Перезапуск
+        if systemctl restart "$svc"; then
+            # Дополнительная проверка: активна ли она на самом деле
+            if systemctl is-active --quiet "$svc"; then
+                log_ok "Служба [$svc] успешно запущена и добавлена в автозагрузку."
+            else
+                log_error "Служба [$svc] формально стартовала, но сейчас неактивна."
+            fi
+        else
+            log_error "Критический сбой при запуске $svc. Код ошибки: $?"
+            log_debug "Вывод диагностики: $(journalctl -u "$svc" -n 20 --no-pager)"
+        fi
+    done
+
+    log_info "--- Тестирование DNS-сервера (Валидация ответов) ---"
+
+    local TEST_DNS="${SERVER_IP_V4}" # Тестируем через локальный IPv4 адрес сервера
+    local DNS_FAIL=false
+
+    # Проверка прямой зоны (IPv4)
+    log_info "Тест: Прямая зона (A) -> ${LOCAL_DOMAIN}"
+    if nslookup "${LOCAL_DOMAIN}" "${TEST_DNS}" | grep -q "Address: ${SERVER_IP_V4}"; then
+        log_ok "IPv4 резолвинг работает корректно."
+    else
+        log_error "Ошибка резолвинга ${LOCAL_DOMAIN} через ${TEST_DNS}"
+        DNS_FAIL=true
+    fi
+
+    # Проверка прямой зоны (IPv6)
+    log_info "Тест: Прямая зона (AAAA) -> ${LOCAL_DOMAIN}"
+    if nslookup -type=aaaa "${LOCAL_DOMAIN}" "${TEST_DNS}" | grep -q "${SERVER_IP_V6}"; then
+        log_ok "IPv6 резолвинг работает корректно."
+    else
+        log_warn "Запись AAAA для ${LOCAL_DOMAIN} не найдена или неверна."
+        # Не ставим DNS_FAIL=true, если IPv6 опционален, но лучше проверить
+    fi
+
+    # Проверка обратной зоны IPv4 (PTR)
+    log_info "Тест: Обратная зона IPv4 (PTR) -> ${SERVER_IP_V4}"
+    if nslookup "${SERVER_IP_V4}" "${TEST_DNS}" | grep -q "name = ns1.${LOCAL_DOMAIN}"; then
+        log_ok "Обратный резолвинг IPv4 работает."
+    else
+        log_error "Ошибка PTR записи для ${SERVER_IP_V4}"
+        DNS_FAIL=true
+    fi
+
+    # Проверка рекурсии (внешний мир)
+    log_info "Тест: Рекурсия (Forwarding) -> google.com"
+    if nslookup "google.com" "${TEST_DNS}" >/dev/null 2>&1; then
+        log_ok "Внешние запросы (Forwarders) работают."
+    else
+        log_warn "Сервер не смог разрешить google.com. Проверьте FORWARDER_DNS."
+    fi
+
+    # Итоговый статус теста
+    if [[ "$DNS_FAIL" == "true" ]]; then
+        log_error "DNS тесты завершились с критическими ошибками."
+        return 1
+    else
+        log_ok "DNS-сервер полностью функционален."
+    fi
+
+    log_info ">>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ DNS (bind9) <<<"
 }
 
 main_bind9 "$@"

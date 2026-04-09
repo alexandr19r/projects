@@ -1,7 +1,7 @@
 // /etc/bind/
 // [named.conf] - основной файл конфигурации bind
-// Author: [${AUTHOR}]
-// Last Modified: ${LAST_MODIFIED}
+// Author: [$AUTHOR]
+// Last Modified: $LAST_MODIFIED
 
 // This is the primary configuration file for the BIND DNS server named.
 //
@@ -11,12 +11,18 @@
 //
 // If you are just adding zones, please do that in /etc/bind/named.conf.local
 
+// Глобальные настройки (ACL, порты, форвардинг)
 include "/etc/bind/named.conf.options";
-// include "/etc/bind/named.conf.local";
+
+// Настройка профессионального логирования (в /var/log/bind/)
+include "/etc/bind/named.conf.logging";
+
+// Стандартные зоны (RFC 1912, localhost, root hints)
 // include "/etc/bind/named.conf.default-zones";
 
-// Главный файл конфигурации
+// Файл для динамических записей (заменяет default-zones)
+include "/etc/bind/zones/internal/named.conf.internal";
 
-include "/etc/bind/named.conf.logging";
-include "/etc/bind/zones/named.conf.local";
-include "/etc/bind/zones/named.conf.zones";
+// Локальные зоны (описания зон)
+include "/etc/bind/zones/master/named.conf.master";
+

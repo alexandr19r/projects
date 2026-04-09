@@ -1,21 +1,18 @@
 # /etc/resolv.conf
 # [resolv.conf] - Конфигурационный файл резольвер (DNS Resolver Configuration File) 
-# Author: [${AUTHOR}]
-# Last Modified: ${LAST_MODIFIED}
+# Author: [$AUTHOR]
+# Last Modified: $LAST_MODIFIED
 
-# Локальный IPv6 (аналог 127.0.0.1)
+# Приоритет: локальный BIND9 (Dual-Stack)
+nameserver 127.0.0.1
 nameserver ::1
 
-# Резервный публичный IPv6 (Google DNS)
-nameserver 2001:4860:4860::8888
+# Резерв (только если BIND упал)
+# ВАЖНО: Если BIND работает, он сам сделает форвард на эти адреса
+nameserver 8.8.8.8 # FORWARDER_DNS1
+nameserver 2001:4860:4860::8888 #FORWARDER_DNS2
 
-# Локальный IPv4
-nameserver 127.0.0.1
-
-# Резервный публичный IPv4 (Google DNS)
-nameserver 8.8.8.8
-
-search ${YOUR_DOMAIN}
+search $LOCAL_DOMAIN
 options timeout:2
-options attempts:3
+options attempts:2
 options rotate

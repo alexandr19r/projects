@@ -1,7 +1,7 @@
-; /etc/bind/zones/
-; [db.localhost]
-; Author: [${AUTHOR}]
-; Last Modified: ${LAST_MODIFIED}
+; /etc/bind/zones/internal/
+; [db.localhost] - База данных localhost (Loopback)
+; Author: [$AUTHOR]
+; Last Modified: $LAST_MODIFIED
 ;
 ; BIND data file for local loopback interface
 ;
@@ -9,7 +9,7 @@
 \$ORIGIN localhost.
 
 @       IN      SOA     localhost. root.localhost. (
-                        ${SERIALNUMBER}   ; Serial YYYYMMDDNN
+                        $SERIALNUMBER   ; Serial YYYYMMDDNN
                         604800          ; Refresh
                         86400           ; Retry
                         2419200         ; Expire

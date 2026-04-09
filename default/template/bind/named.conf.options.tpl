@@ -1,34 +1,41 @@
 // /etc/bind/
-// [named.conf.options] - конфигурационный файл настроек bind
-// Author: [${AUTHOR}]
-// Last Modified: ${LAST_MODIFIED}
+// [named.conf.options] -  - Конфигурация DNS (IPv4 + IPv6)
+// Author: [$AUTHOR]
+// Last Modified: $LAST_MODIFIED
 
 // Определяем локальную сеть как доверенную
 acl "trusted" {
-            ${YOUR_NETWORK};
-            localhost;
+    $LOCAL_NETWORK_V4;     // IPv4 сеть (например, 10.10.100.0/24)
+    $LOCAL_NETWORK_V6;     // IPv6 сеть (например, fd00:db9:aaaa::/64)
+    localhost;
+    localnets;
 };
 
 options {
-        directory "/var/cache/bind";
-        dnssec-validation auto; 	    # DNSSEC
-        auth-nxdomain no;    		    # conform to RFC1035
-	    //blackhole {192.168.1.200; }	# Блокировка IP
+    directory "/var/cache/bind";
+        
+    // Безопасность и DNSSEC
+    dnssec-validation auto; 	    // Автоматическая проверка trust-anchors DNSSEC 
+    auth-nxdomain no;    		    // conform to RFC1035
+	//blackhole {192.168.1.200; }	// Блокировка IP
 
 
-        // Разрешаем рекурсивные запросы только для доверенных клиентов
-        allow-query { trusted; };
-        forward first;			# Сначала пытаемся форвардить
-	    recursion yes;
+    // Рекурсия и доступ
+    recursion yes;
+    allow-query { trusted; };
+    allow-recursion { trusted; }; // Явно разрешаем рекурсию только своим
 
-        // Перенаправляем внешние запросы на публичные DNS
-        forwarders {
-            ${FORWARDER_DNS1};
-            ${FORWARDER_DNS2};
-        };
+    // Настройка пересылки (Forwarding)
+    forward first;
+    forwarders {
+        $FORWARDER_DNS1;      // Обычно Google или Cloudflare (IPv4)
+        $FORWARDER_DNS2;      // IPv6 DNS провайдера или публичный
+    };
 
-        // Слушаем все интерфейсы (IPv4)
-        listen-on { any; };
-	    // Слушаем все интерфейсы (IPv6)
-	    listen-on-v6 {any; };
+    // Прослушивание интерфейсов
+    listen-on { any; };       // Слушать все IPv4
+    listen-on-v6 { any; };    // Слушать все IPv6
+
+    // Скрытие версии для безопасности
+    version "not available";
 };

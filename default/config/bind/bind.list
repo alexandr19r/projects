@@ -1,0 +1,27 @@
+# [bind.list] - Инфраструктура для DNS
+#
+# TYPE | TPL_NAME                                | DEST_PATH                                    | MODE | OWNER      | DEPEND | ATTR | DESC                                                             | VARS
+dir    | none                                    | /var/log/named                               | 770  | syslog:adm | bind   | none | "Папка логов DNS"                                                | none
+file   | none                                    | /var/log/named/named.log                     | 640  | syslog:adm | none   | none | "Файл логов DNS"                                                 | none
+file   | none                                    | /var/log/named/queries.log                   | 640  | bind:adm   | none   | none | "Файл запросов DNS"                                              | none
+file   | system/rsyslog_bind                     | /etc/rsyslog.d/named.conf                    | 644  | root:root  | none   | none | "Настройка логов BIND9 (local6)"                                 | AUTHOR|LAST_MODIFIED|RSYSLOG_DNS
+file   | system/logrotate_bind                   | /etc/logrotate.d/named                       | 644  | root:root  | none   | none | "Ротация логов BIND9"                                            | AUTHOR|LAST_MODIFIED|RSYSLOG_DNS
+dir    | none                                    | /etc/bind/zones                              | 2750 | root:bind  | none   | none | "Папка зон DNS"                                                  | none
+file   | system/resolv.conf                      | /etc/resolv.conf                             | 644  | root:root  | none   | +i   | "Системный резолвер"                                             | AUTHOR|LAST_MODIFIED|LOCAL_DOMAIN
+file   | bind/named.conf                         | /etc/bind/named.conf                         | 644  | root:bind  | none   | none | "Главный файл конфигурации"                                      | AUTHOR|LAST_MODIFIED
+file   | bind/named.conf.options                 | /etc/bind/named.conf.options                 | 644  | root:bind  | none   | none | "Настройка ACL trusted"                                          | AUTHOR|LAST_MODIFIED|LOCAL_NETWORK_V4|LOCAL_NETWORK_V6|FORWARDER_DNS1|FORWARDER_DNS2
+file   | bind/named.conf.logging                 | /etc/bind/named.conf.logging                 | 644  | root:bind  | none   | none | "Настройка логирования"                                          | AUTHOR|LAST_MODIFIED|QUERIESLOG_DNS
+# Системные зоны
+dir    | none                                    | /etc/bind/zones/internal                     | 2750 | root:bind  | none   | none | "Папка системных зон"                                            | none
+file   | bind/zones/internal/named.conf.internal | /etc/bind/zones/internal/named.conf.internal | 644  | root:bind  | none   | none | "Описание локальных зон"                                         | AUTHOR|LAST_MODIFIED
+file   | bind/zones/internal/db.localhost        | /etc/bind/zones/internal/db.localhost        | 644  | root:bind  | none   | none | "База данных localhost (Loopback)"                               | AUTHOR|LAST_MODIFIED|SERIALNUMBER
+file   | bind/zones/internal/db.127              | /etc/bind/zones/internal/db.127              | 644  | root:bind  | none   | none | "Обратная зона localhost IPv4 (Loopback)"                        | AUTHOR|LAST_MODIFIED|SERIALNUMBER
+file   | bind/zones/internal/db.ip6.0            | /etc/bind/zones/internal/db.ip6.0            | 644  | root:bind  | none   | none | "Обратная зона localhost IPv6 (::1)"                             | AUTHOR|LAST_MODIFIED|SERIALNUMBER
+file   | bind/zones/internal/db.0                | /etc/bind/zones/internal/db.0                | 644  | root:bind  | none   | none | "Системная зона для широковещательных адресов (0.0.0.0)"         | AUTHOR|LAST_MODIFIED|SERIALNUMBER
+file   | bind/zones/internal/db.255              | /etc/bind/zones/internal/db.255              | 644  | root:bind  | none   | none | "Системная зона для широковещательных адресов (255.255.255.255)" | AUTHOR|LAST_MODIFIED|SERIALNUMBER
+# Пользовательские зоны
+dir    | none                                    | /etc/bind/zones/master                       | 2770 | bind:bind  | none   | none | "Папка пользовательских зон"                                     | none
+file   | bind/zones/master/named.conf.master     | /etc/bind/zones/master/named.conf.master     | 644  | root:bind  | none   | none | "Описание рабочих зон сети $LOCAL_DOMAIN"                        | AUTHOR|LAST_MODIFIED|LOCAL_DOMAIN|LOCAL_NETWORK_V4|REVERSE_OCTET_V4|LOCAL_NETWORK_V6|REVERSE_OCTET_V6
+file   | bind/zones/master/db.DOMAIN             | /etc/bind/zones/master/db.DOMAIN             | 644  | bind:bind  | none   | none | "Прямая зона $LOCAL_DOMAIN"                                      | AUTHOR|LAST_MODIFIED|SERIALNUMBER|LOCAL_DOMAIN|SERVER_IP_V4|SERVER_IP_V6
+file   | bind/zones/master/db.rev4.DOMAIN        | /etc/bind/zones/master/db.rev4.DOMAIN        | 644  | bind:bind  | none   | none | "Обратная зона $REVERSE_OCTET_V4.in-addr.arpa"                   | AUTHOR|LAST_MODIFIED|SERIALNUMBER|REVERSE_OCTET_V4|LOCAL_DOMAIN|LAST_OCTET_V4
+file   | bind/zones/master/db.rev6.DOMAIN        | /etc/bind/zones/master/db.rev6.DOMAIN        | 644  | bind:bind  | none   | none | "Обратная зона $REVERSE_OCTET_V6.ip6.arpa"                       | AUTHOR|LAST_MODIFIED|SERIALNUMBER|REVERSE_OCTET_V6|LOCAL_DOMAIN|LAST_OCTET_V6

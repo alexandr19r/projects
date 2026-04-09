@@ -3,7 +3,7 @@
 # Author: [${AUTHOR}]
 # Last Modified: ${LAST_MODIFIED}
 
-/var/log/named/named.log {
+${RSYSLOG_DNS} {
     daily
     rotate 7
     # ВАЖНО: Создавать новый файл с правами владелец bind, группа adm

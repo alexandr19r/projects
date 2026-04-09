@@ -80,7 +80,7 @@ main_nftables() {
     # Проверка синтаксиса nftables перед фиксацией (Commit)
     local HAS_ERROR=false
 
-    # 3. Проверка NFTables
+    # Проверка NFTables
     log_info "Валидация NFTables..."
     if ! nft -c -f "/etc/nftables.conf" >/dev/null 2>&1; then
         log_error "Синтаксическая ошибка в /etc/nftables.conf"
@@ -88,7 +88,7 @@ main_nftables() {
         HAS_ERROR=true
     fi
 
-    # 4. Проверка Rsyslog
+    # Проверка Rsyslog
     log_info "Валидация Rsyslog..."
     if ! rsyslogd -N1 >/dev/null 2>&1; then
         log_error "Критическая ошибка в конфигурации Rsyslog"
