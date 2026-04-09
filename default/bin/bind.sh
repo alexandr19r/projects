@@ -80,7 +80,7 @@ main_bind9() {
     bind_list="${ROOT_DIR}/config/bind/bind.list"
 
     # Поверяем корректность загрузки списка инфраструктуры bind
-    if [[ !-f "$bind_list" ]]; then
+    if [[ ! -f "$bind_list" ]]; then
         log_warn "Реестр $bind_list не найден, бэкап конфигураций пропущен."
         return 1
     fi
