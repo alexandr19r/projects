@@ -49,7 +49,7 @@ main_nftables() {
     nftables_list="${ROOT_DIR}/config/nftables/nftables.list"
 
     # Поверяем корректность загрузки списка инфраструктуры nftables
-    if [[ !-f "$nftables_list" ]]; then
+    if [[ ! -f "$nftables_list" ]]; then
         log_warn "Реестр $nftables_list не найден, бэкап конфигураций пропущен."
         return 1
     fi
