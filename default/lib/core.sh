@@ -57,7 +57,8 @@ init_system() {
 
 # Инициализация модулей согласно табличному реестру
 bootstrap_registry() {
-    read -r -d '' MODULE_LIST <<-'EOF'
+    local MODULE_LIST
+    read -r -d '' MODULE_LIST <<-'EOF' || true
         # ИМЯ_МОДУЛЯ       LOAD_LIB   LOAD_CONF
         utils              yes        no
         backup             yes        no
@@ -67,15 +68,21 @@ bootstrap_registry() {
         provisioner        yes        no
 EOF
 
-    while read -r module_name load_lib load_conf; do
-        # Пропуск комментариев и пустых строк
-        [[ "${module_name}" =~ ^(#|$) ]] && continue
+    # Используем IFS для четкого разделения колонок
+    while IFS=$' \t' read -r module_name load_lib load_conf _ || [[ -n "${module_name:-}" ]]; do
+        # Пропуск комментариев и пустых строк (защита от пустых переменных)
+        [[ -z "${module_name:-}" || "${module_name}" =~ ^# ]] && continue
 
-        # Загрузка конфига
-        [[ "${load_lib}" == "yes" && "${load_conf}" == "yes" ]] && import_config "${module_name}"
+        # 1. Сначала загружаем конфиг (если требуется)
+        if [[ "${load_conf:-no}" == "yes" ]]; then
+            import_config "${module_name}"
+        fi
 
-        # Загрузка модуля
-        [[ "${load_lib}" == "yes" ]] && import_lib "${module_name}"
+        # 2. Затем загружаем саму библиотеку
+        if [[ "${load_lib:-no}" == "yes" ]]; then
+            import_lib "${module_name}"
+            log_debug "Модуль [${module_name}] инициализирован."
+        fi
 
     done <<< "${MODULE_LIST}"
 }
