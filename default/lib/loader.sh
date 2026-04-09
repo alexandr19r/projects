@@ -12,7 +12,7 @@ import_lib() {
     local path="${ROOT_DIR}/lib/${name}.sh"
 
     # Если уже загружено — выходим
-    [[ -n "${_LOADED_MODULES_[$name]}" ]] && return 0
+    [[ -n "${_LOADED_MODULES_[$name]:-}" ]] && return 0
 
     if [[ -f "$path" ]]; then
         source "$path"
