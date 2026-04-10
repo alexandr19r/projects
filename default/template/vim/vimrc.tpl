@@ -1,8 +1,14 @@
 " ~/.vimrc - индивидуальные настройки Vim
-" Author: [${AUTHOR}]
-" Last Modified: ${LAST_MODIFIED}
+" Author: [$AUTHOR]
+" Last Modified: $LAST_MODIFIED
+" User: $USER_NAME
 
-" --- ОСНОВНЫЕ НАСТРОЙКИ ---
+" --- ИНИЦИАЛИЗАЦИЯ И ОШИБКИ ---
+if has('vim_starting')
+    set debug=throw
+endif
+
+" --- ИНТЕРФЕЙС И ВИД ---
 syntax on            " Включить подсветку синтаксиса
 set number           " Показывать номера строк
 "set relativenumber   " Относительные номера (удобно для прыжков по коду)
@@ -11,6 +17,9 @@ set showmatch        " Подсвечивать парные скобки
 set visualbell       " Использовать визуальный сигнал вместо звукового
 set laststatus=2     " Всегда показывать статусную строку
 set termguicolors    " Поддержка 24-битных цветов (TrueColors)
+set background=dark
+" Попытка включить gruvbox, если файл существует
+silent! colorscheme gruvbox
 
 " --- ТАБУЛЯЦИЯ И ОТСТУПЫ ---
 set tabstop=4        " Ширина таба — 4 пробела
@@ -33,26 +42,26 @@ set fileencoding=utf-8      " Кодировка сохраняемого фай
 set noswapfile              " Не создавать .swp файлы (бесят в папках проекта)
 set nobackup                " Не создавать бекап-файлы
 set undofile                " Сохранять историю изменений даже после закрытия файла
-set undodir=~/.vim/undodir  " Директория для истории изменений
+set undodir=$USER_HOME/.vim/undodir  " Директория для истории изменений
 set mouse=a                 " Включить поддержку мыши во всех режимах
 set hidden                  " Разрешить переключение между буферами без сохранения
 
 " --- ГОРЯЧИЕ КЛАВИШИ ---
 " Лидер-клавиша (основной модификатор для своих команд)
-"let mapleader = " "
+let mapleader = " "
 
 " Быстрое сохранение и выход
-"nnoremap <leader>w :w<CR>
-"nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
 
 " Очистка подсветки поиска нажатием Esc
-"nnoremap <esc> :noh<return><esc>
+nnoremap <esc> :noh<return><esc>
 
 " Навигация между окнами (разрезами экрана) через Ctrl + стрелки
-"nnoremap <C-Left> <C-W>h
-"nnoremap <C-Down> <C-W>j
-"nnoremap <C-Up> <C-W>k
-"nnoremap <C-Right> <C-W>l
+nnoremap <C-Left> <C-W>h
+nnoremap <C-Down> <C-W>j
+nnoremap <C-Up> <C-W>k
+nnoremap <C-Right> <C-W>l
 
 " Перемещение блоков текста в визуальном режиме (как в IDE)
 "vnoremap J :m '>+1<CR>gv=gv
@@ -73,6 +82,7 @@ set hidden                  " Разрешить переключение меж
 "imap <C-v> <Esc>"+pa
 
 " --- СТАТУСНАЯ СТРОКА (ИНФО-ПАНЕЛЬ) ---
+"set statusline=%#PmenuSel#\ %{toupper(mode())}\ %#Visual#\ %f\ %m\ %r\ %h\ %w\ %#CursorLine#\ %=\ %y\ %p%%\ %l:%c\ 
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]
 set statusline+=\ %{mode()}
 
@@ -81,4 +91,8 @@ set showmode
 set cmdheight=2
 
 " --- Вывод подсказки в командной строке при запуске ---
+"autocmd VimEnter * echo "ГОРЯЧИЕ КЛАВИШИ: Пробел+w - Сохранить | :q - Выход | u - Отмена | Esc - Режим команд"
 autocmd VimEnter * echo "ГОРЯЧИЕ КЛАВИШИ: :w - сохр | :q - выход | i - режим ввода | Esc - режим команд | u - отмена | / - поиск"
+
+" --- ОТКЛЮЧЕНИЕ ОШИБКИ ИНИЦИАЛИЗАЦИИ ---
+set debug=msg
