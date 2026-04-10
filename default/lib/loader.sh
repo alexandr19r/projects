@@ -40,7 +40,7 @@ import_config() {
 
 load_env() {
     local name=$1
-    local path="${ROOT_DIR}/env/${name}.env"
+    local path="${ROOT_DIR}/config/${name}.env"
 
     if [[ -f "$path" ]]; then
         log_debug "Загрузка переменных окружения из: $path"

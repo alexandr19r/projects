@@ -63,7 +63,7 @@ main_bind9() {
 
     # Загружаем переменные окружения
     log_info "--- Загрузка переменных из настроек приложения ---"
-    load_env "${ROOT_DIR}/config/bind/bind.env"
+    load_env "bind/bind"
 
     # Установка пакета
     log_info "--- Установка DNS (${PROJECT_NAME}) и зависимостей ---"
