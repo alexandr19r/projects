@@ -91,30 +91,44 @@ draw_line() {
 # Универсальный конструктор путей
 # Аргументы: path, type(dir|file), owner(user:group), mode(octal)
 ensure_path_exists() {
-    local path="$1" type="${2:-dir}" owner="${3:-root:root}" mode="$4"
+    local path="${1:-}" type="${2:-dir}" owner="${3:-root:root}" mode="${4:-}"
+
+    [[ -z "$path" ]] && { log_error "Переменная path пустая строка."; return 1; }
 
     # Создание объекта
     if [[ "$type" == "dir" ]]; then
-        mkdir -p "$path" || { log_error "Ошибка mkdir: $path"; return 1; }
+        if [[ ! -d "$path" ]]; then
+            mkdir -p "$path" || { log_error "Ошибка mkdir: $path"; return 1; }
+        fi
     else
-        # Создаем родительскую директорию без рекурсии через mkdir -p
-        mkdir -p "$(dirname "$path")" && touch "$path" || { log_error "Ошибка touch: $path"; return 1; }
+        # Создаем родительскую директорию, если её нет
+        local parent_dir
+        parent_dir=$(dirname "$path")
+        [[ ! -d "$parent_dir" ]] && mkdir -p "$parent_dir" || { log_error "Ошибка mkdir: $path"; return 1; }
+        
+        # Создаем файл, если его нет
+        [[ ! -f "$path" ]] && touch "$path" || { log_error "Ошибка touch: $path"; return 1; }
     fi
 
-    # Применение владельца и прав (всегда, для гарантии консистентности)
-    chown "$owner" "$path"
-    [[ -n "$mode" ]] && chmod "$mode" "$path"
-    
-    log_debug "Путь готов: $path ($type, $owner, ${mode:-default})"
-}
+    # Применение владельца
+    # Используем || true, чтобы ошибка chown не прерывала скрипт (если это критично, убери)
+    chown "$owner" "$path" 2>/dev/null || log_warn "Не удалось сменить владельца на $owner для $path"
 
+    #  Применение прав
+    if [[ -n "$mode" ]]; then
+        chmod "$mode" "$path" || { log_error "Ошибка chmod $mode: $path"; return 1; }
+    fi
+    
+    log_debug "Объект готов: $path ($type, $owner, ${mode:-default})"}
+}
 # Упрощенная обертка для директорий (Strict mode)
 # Прерывает выполнение, если папку создать нельзя
 ensure_dir_exists() {
-    local dir_path="$1"
-    ensure_path_exists "$dir_path" "dir" || { log_error "Критическая ошибка доступа: $dir_path"; exit 1; }
+    local dir_path="${1:-}"
+    [[ -z "$dir_path" ]] && { log_error "Переменная dir_path пустая строка."; return 1; }
+    # Вызываем через || return 1 вместо exit 1, чтобы сработал твой Rollback
+    ensure_path_exists "$dir_path" "dir" || { log_error "Критическая ошибка доступа: $dir_path"; return 1; }
 }
-
 # Функция для генерации конфигов из шаблонов
 # Использование: update_configs "путь/к/шаблону" "путь/к/цели" "MY_|AUTHOR|ROOT_DIR|LAST_MODIFIED"
 update_configs() {
