@@ -22,7 +22,10 @@ begin_transaction() {
 
 # Регистрация: тип(file/dir) | куда_ставим | откуда_взяли(опционально)
 register_in_tx() {
-    local type="$1" dest="$2" src="$3"
+    # Используем :- для защиты от пустых аргументов
+    local type="${1:-}" 
+    local dest="${2:-}" 
+    local src="${3:-}"
     local stage_name="${dest//\//_}" # Безопасное имя файла
     
     # ЗАЩИТА: Если транзакция не была начата через begin_transaction, 
