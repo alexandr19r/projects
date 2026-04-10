@@ -9,11 +9,11 @@ readonly _INSTALLER_SH_=1
 # export PKG_OPTS="-y -qq" # Тихий режим и авто-подтверждение
 # Настройки модуля (лучше без export, если не нужно дочерним процессам)
 : "${PKG_MANAGER:="apt-get"}"
-: "${PKG_OPTS:="-y -qq"}"
+: "${PKG_OPTS:=(-y -qq)}"
 
 # Проверка наличия пакета в системе
 _is_installed() {
-    local pkg_name="$1"
+    local pkg_name="${1:-}"
     [[ -z "$pkg_name" ]] && return 1
     # Стандарт 2026: dpkg-query быстрее и надежнее grep
     # dpkg-query -W -f='${Status}' "$pkg_name" 2>/dev/null | grep -q "ok installed"
@@ -23,7 +23,7 @@ _is_installed() {
 
 # Одиночная установка (враппер над install_list)
 install_package() {
-    install_list "$1"
+    install_list "${1:-}"
 }
 
 # Пакетная установка (Основная рабочая лошадка)
@@ -76,12 +76,12 @@ install_list() {
     # Обновление кэша (только если нужно) и установка
     # Используем блоки if вместо && для чистого логирования ошибок
     log_info "Обновление кэша..."
-    if ! $PKG_MANAGER update $PKG_OPTS >/dev/null 2>&1; then
+    if ! "$PKG_MANAGER" update "${PKG_OPTS[@]}" >/dev/null 2>&1; then
         log_warn "Не удалось обновить кэш пакетов, пробуем установить так..."
     fi
 
     log_info "Установка..."
-    if $PKG_MANAGER install $PKG_OPTS "${to_install[@]}"; then
+    if "$PKG_MANAGER" install "${PKG_OPTS[@]}" "${to_install[@]}"; then
         log_ok "Пакеты успешно установлены: ${to_install[*]}"
         return 0
     else
@@ -92,7 +92,7 @@ install_list() {
 
 # Одиночное удаление (враппер над uninstall_list)
 uninstall_package() {
-    uninstall_list "$1"
+    uninstall_list "${1:-}"
 }
 
 # Пакетное удаление (purge + auto-remove)
