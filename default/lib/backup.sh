@@ -169,7 +169,7 @@ finalize_backup() {
     # Проверка на наличие данных (более быстрый способ через find)
     if [[ -z $(find "$BACKUP_TEMP" -mindepth 1 -print -quit) ]]; then
         log_warn "Временный каталог пуст. Бэкап не будет создан."
-        return 1
+        return 0
     fi
 
     log_info "Архивирование в: $archive_file"
