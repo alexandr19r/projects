@@ -25,4 +25,3 @@ include "/etc/bind/zones/internal/named.conf.internal";
 
 // Локальные зоны (описания зон)
 include "/etc/bind/zones/master/named.conf.master";
-
