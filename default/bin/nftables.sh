@@ -68,15 +68,44 @@ main_nftables() {
     done
     
     # Читаем реестр и вызываем add_item для каждой строки
+#    log_info "--- Настройка инфраструктуры Firewall (nftables) ---"
+#    grep -vE '^(#|$)' "$nftables_list" | while read -r type tpl dest mode owner dep attr desc vars; do
+#        if ! add_item "$type" "$tpl" "$dest" "$mode" "$owner" "$dep" "$attr" "$desc" "$vars"; then
+#            log_error "Сбой при настройке: $desc"
+#            rollback_transaction
+#            return 1
+#       fi
+#    done || return 1 # Выход из main если цикл вернул ошибку
+
     log_info "--- Настройка инфраструктуры Firewall (nftables) ---"
-    grep -vE '^(#|$)' "$nftables_list" | while read -r type tpl dest mode owner dep attr desc vars; do
+    # Используем перенаправление < вместо пайпа |, чтобы rollback работал в основном процессе
+    while IFS='|' read -r type tpl dest mode owner dep attr desc vars || [[ -n "$type" ]]; do
+        
+        # 1. Очистка от пробелов и пропуск пустых строк/комментариев
+        type=$(echo "${type}" | xargs)
+        [[ -z "$type" || "$type" =~ ^# ]] && continue
+
+        # 2. Очистка остальных переменных от лишних пробелов по бокам пайпа
+        tpl=$(echo "${tpl}" | xargs)
+        dest=$(echo "${dest}" | xargs)
+        mode=$(echo "${mode}" | xargs)
+        owner=$(echo "${owner}" | xargs)
+        dep=$(echo "${dep}" | xargs)
+        attr=$(echo "${attr}" | xargs)
+        desc=$(echo "${desc}" | xargs)
+        vars=$(echo "${vars}" | xargs)
+
+        # 3. Вызов add_item
         if ! add_item "$type" "$tpl" "$dest" "$mode" "$owner" "$dep" "$attr" "$desc" "$vars"; then
             log_error "Сбой при настройке: $desc"
+            # Теперь rollback сработает правильно, так как мы не в subshell
             rollback_transaction
             return 1
         fi
-    done || return 1 # Выход из main если цикл вернул ошибку
-    
+
+    done < "$nftables_list"
+
+
     # Проверка синтаксиса nftables перед фиксацией (Commit)
     local HAS_ERROR=false
 
