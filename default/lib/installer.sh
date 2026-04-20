@@ -81,8 +81,7 @@ install_list() {
     # Обновление кэша (только если нужно) и установка
     # Используем блоки if вместо && для чистого логирования ошибок
     log_info "Обновление кэша..."
-    if ! $PKG_MANAGER update $PKG_OPTS >/dev/null 2>&1; then
-        $PKG_MANAGER update $PKG_OPTS
+    if ! $PKG_MANAGER update $PKG_OPTS; then
         log_warn "Не удалось обновить кэш пакетов, пробуем установить так..."
     fi
 
@@ -149,7 +148,7 @@ uninstall_list() {
         
         # Очистка кэша .deb файлов для освобождения места
         log_debug "Очистка локального архива пакетов (autoclean)..."
-        $PKG_MANAGER autoclean $PKG_OPTS >/dev/null 2>&1 || true
+        $PKG_MANAGER autoclean $PKG_OPTS || true
         return 0
     else
         log_error "Критический сбой при удалении пакетов."
