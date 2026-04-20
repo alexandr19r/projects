@@ -233,9 +233,9 @@ update_configs() {
 # Функция для получения следующего серийного номера в формате YYYYMMDDNN
 # Использование: SERIAL=$(get_next_serial "/path/to/zone/file")
 get_next_serial() {
-    local zone_file="$1"
+    local zone_file="${1:-}"
     local today=$(date +"%Y%m%d")
-    local old_serial
+    local old_serial=""
     
     # Ищем 10 цифр, которые обычно помечены комментарием Serial
     if [[ -f "$zone_file" ]]; then
@@ -243,7 +243,7 @@ get_next_serial() {
     fi
 
     # Если старый сериал найден и он сегодняшний
-    if [[ -n "$old_serial" && "$old_serial" == "$today"* ]]; then
+    if [[ -n "${old_serial:-}" && "$old_serial" == "$today"* ]]; then
         # 10# форсирует десятичную систему, игнорируя ведущие нули
         echo $((10#$old_serial + 1))
     else
