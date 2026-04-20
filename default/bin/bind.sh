@@ -3,7 +3,7 @@
 
 # Инициализация переменных
 PROJECT_NAME="bind9"
-PACKAGES="bind9 rsyslog"
+PACKAGES="bind9 dnsutils rsyslog"
 
 # --- ПЕРЕМЕННЫЕ НАСТРОЙКИ ---
 # см. [bind.env]
