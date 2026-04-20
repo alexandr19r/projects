@@ -228,20 +228,26 @@ main_bind9() {
     local services=("rsyslog" "bind9")
 
     for svc in "${services[@]}"; do
-        # Сначала делаем enable, чтобы служба стартовала после перезагрузки
+        # 1. Активация автозагрузки
         systemctl enable "$svc" >/dev/null 2>&1
-        
-        # Перезапуск
+
+        # 2. Перезапуск
+        log_info "Перезапуск службы [$svc]..."
         if systemctl restart "$svc"; then
-            # Дополнительная проверка: активна ли она на самом деле
-            if systemctl is-active --quiet "$svc"; then
-                log_ok "Служба [$svc] успешно запущена и добавлена в автозагрузку."
+            # 3. Безопасная проверка активности (добавляем || : чтобы set -e не сработал)
+            local status=0
+            systemctl is-active --quiet "$svc" || status=$?
+            
+            if [[ $status -eq 0 ]]; then
+                log_ok "Служба [$svc] успешно запущена."
             else
-                log_error "Служба [$svc] формально стартовала, но сейчас неактивна."
+                log_error "Служба [$svc] не прошла проверку активности (is-active). Код: $status"
+                log_debug "$(journalctl -u "$svc" -n 20 --no-pager)"
+                return 1 # Или HAS_ERROR=true
             fi
         else
-            log_error "Критический сбой при запуске $svc. Код ошибки: $?"
-            log_debug "Вывод диагностики: $(journalctl -u "$svc" -n 20 --no-pager)"
+            log_error "systemctl restart $svc завершился с ошибкой."
+            return 1
         fi
     done
 
