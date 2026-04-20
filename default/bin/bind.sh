@@ -99,18 +99,37 @@ main_bind9() {
     done
     
     # Читаем реестр и вызываем add_item для каждой строки
-    log_info "--- Настройка инфраструктуры DNS (bind) ---"
-    grep -vE '^(#|$)' "$bind_list" | while read -r type tpl dest mode owner dep attr desc vars; do
+    log_info "--- Настройка инфраструктуры Firewall (nftables) ---"
+    # Используем перенаправление < вместо пайпа |, чтобы rollback работал в основном процессе
+    while IFS='|' read -r type tpl dest mode owner dep attr desc vars || [[ -n "$type" ]]; do
+        
+        # 1. Очистка от пробелов и пропуск пустых строк/комментариев
+        type=$(echo "${type}" | xargs)
+        [[ -z "$type" || "$type" =~ ^# ]] && continue
+
+        # 2. Очистка остальных переменных от лишних пробелов по бокам пайпа
+        tpl=$(echo "${tpl}" | xargs)
+        dest=$(echo "${dest}" | xargs)
+        mode=$(echo "${mode}" | xargs)
+        owner=$(echo "${owner}" | xargs)
+        dep=$(echo "${dep}" | xargs)
+        attr=$(echo "${attr}" | xargs)
+        desc=$(echo "${desc}" | xargs)
+        vars=$(echo "${vars}" | xargs)
+        
         # Магия подстановки для путей (заменяем метку DOMAIN на реальный домен)
         # Если в пути есть слово DOMAIN, оно заменится на значение переменной YOUR_DOMAIN
         local final_dest="${dest//DOMAIN/$LOCAL_DOMAIN}"
 
+        # 3. Вызов add_item
         if ! add_item "$type" "$tpl" "$final_dest" "$mode" "$owner" "$dep" "$attr" "$desc" "$vars"; then
             log_error "Сбой при настройке: $desc"
+            # Теперь rollback сработает правильно, так как мы не в subshell
             rollback_transaction
             return 1
         fi
-    done || return 1 # Выход из main если цикл вернул ошибку
+
+    done < "$bind_list"
     
     # --- ВАЛИДАЦИЯ DNS (BIND9) ---
     # Проверка синтаксиса bind перед фиксацией (Commit)
