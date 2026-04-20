@@ -225,7 +225,7 @@ main_bind9() {
 
     # Перезапуск и проверка служб
     log_info "--- Активация и проверка сервисов ---"
-    local services=("rsyslog" "bind9")
+    local services=("rsyslog" "named")
 
     for svc in "${services[@]}"; do
         # 1. Активация автозагрузки # >/dev/null 2>&1 
