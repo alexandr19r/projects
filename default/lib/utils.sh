@@ -88,6 +88,43 @@ draw_line() {
 
 # ДРУГИЕ ФУНКЦИИ
 
+# Проверка существования связки user:group
+# Гарантирует наличие пользователя и группы в системе
+ensure_owner_exists() {
+    local owner_str="$1"
+    local user_name="${owner_str%:*}"
+    local group_name="${owner_str#*:}"
+
+    # 1. Если группа указана и её нет — создаем её как системную
+    if [[ -n "$group_name" && "$group_name" != "$user_name" ]]; then
+        if ! getent group "$group_name" >/dev/null 2>&1; then
+            log_warn "Группа [$group_name] не найдена. Создаю системную группу..."
+            groupadd -r "$group_name" || { log_error "Не удалось создать группу $group_name"; return 1; }
+        fi
+    fi
+
+    # 2. Если пользователя нет — создаем его как системного
+    if ! getent passwd "$user_name" >/dev/null 2>&1; then
+        log_warn "Пользователь [$user_name] не найден. Создаю системного пользователя..."
+        
+        # Параметры: -r (system), -s (nologin), -g (primary group)
+        local user_opts="-r -s /usr/sbin/nologin"
+        
+        # Если группа была указана, привязываем пользователя к ней
+        if [[ -n "$group_name" && "$group_name" != "$user_name" ]]; then
+            user_opts+=" -g $group_name"
+        fi
+
+        useradd $user_opts "$user_name" || { 
+            log_error "Не удалось создать пользователя $user_name"
+            return 1 
+        }
+        log_ok "Пользователь [$user_name] успешно создан."
+    fi
+
+    return 0
+}
+
 # Универсальный конструктор путей
 # Аргументы: path, type(dir|file), owner(user:group), mode(octal)
 ensure_path_exists() {
@@ -122,7 +159,15 @@ ensure_path_exists() {
 
     # Применение владельца
     # Используем || true, чтобы ошибка chown не прерывала скрипт (если это критично, убери)
-    chown "$owner" "$path" 2>/dev/null || log_warn "Не удалось сменить владельца на $owner для $path"
+    # Безопасная смена владельца
+    # chown "$owner" "$path" 2>/dev/null || log_warn "Не удалось сменить владельца на $owner для $path"
+    # Перед chown гарантируем наличие субъектов
+    if ensure_owner_exists "$owner"; then
+        chown "$owner" "$path"
+    else
+        log_error "Критическая ошибка: не удалось подготовить владельца $owner"
+        return 1
+    fi
 
     #  Применение прав
     if [[ -n "$mode" ]]; then
