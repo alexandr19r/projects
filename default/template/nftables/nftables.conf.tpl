@@ -132,7 +132,10 @@ table inet filter {
         udp dport 547 accept
         
         # Логируем пакеты, которые не прошли на сервер
-        log prefix "NFT_INPUT_DROP: " level info facility local0
+        # log prefix "NFT_INPUT_DROP: " level info facility local0
+        # Убрали facility local0, так как он вызывает ошибку синтаксиса
+        log prefix "NFT_INPUT_DROP: " level info
+        drop
     }
 
     # Пакеты, проходящие СКВОЗЬ сервер (Routing/Forwarding)
@@ -152,7 +155,10 @@ table inet filter {
         meta nfproto ipv6 ip6 saddr $ROUTER_IP_V6 ip6 daddr $LOCAL_SUBNET_V6 oifname "$DHCP_INTERFACE" ct state established,related accept
 
         # Логируем пакеты, которые не прошли сквозь шлюз
-        log prefix "NFT_FORWARD_DROP: " level info facility local0
+        # log prefix "NFT_FORWARD_DROP: " level info facility local0
+        # Используем только префикс для фильтрации в rsyslog
+        log prefix "NFT_FORWARD_DROP: " level info
+        drop
     }
 
     # Пакеты, висходящие с сервера (Output)
