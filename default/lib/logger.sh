@@ -82,13 +82,13 @@ _log_base() {
     fi
 }
 
-log_info()  { _log_base "INFO"  "$C_BLU" "$1"; }
-log_ok()    { _log_base "OK"    "$C_GRE" "$1"; }
-log_warn()  { _log_base "WARN"  "$C_YEL" "$1"; }
-log_error() { _log_base "ERROR" "$C_RED" "$1"; }
+log_info()  { _log_base "INFO"  "$C_BLU" "${1:-}"; }
+log_ok()    { _log_base "OK"    "$C_GRE" "${1:-}"; }
+log_warn()  { _log_base "WARN"  "$C_YEL" "${1:-}"; }
+log_error() { _log_base "ERROR" "$C_RED" "${1:-}"; }
 log_debug() { 
     if [[ "${DEBUG_MODE:-false}" == "true" ]]; then
-        _log_base "DEBUG" "$C_MAG" "$1"
+        _log_base "DEBUG" "$C_MAG" "${1:-}"
     fi
     return 0  # Принудительно возвращаем успех
 }
