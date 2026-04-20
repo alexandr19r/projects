@@ -9,12 +9,12 @@ readonly _INSTALLER_SH_=1
 # export PKG_OPTS="-y -qq" # Тихий режим и авто-подтверждение
 # Настройки модуля (лучше без export, если не нужно дочерним процессам)
 : "${PKG_MANAGER:="apt-get"}"
-# : "${PKG_OPTS:="-y -qq"}"
+: "${PKG_OPTS:="-y -qq"}"
 # Проверяем, определен ли уже массив PKG_OPTS
-if [[ -z "${PKG_OPTS[*]:-}" ]]; then
-    # Если массив пуст или не существует, инициализируем его
-    declare -ga PKG_OPTS=(-y -qq)
-fi
+#if [[ -z "${PKG_OPTS[*]:-}" ]]; then
+#    # Если массив пуст или не существует, инициализируем его
+#    declare -ga PKG_OPTS=(-y -qq)
+#fi
 
 # Проверка наличия пакета в системе
 _is_installed() {
@@ -81,15 +81,13 @@ install_list() {
     # Обновление кэша (только если нужно) и установка
     # Используем блоки if вместо && для чистого логирования ошибок
     log_info "Обновление кэша..."
-    log_info "$PKG_MANAGER update ${PKG_OPTS[@]}"
-    if ! $PKG_MANAGER update "${PKG_OPTS[@]}" >/dev/null 2>&1; then
-        $PKG_MANAGER update "${PKG_OPTS[@]}"
+    if ! $PKG_MANAGER update $PKG_OPTS >/dev/null 2>&1; then
+        $PKG_MANAGER update $PKG_OPTS
         log_warn "Не удалось обновить кэш пакетов, пробуем установить так..."
     fi
 
     log_info "Установка пакетов..."
-    log_info "$PKG_MANAGER install ${PKG_OPTS[@]} ${to_install[@]}"
-    if $PKG_MANAGER install "${PKG_OPTS[@]}" "${to_install[@]}"; then
+    if $PKG_MANAGER install $PKG_OPTS "${to_install[@]}"; then
         log_ok "Пакеты успешно установлены: ${to_install[*]}"
         return 0
     else
