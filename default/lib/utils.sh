@@ -104,7 +104,7 @@ ensure_path_exists() {
         # Создаем родительскую директорию, если её нет
         local parent_dir
         parent_dir=$(dirname "$path")
-        [[ ! -d "$parent_dir" ]] && mkdir -p "$parent_dir" || { log_error "Ошибка mkdir: $path"; return 1; }
+        [[ ! -d "$parent_dir" ]] && mkdir -p "$parent_dir" || { log_error "Ошибка mkdir для parent_dir: $path"; return 1; }
         
         # Создаем файл, если его нет
         [[ ! -f "$path" ]] && touch "$path" || { log_error "Ошибка touch: $path"; return 1; }
