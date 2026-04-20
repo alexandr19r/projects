@@ -68,15 +68,6 @@ main_nftables() {
     done
     
     # Читаем реестр и вызываем add_item для каждой строки
-#    log_info "--- Настройка инфраструктуры Firewall (nftables) ---"
-#    grep -vE '^(#|$)' "$nftables_list" | while read -r type tpl dest mode owner dep attr desc vars; do
-#        if ! add_item "$type" "$tpl" "$dest" "$mode" "$owner" "$dep" "$attr" "$desc" "$vars"; then
-#            log_error "Сбой при настройке: $desc"
-#            rollback_transaction
-#            return 1
-#       fi
-#    done || return 1 # Выход из main если цикл вернул ошибку
-
     log_info "--- Настройка инфраструктуры Firewall (nftables) ---"
     # Используем перенаправление < вместо пайпа |, чтобы rollback работал в основном процессе
     while IFS='|' read -r type tpl dest mode owner dep attr desc vars || [[ -n "$type" ]]; do

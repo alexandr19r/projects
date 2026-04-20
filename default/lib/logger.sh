@@ -44,20 +44,40 @@ init_logger() {
 }
 
 _log_base() {
-    local level=$1; local color=$2; local message=$3
-    local timestamp=$(date +'%Y-%m-%d %H:%M:%S')
+    # Защита от unbound variable через :-
+    local level="${1:-INFO}"
+    local color="${2:-$C_RES}"
+    local message=""
+
+    # Логика получения сообщения
+    if [[ -n "${3:-}" ]]; then
+        # Если передан третий аргумент - берем его
+        message="$3"
+    elif [[ ! -t 0 ]]; then
+        # Если в STDIN есть данные (пайп), читаем их
+        message=$(cat -)
+    fi
+
+    # Если везде пусто - ставим заглушку
+    [[ -z "$message" ]] && message="[no message]"
+
+    local timestamp
+    timestamp=$(date +'%Y-%m-%d %H:%M:%S')
     local formatted_msg="[$timestamp] [$level] $message"
 
     # Вывод в консоль (с цветами)
     # Вывод в STDERR (стандарт для логов), чтобы не мешать выводу данных в STDOUT
-   if [[ "$LOG_TO_CONSOLE" == "true" ]]; then
+   if [[ "${LOG_TO_CONSOLE:-true}" == "true" ]]; then
         echo -e "${color}${formatted_msg}${C_RES}" >&2
     fi
 
-    # Вывод в файл (без цветов)
-    if [[ "$LOG_TO_FILE" == "true" ]]; then
-        # Используем printf или следим, чтобы в сообщении не было спецсимволов
-        # echo "$formatted_msg" >> "$LOG_FILE"
+    # 5. Вывод в файл (без цветов)
+    if [[ "${LOG_TO_FILE:-false}" == "true" && -n "${LOG_FILE:-}" ]]; then
+        # Создаем папку лога, если её нет (защита)
+        local log_dir
+        log_dir=$(dirname "$LOG_FILE")
+        [[ ! -d "$log_dir" ]] && mkdir -p "$log_dir" 2>/dev/null
+        
         printf "%s\n" "$formatted_msg" >> "$LOG_FILE" 2>/dev/null
     fi
 }
