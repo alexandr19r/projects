@@ -6,7 +6,7 @@
 readonly _CORE_SH_=1
 
 set -euo pipefail
-IFS=$'\n\t'
+IFS=$' \n\t'
 
 # 1. Определяем корень проекта, делаем переменную неизменяемой и доступной окружению
 export readonly ROOT_DIR="${ROOT_DIR:-$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")}"
