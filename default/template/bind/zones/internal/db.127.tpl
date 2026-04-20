@@ -5,8 +5,8 @@
 ;
 ; BIND reverse data file for local loopback interface
 ;
-\$TTL    604800
-; \$ORIGIN 0.0.127.in-addr.arpa. ; Удалено для универсальности
+$TTL    604800
+; $ORIGIN 0.0.127.in-addr.arpa. ; Удалено для универсальности
 
 @       IN      SOA     localhost. root.localhost. (
                         $SERIALNUMBER   ; Serial YYYYMMDDNN

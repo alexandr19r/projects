@@ -5,8 +5,8 @@
 ;
 ; BIND data file for local loopback interface
 ;
-\$TTL    604800
-\$ORIGIN localhost.
+$TTL    604800
+$ORIGIN localhost.
 
 @       IN      SOA     localhost. root.localhost. (
                         $SERIALNUMBER   ; Serial YYYYMMDDNN

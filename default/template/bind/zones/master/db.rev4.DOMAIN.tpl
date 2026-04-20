@@ -5,8 +5,8 @@
 ;
 ; BIND reverse data file for domain interface
 ;
-\$TTL    604800
-\$ORIGIN $REVERSE_OCTET_V4.in-addr.arpa.
+$TTL    604800
+$ORIGIN $REVERSE_OCTET_V4.in-addr.arpa.
 
 @       IN      SOA     ns1.$LOCAL_DOMAIN. root.$LOCAL_DOMAIN. (
                         $SERIALNUMBER    ; Serial (Генерируется скриптом)

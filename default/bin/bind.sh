@@ -64,7 +64,7 @@ main_bind9() {
     # Загружаем переменные окружения
     log_info "--- Загрузка переменных из настроек приложения ---"
     load_env "bind/bind"
-    log_info $SERIALNUMBER
+
     # Установка пакета
     log_info "--- Установка DNS (${PROJECT_NAME}) и зависимостей ---"
     install_list "${PACKAGES}" || return 1

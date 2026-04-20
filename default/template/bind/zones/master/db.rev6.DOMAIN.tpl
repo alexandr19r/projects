@@ -5,9 +5,9 @@
 ;
 ; BIND reverse data file for domain interface
 ;
-\$TTL    604800
+$TTL    604800
 ; ORIGIN должен содержать инвертированную сетевую часть IPv6
-\$ORIGIN $REVERSE_OCTET_V6.ip6.arpa.
+$ORIGIN $REVERSE_OCTET_V6.ip6.arpa.
 
 @       IN      SOA     ns1.$LOCAL_DOMAIN. root.$LOCAL_DOMAIN. (
                         $SERIALNUMBER       ; Serial (YYYYMMDDNN)

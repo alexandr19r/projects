@@ -5,8 +5,8 @@
 ;
 ; BIND data file for domain interface
 ;
-\$TTL    604800
-\$ORIGIN $LOCAL_DOMAIN.
+$TTL    604800
+$ORIGIN $LOCAL_DOMAIN.
 
 @       IN      SOA     ns1.$LOCAL_DOMAIN. root.$LOCAL_DOMAIN. (
                         $SERIALNUMBER   ; Serial

@@ -5,8 +5,8 @@
 ;
 ; BIND reverse data file for local loopback IPv6 interface
 ;
-\$TTL    604800
-; \$ORIGIN 0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa. ; Удалено для универсальности
+$TTL    604800
+; $ORIGIN 0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa. ; Удалено для универсальности
 
 @       IN      SOA     localhost. root.localhost. (
                         $SERIALNUMBER   ; Serial YYYYMMDDNN

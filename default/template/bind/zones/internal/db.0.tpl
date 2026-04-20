@@ -5,7 +5,7 @@
 ;
 ; BIND reverse data file for local loopback interface
 ;
-\$TTL    604800
+$TTL    604800
 @       IN      SOA     localhost. root.localhost. (
                         $SERIALNUMBER     ; Serial YYYYMMDDNN
                         604800            ; Refresh
