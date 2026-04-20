@@ -144,12 +144,12 @@ uninstall_list() {
     # Удаление одной командой
     # purge — удаляет конфиги в /etc
     # --auto-remove — чистит ставшие ненужными зависимости
-    if $PKG_MANAGER purge "${PKG_OPTS[@]}" --auto-remove "${to_purge[@]}"; then
+    if $PKG_MANAGER purge $PKG_OPTS --auto-remove "${to_purge[@]}"; then
         log_ok "Пакеты успешно удалены и зачищены: ${to_purge[*]}"
         
         # Очистка кэша .deb файлов для освобождения места
         log_debug "Очистка локального архива пакетов (autoclean)..."
-        $PKG_MANAGER autoclean "${PKG_OPTS[@]}" >/dev/null 2>&1 || true
+        $PKG_MANAGER autoclean $PKG_OPTS >/dev/null 2>&1 || true
         return 0
     else
         log_error "Критический сбой при удалении пакетов."
