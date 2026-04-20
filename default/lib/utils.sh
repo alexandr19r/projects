@@ -91,12 +91,16 @@ draw_line() {
 # Универсальный конструктор путей
 # Аргументы: path, type(dir|file), owner(user:group), mode(octal)
 ensure_path_exists() {
-    local path="${1:-}" type="${2:-dir}" owner="${3:-root:root}" mode="${4:-}"
+    local path="${1:-}" 
+    local type="${2:-dir}" 
+    local owner="${3:-root:root}" 
+    local mode="${4:-}"
 
     [[ -z "$path" ]] && { log_error "Переменная path пустая строка."; return 1; }
 
     # Создание объекта
     if [[ "$type" == "dir" ]]; then
+        # Если это директория
         if [[ ! -d "$path" ]]; then
             mkdir -p "$path" || { log_error "Ошибка mkdir: $path"; return 1; }
         fi
@@ -104,10 +108,16 @@ ensure_path_exists() {
         # Создаем родительскую директорию, если её нет
         local parent_dir
         parent_dir=$(dirname "$path")
-        [[ ! -d "$parent_dir" ]] && mkdir -p "$parent_dir" || { log_error "Ошибка mkdir для parent_dir: $path"; return 1; }
+
+        # Создаем родительскую папку, если её нет
+        if [[ ! -d "$parent_dir" ]]; then
+            mkdir -p "$parent_dir" || { log_error "Ошибка mkdir для родительской папки: $parent_dir"; return 1; }
+        fi
         
-        # Создаем файл, если его нет
-        [[ ! -f "$path" ]] && touch "$path" || { log_error "Ошибка touch: $path"; return 1; }
+        # Создаем сам файл (touch), если его нет
+        if [[ ! -f "$path" ]]; then
+            touch "$path" || { log_error "Ошибка touch для файла: $path"; return 1; }
+        fi
     fi
 
     # Применение владельца
@@ -121,6 +131,7 @@ ensure_path_exists() {
     
     log_debug "Объект готов: $path ($type, $owner, ${mode:-default})"}
 }
+
 # Упрощенная обертка для директорий (Strict mode)
 # Прерывает выполнение, если папку создать нельзя
 ensure_dir_exists() {
