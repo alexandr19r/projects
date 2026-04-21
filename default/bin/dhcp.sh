@@ -151,9 +151,20 @@ main_dhcpd() {
 
     for svc in "${services[@]}"; do
         if [[ "$svc" == "isc-dhcp-server" ]]; then
-            log_info "Жесткая очистка процессов dhcpd перед запуском..."
-            { pkill -9 dhcpd 2>&1 || true; } | log_debug
-            sleep 1
+            # Находим и убиваем процессы, занимающие порт 67 (DHCP)
+            echo "[INFO] Очистка порта 67..."
+            { sudo fuser -k 67/udp 2>&1 || true; } | log_debug
+
+            # Дополнительно зачищаем все процессы по имени, если они остались
+            if pgrep -x "dhcpd" > /dev/null; then
+                echo "[INFO] Принудительное завершение dhcpd..."
+                { sudo pkill -9 dhcpd 2>&1 || true; } | log_debug
+                sleep 1 # Даем системе секунду на освобождение сокетов
+            fi
+
+            # 3. Удаляем PID-файл, если он остался (частая причина сбоя LSB-скриптов)
+            sudo rm -f /var/run/dhcpd.pid
+            sudo rm -f /var/run/dhcpd6.pid
         fi
         # 1. Сначала делаем enable, чтобы служба стартовала после перезагрузки
         systemctl enable "$svc" 2>&1 | log_debug
