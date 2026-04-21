@@ -41,6 +41,7 @@ main_dhcpd() {
     # Прибиваем зависшие процессы dhcpd, которые могли остаться от кривой установки пакета
     log_info "Очистка окружения DHCP..."
     pkill -9 dhcpd 2>/dev/null || true
+    sleep 1
 
     # Запуск начала транзакции
     begin_transaction
