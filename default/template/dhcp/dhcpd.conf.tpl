@@ -5,6 +5,8 @@
 
 # Sample configuration file for ISC dhcpd
 
+pid-file-name "/var/run/dhcpd/dhcpd.pid";
+
 # Глобальные настройки (Сервер сам является DNS)
 option domain-name-servers ${SERVER_IP_V4}, ${GOOGLE_DNS};
 option domain-name "${LOCAL_DOMAIN}";

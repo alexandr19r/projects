@@ -7,6 +7,8 @@
 # From the file used for TAHI tests - addresses chosen
 # to match TAHI rather than example block.
 
+pid-file-name "/var/run/dhcpd/dhcpd6.pid";
+
 # Настройки для логов IPv6 (также используем local7)
 log-facility local7;
 
