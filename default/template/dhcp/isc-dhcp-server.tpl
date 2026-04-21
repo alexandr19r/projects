@@ -10,8 +10,8 @@ DHCPDv4_CONF=/etc/dhcp/dhcpd.conf
 DHCPDv6_CONF=/etc/dhcp/dhcpd6.conf
 
 # Path to dhcpd's PID file (default: /run/dhcp-server/dhcpd.pid).
-DHCPDv4_PID=/run/dhcp-server/dhcpd.pid
-DHCPDv6_PID=/run/dhcp-server/dhcpd6.pid
+DHCPDv4_PID=/var/run/dhcpd/dhcpd.pid
+DHCPDv6_PID=/var/run/dhcpd/dhcpd6.pid
 
 # Additional options to start dhcpd with.
 #       Don't use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
