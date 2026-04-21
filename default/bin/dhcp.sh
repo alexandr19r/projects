@@ -163,18 +163,7 @@ main_dhcpd() {
     local services=("rsyslog" "radvd" "isc-dhcp-server")
 
     for svc in "${services[@]}"; do
-#        if [[ "$svc" == "isc-dhcp-server" ]]; then
-            # Находим и убиваем процессы, занимающие порт 67 (DHCP)
-#            echo "[INFO] Очистка порта 67..."
-#            { sudo fuser -k 67/udp 2>&1 || true; } | log_debug
 
-            # Дополнительно зачищаем все процессы по имени, если они остались
-#            if pgrep -x "dhcpd" > /dev/null; then
-#                echo "[INFO] Принудительное завершение dhcpd..."
-#                { sudo pkill -9 dhcpd 2>&1 || true; } | log_debug
-#                sleep 2 # Даем системе 2 секунды на освобождение сокетов
-#            fi
-#        fi
         # 1. Сначала делаем enable, чтобы служба стартовала после перезагрузки
         systemctl enable "$svc" 2>&1 | log_debug
         
