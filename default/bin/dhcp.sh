@@ -37,7 +37,14 @@ main_dhcpd() {
     # Установка пакета
     log_info "--- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---"
     install_list "${PACKAGES}" || return 1
-    
+
+    log_info "Жесткая очистка процессов dhcpd..."
+    { sudo systemctl stop dhcpd 2>&1 || true; } | log_debug
+    { sudo killall -9 dhcpd 2>&1 || true; } | log_debug
+    sudo rm -f /run/dhcp-server/dhcpd.pid
+    sudo rm -f /run/dhcp-server/dhcpd6.pid
+    sleep 2
+
     # Запуск начала транзакции
     begin_transaction
     
@@ -159,12 +166,8 @@ main_dhcpd() {
             if pgrep -x "dhcpd" > /dev/null; then
                 echo "[INFO] Принудительное завершение dhcpd..."
                 { sudo pkill -9 dhcpd 2>&1 || true; } | log_debug
-                sleep 1 # Даем системе секунду на освобождение сокетов
+                sleep 2 # Даем системе 2 секунды на освобождение сокетов
             fi
-
-            # 3. Удаляем PID-файл, если он остался (частая причина сбоя LSB-скриптов)
-            sudo rm -f /run/dhcp-server/dhcpd.pid
-            sudo rm -f /run/dhcp-server/dhcpd6.pid
         fi
         # 1. Сначала делаем enable, чтобы служба стартовала после перезагрузки
         systemctl enable "$svc" 2>&1 | log_debug
