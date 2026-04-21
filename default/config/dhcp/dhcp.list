@@ -5,6 +5,7 @@ dir    | none                      | /var/log/dhcp                 | 750  | sysl
 file   | none                      | /var/log/dhcp/dhcp.log        | 640  | syslog:adm | none   | none | "Файл логов DHCP"              | none
 file   | system/rsyslog_dhcp       | /etc/rsyslog.d/dhcpd.conf     | 644  | root:root  | none   | none | "Настройка логов (local7)"     | AUTHOR|LAST_MODIFIED|RSYSLOG_DHCP
 file   | system/logrotate_dhcp     | /etc/logrotate.d/dhcpd        | 644  | root:root  | none   | none | "Ротация логов DHCP"           | AUTHOR|LAST_MODIFIED|RSYSLOG_DHCP
+dir    | none                      | /var/lib/dhcpd                | 755  | root:root  | none   | none | "Папка баз аренды DHCP"        | none
 file   | none                      | /var/lib/dhcp/dhcpd.leases    | 644  | root:root  | none   | none | "База аренды DHCPv4"           | none
 file   | none                      | /var/lib/dhcp/dhcpd6.leases   | 644  | root:root  | none   | none | "База аренды DHCPv6"           | none
 file   | network/radvd.conf        | /etc/radvd.conf               | 644  | root:root  | none   | none | "Анонсы IPv6 (RADVD)"          | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE|LOCAL_SUBNET_V6

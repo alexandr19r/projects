@@ -38,11 +38,6 @@ main_dhcpd() {
     log_info "--- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---"
     install_list "${PACKAGES}" || return 1
     
-    # Прибиваем зависшие процессы dhcpd, которые могли остаться от кривой установки пакета
-    log_info "Очистка окружения DHCP..."
-    pkill -9 dhcpd 2>/dev/null || true
-    sleep 1
-
     # Запуск начала транзакции
     begin_transaction
     
@@ -155,6 +150,11 @@ main_dhcpd() {
     local services=("rsyslog" "radvd" "isc-dhcp-server")
 
     for svc in "${services[@]}"; do
+        if [[ "$svc" == "isc-dhcp-server" ]]; then
+            log_info "Жесткая очистка процессов dhcpd перед запуском..."
+            { pkill -9 dhcpd 2>&1 || true; } | log_debug
+            sleep 1
+        fi
         # 1. Сначала делаем enable, чтобы служба стартовала после перезагрузки
         systemctl enable "$svc" 2>&1 | log_debug
         
