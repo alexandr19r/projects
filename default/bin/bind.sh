@@ -229,7 +229,7 @@ main_bind9() {
 
     for svc in "${services[@]}"; do
         # 1. Активация автозагрузки # >/dev/null 2>&1 
-        systemctl enable "$svc" | log_debug
+        systemctl enable "$svc" 2>&1 | log_debug
 
         # 2. Перезапуск
         log_info "Перезапуск службы [$svc]..."
