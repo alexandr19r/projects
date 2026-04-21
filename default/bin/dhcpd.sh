@@ -151,7 +151,7 @@ main_dhcpd() {
 
     for svc in "${services[@]}"; do
         # 1. Сначала делаем enable, чтобы служба стартовала после перезагрузки
-        systemctl enable "$svc" >/dev/null 2>&1
+        systemctl enable "$svc" 2>&1 | log_debug
         
         # 2. Перезапуск
         if systemctl restart "$svc"; then

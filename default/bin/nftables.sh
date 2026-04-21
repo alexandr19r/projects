@@ -137,7 +137,6 @@ main_nftables() {
     for svc in "${services[@]}"; do
         # 1. Сначала делаем enable, чтобы служба стартовала после перезагрузки
         systemctl enable "$svc" 2>&1 | log_debug
-        log_debug "Запускаем $svc"
 
         # 2. Перезапуск
         if systemctl restart "$svc"; then
