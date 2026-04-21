@@ -163,8 +163,8 @@ main_dhcpd() {
             fi
 
             # 3. Удаляем PID-файл, если он остался (частая причина сбоя LSB-скриптов)
-            sudo rm -f /var/run/dhcpd.pid
-            sudo rm -f /var/run/dhcpd6.pid
+            sudo rm -f /run/dhcp-server/dhcpd.pid
+            sudo rm -f /run/dhcp-server/dhcpd6.pid
         fi
         # 1. Сначала делаем enable, чтобы служба стартовала после перезагрузки
         systemctl enable "$svc" 2>&1 | log_debug
