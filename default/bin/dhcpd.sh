@@ -103,7 +103,7 @@ main_dhcpd() {
     log_info "Валидация DHCPv4..."
     if ! dhcpd -t -cf "/etc/dhcp/dhcpd.conf" >/dev/null 2>&1; then
         log_error "Синтаксическая ошибка в /etc/dhcp/dhcpd.conf"
-        dhcpd -t -cf "/etc/dhcp/dhcpd.conf" 2>&1 | log_debug
+        { dhcpd -t -cf "/etc/dhcp/dhcpd.conf" 2>&1 || true; } | log_debug
         HAS_ERROR=true
     fi
 
@@ -111,7 +111,7 @@ main_dhcpd() {
     log_info "Валидация DHCPv6..."
     if ! dhcpd -6 -t -cf "/etc/dhcp/dhcpd6.conf" >/dev/null 2>&1; then
         log_error "Синтаксическая ошибка в /etc/dhcp/dhcpd6.conf"
-        dhcpd -6 -t -cf "/etc/dhcp/dhcpd6.conf" 2>&1 | log_debug
+        { dhcpd -6 -t -cf "/etc/dhcp/dhcpd6.conf" 2>&1 || true; } | log_debug
         HAS_ERROR=true
     fi
 
@@ -119,7 +119,7 @@ main_dhcpd() {
     log_info "Валидация RADVD..."
     if ! radvd -c -C "/etc/radvd.conf" >/dev/null 2>&1; then
         log_error "Синтаксическая ошибка в /etc/radvd.conf"
-        radvd -c -C "/etc/radvd.conf" 2>&1 | log_debug
+        { radvd -c -C "/etc/radvd.conf" 2>&1 || true; } | log_debug
         HAS_ERROR=true
     fi
 
@@ -127,7 +127,7 @@ main_dhcpd() {
     log_info "Валидация Rsyslog..."
     if ! rsyslogd -N1 >/dev/null 2>&1; then
         log_error "Критическая ошибка в конфигурации Rsyslog"
-        rsyslogd -N1 2>&1 | log_debug
+        { rsyslogd -N1 2>&1 || true; } | log_debug
         HAS_ERROR=true
     fi
 
