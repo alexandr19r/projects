@@ -39,10 +39,16 @@ main_dhcpd() {
     install_list "${PACKAGES}" || return 1
 
     log_info "Жесткая очистка процессов dhcpd..."
+    log_info "Остановка процессов dhcpd..."
     { sudo systemctl stop isc-dhcp-server 2>&1 || true; } | log_debug
+    log_info "Удаление из автозапуска процессов dhcpd..."
+    { sudo systemctl disable  isc-dhcp-server 2>&1 || true; } | log_debug
+    log_info "Удаление из памяти процессов dhcpd..."
     { sudo pkill -9 dhcpd 2>&1 || true; } | log_debug
-    sudo rm -f /var/run/dhcpd/dhcpd.pid
-    sudo rm -f /var/run/dhcpd/dhcpd6.pid
+    log_info "Удаление файлов процессов..."
+    sudo rm -fv /var/run/dhcpd/dhcpd.pid
+    sudo rm -fv /var/run/dhcpd/dhcpd6.pid
+    sudo rm -rfv /run/dhcp-server
     sleep 2
 
     # Запуск начала транзакции
