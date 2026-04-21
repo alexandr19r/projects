@@ -38,12 +38,12 @@ main_dhcpd() {
     log_info "--- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---"
     install_list "${PACKAGES}" || return 1
 
-#    log_info "Жесткая очистка процессов dhcpd..."
-#    { sudo systemctl stop isc-dhcp-server 2>&1 || true; } | log_debug
-#    { sudo pkill -9 dhcpd 2>&1 || true; } | log_debug
-#    sudo rm -f /run/dhcp-server/dhcpd.pid
-#    sudo rm -f /run/dhcp-server/dhcpd6.pid
-#    sleep 2
+    log_info "Жесткая очистка процессов dhcpd..."
+    { sudo systemctl stop isc-dhcp-server 2>&1 || true; } | log_debug
+    { sudo pkill -9 dhcpd 2>&1 || true; } | log_debug
+    sudo rm -f /var/run/dhcpd/dhcpd.pid
+    sudo rm -f /var/run/dhcpd/dhcpd6.pid
+    sleep 2
 
     # Запуск начала транзакции
     begin_transaction
