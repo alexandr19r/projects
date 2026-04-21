@@ -37,6 +37,10 @@ main_dhcpd() {
     # Установка пакета
     log_info "--- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---"
     install_list "${PACKAGES}" || return 1
+    
+    # Прибиваем зависшие процессы dhcpd, которые могли остаться от кривой установки пакета
+    log_info "Очистка окружения DHCP..."
+    killall -9 dhcpd 2>/dev/null || true
 
     # Запуск начала транзакции
     begin_transaction

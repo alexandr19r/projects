@@ -5,6 +5,8 @@ dir    | none                      | /var/log/dhcp                 | 750  | sysl
 file   | none                      | /var/log/dhcp/dhcp.log        | 640  | syslog:adm | none   | none | "Файл логов DHCP"              | none
 file   | system/rsyslog_dhcp       | /etc/rsyslog.d/dhcpd.conf     | 644  | root:root  | none   | none | "Настройка логов (local7)"     | AUTHOR|LAST_MODIFIED|RSYSLOG_DHCP
 file   | system/logrotate_dhcp     | /etc/logrotate.d/dhcpd        | 644  | root:root  | none   | none | "Ротация логов DHCP"           | AUTHOR|LAST_MODIFIED|RSYSLOG_DHCP
+file   | none                      | /var/lib/dhcp/dhcpd.leases    | 644  | root:root  | none   | none | "База аренды DHCPv4"           | none
+file   | none                      | /var/lib/dhcp/dhcpd6.leases   | 644  | root:root  | none   | none | "База аренды DHCPv6"           | none
 file   | network/radvd.conf        | /etc/radvd.conf               | 644  | root:root  | none   | none | "Анонсы IPv6 (RADVD)"          | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE|LOCAL_SUBNET_V6
 file   | dhcp/isc-dhcp-server      | /etc/default/isc-dhcp-server  | 644  | root:root  | none   | none | "Интерфейсы DHCP"              | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE
 file   | dhcp/dhcpd.conf           | /etc/dhcp/dhcpd.conf          | 644  | root:root  | none   | none | "Конфигурация DHCPv4"          | AUTHOR|LAST_MODIFIED|SERVER_IP_V4|GOOGLE_DNS|LOCAL_DOMAIN|LOCAL_SUBNET_V4|LOCAL_NETMASK|LOCAL_BROADCAST|ROUTER_IP_V4|DHCP_RANGE_START|DHCP_RANGE_END|GW_MAC|GW_IP_V4|DEVSRV_MAC|DEVSRV_IP_V4|SRV1C_MAC|SRV1C_IP_V4
