@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 # [dhcpd.sh] - Развертывание сервера dhcpd (ISC-DHCP-SERVER + RADVD)
 
 # Инициализация переменных
