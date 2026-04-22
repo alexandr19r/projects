@@ -142,17 +142,17 @@ table inet filter {
     chain forward {
         type filter hook forward priority 0; policy drop;
         
+        # Максимальная защита: разделение потоков IPv4/IPv6 и строгая проверка "Роутер <-> Клиент".
+        # IPv4 Forwarding
+        meta nfproto ipv4 ip daddr $LOCAL_SUBNET_V4 oifname "$DHCP_INTERFACE" ct state established,related accept
+        # IPv6 Forwarding
+        meta nfproto ipv6 ip6 daddr $LOCAL_SUBNET_V6 oifname "$DHCP_INTERFACE" ct state established,related accept
+
         # Максимальная защита: разделение потоков IPv4/IPv6 и строгая проверка "Клиент <-> Роутер".
         # IPv4 Forwarding
         meta nfproto ipv4 ip saddr $LOCAL_SUBNET_V4 ip daddr != $ROUTER_IP_V4 iifname "$DHCP_INTERFACE" accept
         # IPv6 Forwarding
         meta nfproto ipv6 ip6 saddr $LOCAL_SUBNET_V6 ip6 daddr != $ROUTER_IP_V6 iifname "$DHCP_INTERFACE" accept
-
-        # Максимальная защита: разделение потоков IPv4/IPv6 и строгая проверка "Роутер <-> Клиент".
-        # IPv4 Forwarding
-        meta nfproto ipv4 ip saddr $ROUTER_IP_V4 ip daddr $LOCAL_SUBNET_V4 oifname "$DHCP_INTERFACE" ct state established,related accept
-        # IPv6 Forwarding
-        meta nfproto ipv6 ip6 saddr $ROUTER_IP_V6 ip6 daddr $LOCAL_SUBNET_V6 oifname "$DHCP_INTERFACE" ct state established,related accept
 
         # Логируем пакеты, которые не прошли сквозь шлюз
         # log prefix "NFT_FORWARD_DROP: " level info facility local0
@@ -161,7 +161,7 @@ table inet filter {
         drop
     }
 
-    # Пакеты, висходящие с сервера (Output)
+    # Пакеты, исходящие с сервера (Output)
     chain output {
         type filter hook output priority 0; policy accept;
     }
@@ -173,8 +173,8 @@ table inet nat {
         type nat hook postrouting priority 100; policy accept;
         
         # Маскируем весь исходящий трафик с интерфейса
-        meta nfproto ipv4 ip saddr $LOCAL_SUBNET_V4 ip daddr $ROUTER_IP_V4 oifname "$DHCP_INTERFACE" masquerade
-        meta nfproto ipv6 ip6 saddr $LOCAL_SUBNET_V6 ip6 daddr $ROUTER_IP_V6 oifname "$DHCP_INTERFACE" masquerade
+        meta nfproto ipv4 ip saddr $LOCAL_SUBNET_V4 oifname "$DHCP_INTERFACE" masquerade
+        meta nfproto ipv6 ip6 saddr $LOCAL_SUBNET_V6 oifname "$DHCP_INTERFACE" masquerade
     }
 }
 
