@@ -142,17 +142,19 @@ table inet filter {
     chain forward {
         type filter hook forward priority 0; policy drop;
         
-        # Максимальная защита: разделение потоков IPv4/IPv6 и строгая проверка "Роутер <-> Клиент".
-        # IPv4 Forwarding
-        meta nfproto ipv4 ip daddr $LOCAL_SUBNET_V4 oifname "$DHCP_INTERFACE" ct state established,related accept
-        # IPv6 Forwarding
-        meta nfproto ipv6 ip6 daddr $LOCAL_SUBNET_V6 oifname "$DHCP_INTERFACE" ct state established,related accept
+        # Разрешает любые ответы на запросы, инициированные твоими клиентами.
+        # Такие как  Google с IP (8.8.8.8) и др.
+        ct state established,related accept
 
-        # Максимальная защита: разделение потоков IPv4/IPv6 и строгая проверка "Клиент <-> Роутер".
+        # Разрешаем выход из локалки. Разделение потоков IPv4/IPv6 и строгая проверка "КЛИЕНТ -> МИР".
         # IPv4 Forwarding
-        meta nfproto ipv4 ip saddr $LOCAL_SUBNET_V4 ip daddr != $ROUTER_IP_V4 iifname "$DHCP_INTERFACE" accept
+        meta nfproto ipv4 ip saddr $LOCAL_SUBNET_V4 iifname "$DHCP_INTERFACE" accept
         # IPv6 Forwarding
-        meta nfproto ipv6 ip6 saddr $LOCAL_SUBNET_V6 ip6 daddr != $ROUTER_IP_V6 iifname "$DHCP_INTERFACE" accept
+        meta nfproto ipv6 ip6 saddr $LOCAL_SUBNET_V6 iifname "$DHCP_INTERFACE" accept
+       
+        # Разрешаем ICMP (Ping) для диагностики сквозь сервер
+        meta nfproto ipv4 icmp type echo-request accept
+        meta nfproto ipv6 ip6 nexthdr icmpv6 icmpv6 type echo-request accept
 
         # Логируем пакеты, которые не прошли сквозь шлюз
         # log prefix "NFT_FORWARD_DROP: " level info facility local0
