@@ -30,13 +30,13 @@ debsrv  IN      A       $SERVER_IP_V4
 debsrv  IN      AAAA    $SERVER_IP_V6
 
 gw      IN      A       10.10.100.2
-gw      IN      AAAA    fc00:db9:aaaa::2
+gw      IN      AAAA    fd00:db9:aaaa::2
 
 devsrv  IN      A       10.10.100.3
-devsrv  IN      AAAA    fc00:db9:aaaa::3
+devsrv  IN      AAAA    fd0:db9:aaaa::3
 
 srv1c   IN      A       10.10.100.4
-srv1c   IN      AAAA    fc00:db9:aaaa::4
+srv1c   IN      AAAA    fd00:db9:aaaa::4
 
 ; --- ПОЧТОВАЯ СЛУЖБА (Mail Stack) ---
 ; MX указывает на имя, которое имеет и A, и AAAA записи
