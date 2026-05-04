@@ -9,6 +9,7 @@ dir    | none                      | /var/lib/dhcpd                | 755  | root
 file   | none                      | /var/lib/dhcp/dhcpd.leases    | 644  | root:root  | none   | none | "База аренды DHCPv4"           | none
 file   | none                      | /var/lib/dhcp/dhcpd6.leases   | 644  | root:root  | none   | none | "База аренды DHCPv6"           | none
 dir    | none                      | /var/run/dhcpd                | 775  | root:root  | none   | none | "Папка PID-файлов DHCP"        | none
+file   | system/tmpfiles_dhcp      | /etc/tmpfiles.d/dhcpd.conf    | 644  | root:root  | none   | none | "Файл конфигурации tmpfiles.d" | AUTHOR|LAST_MODIFIED 
 #file   | none                      | /var/run/dhcpd/dhcpd.pid      | 644  | root:root  | none   | none | "PID файл DHCPv4"              | none
 #file   | none                      | /var/run/dhcpd/dhcpd6.pid     | 644  | root:root  | none   | none | "PID файл DHCPv6"              | none
 file   | network/radvd.conf        | /etc/radvd.conf               | 644  | root:root  | none   | none | "Анонсы IPv6 (RADVD)"          | AUTHOR|LAST_MODIFIED|DHCP_INTERFACE|LOCAL_SUBNET_V6
