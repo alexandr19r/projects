@@ -22,9 +22,10 @@ options {
 
     // Рекурсия и доступ
     recursion yes;
-    allow-query { trusted; };
-    allow-recursion { trusted; }; // Явно разрешаем рекурсию только своим
-
+    allow-query { trusted; };      // Кто может спрашивать сервер
+    allow-recursion { trusted; };  // Кому сервер будет искать ответы в интернете
+    allow-query-cache { trusted; }; // Кто может видеть закэшированные ответы
+    
     // Настройка пересылки (Forwarding)
     forward first;
     forwarders {
