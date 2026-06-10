@@ -4,9 +4,9 @@
 # Импорт настроек и ядра
 # Профессиональный стандарт 2026 с использование readlink -f
 # shellcheck source=../lib/core.sh
-echo "\033[0;31m[FATAL]\033[0m $(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")/lib/core.sh"
+echo "\033[0;31m[FATAL]\033[0m $(dirname "${BASH_SOURCE[0]}")/.."
 
-if ! source "$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")/lib/core.sh" 2>/dev/null; then
+if ! source "$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")/lib/core.sh" 2>/dev/null; then
     printf "\033[0;31m[FATAL]\033[0m Ядро системы не найдено в корне проекта..\n" >&2
     exit 1
 fi
