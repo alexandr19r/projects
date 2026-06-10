@@ -8,9 +8,8 @@
 #BASE_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")"
 #BASE_DIR1="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")/lib/core.sh"
 #echo "Значение BASE_DIR  : ${BASE_DIR} - 1"
+#printf "\033[0;34m[DEBUG]\033[0m Значение BASE_DIR: '%s'\n" "${BASE_DIR1}" >&2
 # Гарантированный вывод в терминал (перенаправляем в stderr, чтобы точно увидеть)
-printf "\033[0;34m[DEBUG]\033[0m Значение BASE_DIR: '%s'\n" "${BASE_DIR1}" >&2
-
 if ! source "$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")/lib/core.sh" 2>/dev/null; then
     printf "\033[0;31m[FATAL]\033[0m Ядро системы не найдено в корне проекта..\n" >&2
     exit 1

@@ -11,7 +11,7 @@ _import_core() {
     local type="$1"       # 'lib', 'app', 'conf', 'env', tpl
     local name="$2"       # имя компонента, например 'logger' или 'kea'
     local path="$3"       # полный вычисленный путь к файлу
-    local strict="${4:}"   # 'true' (упасть при ошибке) или 'false' (вернуть статус)
+    local strict="${4}"   # 'true' (упасть при ошибке) или 'false' (вернуть статус)
 
     # Защита от повторного импорта (учитывает тип, чтобы не было коллизий)
     local registry_key="${type}:${name}"
