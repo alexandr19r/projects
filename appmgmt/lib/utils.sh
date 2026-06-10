@@ -151,14 +151,14 @@ ensure_path_exists() {
 
     # Создание объекта в зависимости от типа
     case "$type" in
-        dir)
+        "dir")
             if [[ ! -d "$path" ]]; then
                 # Защита: если на месте папки файл или ссылка, удаляем их
                 [[ -e "$path" || -L "$path" ]] && rm -rf "$path"
                 mkdir -p "$path" || { log_error "Ошибка mkdir: $path"; return 1; }
             fi
             ;;
-        file)
+        "file")
             if [[ ! -f "$path" ]]; then
                 # Защита: если на месте файла папка или ссылка, удаляем их
                 [[ -e "$path" || -L "$path" ]] && rm -rf "$path"
@@ -167,7 +167,7 @@ ensure_path_exists() {
             # Снимаем защиту, если она есть (только для файлов)
             chattr -i "$path" 2>/dev/null || true
             ;;
-        link)
+        "link")
             [[ -z "$target_path" ]] && { log_error "Для типа link обязательно указание target_path (аргумент 5)"; return 1; }
             
             # Проверяем, существует ли уже ссылка и указывает ли она на нужный target
