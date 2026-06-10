@@ -14,8 +14,9 @@ NFTABLES_LIST="${ROOT_DIR}/apps.d/nftables/config/nftables.list"
 
 # Кастомный метод очистки портов
 nftables_pre_clean() {
-#    pkill -9 kea-dhcp4 || true
-#    rm -f /var/run/kea/*.pid
+    #    pkill -9 kea-dhcp4 || true
+    #    rm -f /var/run/kea/*.pid
+    true
 }
 
 # Кастомный полиморфный метод валидации
