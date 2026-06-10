@@ -102,7 +102,7 @@ load_tpl() {
 
     _import_core "$type" "$app_name" "$path" "$strict"
 
-    return "$path"
+    echo "$path"
 }
 
 # Функция разрешения пути к шаблону на основе разделителя '//'
@@ -131,5 +131,5 @@ resolve_template_path() {
 
     log_debug "Абсолютный путь шаблона: $absolute_tpl_path" 
 
-    return "$absolute_tpl_path"
+    echo "$absolute_tpl_path"
 }
