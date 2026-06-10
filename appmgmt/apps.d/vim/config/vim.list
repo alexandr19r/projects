@@ -1,0 +1,7 @@
+# [vim.list] - Инфраструктура для vim
+#
+# TYPE | TPL_NAME              | DEST_PATH                          | MODE | OWNER                 | DEPEND | ATTR | DESC                            | VARS
+dir    | none                  | $USER_HOME/.vim/colors             | 755  | $USER_NAME:$USER_NAME | none   | none | "Папка для тем Vim"             | USER_NAME|USER_HOME
+dir    | none                  | $USER_HOME/.vim/undodir            | 750  | $USER_NAME:$USER_NAME | none   | none | "История изменений Vim"         | USER_NAME|USER_HOME
+file   | vim/gruvbox_theme     | $USER_HOME/.vim/colors/gruvbox.vim | 644  | $USER_NAME:$USER_NAME | none   | none | "Цветовая схема Gruvbox"        | USER_NAME|USER_HOME
+file   | vim/vimrc             | $USER_HOME/.vimrc                  | 644  | $USER_NAME:$USER_NAME | none   | none | "Настройка редактора VIM"       | AUTHOR|LAST_MODIFIED|USER_NAME|USER_HOME
