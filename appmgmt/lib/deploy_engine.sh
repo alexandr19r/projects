@@ -16,8 +16,8 @@ _deploy_manager() {
     log_info "--- Обработка реестра инфраструктуры (.list) ---"
 
     while IFS='|' read -r type tpl dest mode owner dep attr desc vars || [[ -n "$type" ]]; do
-        # Высокоскоростное удаление пробелов средствами Bash
-        type="${type##+([[:space:]])}"; type="${type%%+([[:space:]])}"
+        # Удаляем любые пробелы по краям (Совместимо со всеми версиями Bash)
+        type="${type##*[[:space:]]}"; type="${type%%*[[:space:]]}"
         [[ -z "$type" || "$type" =~ ^# ]] && continue
 
         # Атомарная зачистка всех полей строки

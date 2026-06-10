@@ -135,7 +135,6 @@ ensure_path_exists() {
     local target_path="${5:-}"
     
     # Удаляем любые пробелы по краям из переменной type
-    type="${type##+([[:space:]])}"; type="${type%%+([[:space:]])}"
     log_debug "Тип текущего обрабатываемого объекта -${type}-"
 
     [[ -z "$path" ]] && { log_error "Переменная path пустая строка."; return 1; }
