@@ -129,5 +129,7 @@ resolve_template_path() {
         absolute_tpl_path="${ROOT_DIR}/template/${tpl_inline}.tpl"
     fi
 
+    log_debug "Абсолютный путь шаблона: $absolute_tpl_path" 
+
     return "$absolute_tpl_path"
 }
