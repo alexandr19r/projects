@@ -22,7 +22,7 @@ add_item() {
 
     # 2. Подготовка объекта (используем ранее созданный utils.sh)
     # ensure_path_exists берет на себя mkdir, touch, chown и chmod
-    ensure_path_exists "$dest" "$type" "$owner" "$perms" || return 1
+    ensure_path_exists "$dest" "$type" "$owner" "$perms" "$tpl" || return 1
 
     # 3. Обработка шаблона (только для файлов)
     if [[ "$type" == "file" && "$tpl" != "none" ]]; then
