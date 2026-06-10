@@ -4,10 +4,11 @@
 # Импорт настроек и ядра
 # Профессиональный стандарт 2026 с использование readlink -f
 # shellcheck source=../lib/core.sh
-echo "\033[0;31m[FATAL]\033[0m $(dirname "${BASH_SOURCE[0]}")/.."
+# Вычисляем абсолютный путь к КОРНЮ проекта (на уровень выше папки скрипта)
+BASE_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")"
 
 if ! source "$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")/lib/core.sh" 2>/dev/null; then
-    printf "\033[0;31m[FATAL]\033[0m Ядро системы не найдено в корне проекта..\n" >&2
+    printf "\033[0;31m[FATAL]\033[0m Ядро системы не найдено в корне проекта..\n" "${BASE_DIR}" >&2
     exit 1
 fi
 
