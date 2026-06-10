@@ -82,7 +82,7 @@ import_module() {
     local strict="true"
     local path="${ROOT_DIR}/apps.d/${name}/${name}.sh"
 
-    _import_core "$type" "$app_name" "$path" "$strict"
+    _import_core "$type" "$name" "$path" "$strict"
 }
 
 load_env() {
@@ -91,12 +91,11 @@ load_env() {
     local strict="false"
     local path="${ROOT_DIR}/apps.d/${name}/config/${name}.env"
 
-    _import_core "$type" "$app_name" "$path" "$strict"
+    _import_core "$type" "$name" "$path" "$strict"
 }
 
 load_tpl() {
-    local app_name="$1"
-    local file_name="$2"
+    local file_name="$1"
     local type="tpl"
     local strict="false"
     local path=$(resolve_template_path "$file_name")

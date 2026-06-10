@@ -27,7 +27,7 @@ add_item() {
     # 3. Обработка шаблона (только для файлов)
     if [[ "$type" == "file" && "$tpl" != "none" ]]; then
         # local tpl_path="${ROOT_DIR}/template/${tpl}.tpl"
-        local tpl_path=$(load_tpl "$PROJECT_NAME" "$tpl")
+        local tpl_path=$(load_tpl "$tpl")
         update_configs "$tpl_path" "$dest" "$vars" || return 1
     fi
 
