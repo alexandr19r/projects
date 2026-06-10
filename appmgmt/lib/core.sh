@@ -7,6 +7,8 @@ readonly _CORE_SH_=1
 
 set -euo pipefail
 IFS=$' \n\t'
+# Включаем поддержку расширенных регулярных выражений Bash
+shopt -s extglob
 
 # 1. Определяем корень проекта, делаем переменную неизменяемой и доступной окружению
 export readonly ROOT_DIR="${ROOT_DIR:-$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")}"
