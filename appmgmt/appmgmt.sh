@@ -32,6 +32,7 @@ import_module "$APP_NAME"
 
 # 4. Вызов функции из модуля (каждый модуль обязан иметь функции вида app_action)
 FUNC_NAME="${APP_NAME}_${ACTION}"
+log_debug "Имя функции: ${FUNC_NAME}"
 if declare -f "$FUNC_NAME" > /dev/null; then
     $FUNC_NAME "$@"
 else
