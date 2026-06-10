@@ -8,11 +8,11 @@ link   | /lib/systemd/system/named.service        | /etc/systemd/system/service@
 dir    | none                                     | /etc/systemd/journald@dns.service.d                 | 755  | root:root | none   | none | "Директория лимитов журнала dns"                       | none
 file   | system/journal_storage                   | /etc/systemd/journald@dns.service.d/storage.conf    | 644  | root:root | none   | none | "Индивидуальный лимит для dns (из общего шаблона)"     | AUTHOR|LAST_MODIFIED|JOURNAL_MAX|JOURNAL_RETENTION
 # Конфигурация логирования (старая)
-#dir    | none                                     | /var/log/named                               | 770  | syslog:adm | bind   | none | "Папка логов DNS"                                                | none
-#file   | none                                     | /var/log/named/named.log                     | 640  | syslog:adm | none   | none | "Файл логов DNS"                                                 | none
-#file   | none                                     | /var/log/named/queries.log                   | 640  | bind:adm   | none   | none | "Файл запросов DNS"                                              | none
-#file   | bind//rsyslog_bind                       | /etc/rsyslog.d/named.conf                    | 644  | root:root  | none   | none | "Настройка логов BIND9 (local6)"                                 | AUTHOR|LAST_MODIFIED|RSYSLOG_DNS
-#file   | bind//logrotate_bind                     | /etc/logrotate.d/named                       | 644  | root:root  | none   | none | "Ротация логов BIND9"                                            | AUTHOR|LAST_MODIFIED|RSYSLOG_DNS
+dir    | none                                     | /var/log/named                               | 770  | syslog:adm | bind   | none | "Папка логов DNS"                                                | none
+file   | none                                     | /var/log/named/named.log                     | 640  | syslog:adm | none   | none | "Файл логов DNS"                                                 | none
+file   | none                                     | /var/log/named/queries.log                   | 640  | bind:adm   | none   | none | "Файл запросов DNS"                                              | none
+file   | bind//rsyslog_bind                       | /etc/rsyslog.d/named.conf                    | 644  | root:root  | none   | none | "Настройка логов BIND9 (local6)"                                 | AUTHOR|LAST_MODIFIED|RSYSLOG_DNS
+file   | bind//logrotate_bind                     | /etc/logrotate.d/named                       | 644  | root:root  | none   | none | "Ротация логов BIND9"                                            | AUTHOR|LAST_MODIFIED|RSYSLOG_DNS
 # Основная конфигурация
 file   | bind//default/named                      | /etc/default/named                           | 644  | root:root  | none   | none | "Файл параметров запуска DNS"                                    | AUTHOR|LAST_MODIFIED|RESOLV_CONF|OPTIONS_RUN
 file   | bind//named.conf                         | /etc/bind/named.conf                         | 644  | root:bind  | none   | none | "Главный файл конфигурации"                                      | AUTHOR|LAST_MODIFIED
