@@ -133,6 +133,9 @@ ensure_path_exists() {
     local owner="${3:-root:root}" 
     local mode="${4:-}"
     local target_path="${5:-}"
+    
+    # Удаляем любые пробелы по краям из переменной type
+    type="${type##+([[:space:]])}"; type="${type%%+([[:space:]])}"
 
     [[ -z "$path" ]] && { log_error "Переменная path пустая строка."; return 1; }
     
