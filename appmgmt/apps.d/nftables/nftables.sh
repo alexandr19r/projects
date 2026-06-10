@@ -32,10 +32,10 @@ nftables_validate() {
     fi
 
     # Проверка ulogd2
-    log_info "Валидация ulogd2..."
-    if ! ulogd2 -N1 >/dev/null 2>&1; then
-        log_error "Критическая ошибка в конфигурации ulogd2"
-        ulogd2 -N1 2>&1 | log_debug
+    log_info "Валидация ulogd..."
+    if ! ulogd -N1 >/dev/null 2>&1; then
+        log_error "Критическая ошибка в конфигурации ulogd"
+        ulogd -N1 2>&1 | log_debug
         HAS_ERROR="true"
     fi
 

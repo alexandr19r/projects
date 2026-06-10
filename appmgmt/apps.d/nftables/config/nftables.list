@@ -5,7 +5,7 @@
 file   | system/ulogd                        | /etc/ulogd.conf                                       | 644  | root:root  | none   | none | "Главный конфигурационный файл логирования"        | AUTHOR|LAST_MODIFIED
 dir    | none                                | /etc/systemd/system/service@.service.d                | 755  | root:root  | none   | none | "Директория глобального шаблона логирования служб" | none
 file   | system/service_logging              | /etc/systemd/system/service@.service.d/logging.conf   | 644  | root:root  | none   | none | "Универсальный LogNamespace через переменную %I"   | AUTHOR|LAST_MODIFIED
-link   | /lib/systemd/system/ulogd2.service  | /etc/systemd/system/service@nftables.service          | 777  | root:root  | file   | none | "Привязка демона NFTables к пространству имен"     | none
+link   | /lib/systemd/system/ulogd2.service  | /etc/systemd/system/service@nftables.service          | 777  | root:root  | none   | none | "Привязка демона NFTables к пространству имен"     | none
 dir    | none                                | /etc/systemd/journald@nftables.service.d              | 755  | root:root  | none   | none | "Директория оверрайда журнала NFTables"            | none
 file   | system/journal_storage              | /etc/systemd/journald@nftables.service.d/storage.conf | 644  | root:root  | none   | none | "Лимиты хранения для журнала NFTables"             | AUTHOR|LAST_MODIFIED|JOURNAL_MAX|JOURNAL_RETENTION
 # Конфигурация логирования (старая)
