@@ -4,6 +4,9 @@
 # Инициализация переменных проекта
 PROJECT_NAME="nftables"
 
+# СИСТЕМНЫЕ НАСТРОЙКИ
+LOG_FILE="${ROOT_DIR}/var/log/${PROJECT_NAME}.log"
+
 # --- ПЕРЕМЕННЫЕ НАСТРОЙКИ ---
 # см. [nftables.env]
 
