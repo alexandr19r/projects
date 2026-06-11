@@ -1,13 +1,23 @@
+# /etc/ulogd.conf
+# [ulogd.conf] - Конфигурационный файл лщгирования ulogd
+# Author: [$AUTHOR]
+# Last Modified: $LAST_MODIFIED
+
+# Перенаправляем внутренние логи ulogd в stdout
 [global]
 logfile="stdout"
 loglevel=3
 
+# Правильные пути к плагинам в Debian
 plugin="/usr/lib/x86_64-linux-gnu/ulogd/ulogd_inppkt_NFLOG.so"
 plugin="/usr/lib/x86_64-linux-gnu/ulogd/ulogd_filter_IFINDEX.so"
 plugin="/usr/lib/x86_64-linux-gnu/ulogd/ulogd_filter_IP2STR.so"
 plugin="/usr/lib/x86_64-linux-gnu/ulogd/ulogd_output_JSON.so"
 
+# Настройка стека для цепочки INPUT (группа 10)
 stack=nft_input_log:NFLOG,idx1:IFINDEX,ip2str1:IP2STR,json1:JSON
+
+# Настройка стека для цепочки FORWARD (группа 20)
 stack=nft_forward_log:NFLOG,idx2:IFINDEX,ip2str2:IP2STR,json2:JSON
 
 [nft_input_log]
@@ -16,8 +26,10 @@ group=10
 [nft_forward_log]
 group=20
 
+# Перенаправляем логи пакетов INPUT в stdout юнита systemd
 [json1]
 file="stdout"
 
+# Перенаправляем логи пакетов FORWARD в stdout юнита systemd
 [json2]
 file="stdout"
