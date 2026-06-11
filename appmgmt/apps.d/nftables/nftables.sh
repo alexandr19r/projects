@@ -31,13 +31,27 @@ nftables_validate() {
         HAS_ERROR="true"
     fi
 
-    # Проверка ulogd2
+    # Проверка ulogd
     log_info "Валидация ulogd..."
-    if ! ulogd -N1 >/dev/null 2>&1; then
+
+    # Запускаем ulogd с указанием нашего конфига на 1 секунду в фоне.
+    # Если в конфиге ошибка — он упадет мгновенно. Если всё ок — будет работать.
+    ulogd -c /etc/ulogd.conf -d >/dev/null 2>&1
+    local ulogd_pid=$!
+
+    # Даем демону 1 секунду на инициализацию парсером ядра
+    sleep 1
+
+    # Проверяем, жив ли процесс. Если процесс умер — значит конфиг невалиден.
+    if ! kill -0 "$ulogd_pid" 2>/dev/null; then
         log_error "Критическая ошибка в конфигурации ulogd"
-        ulogd -N1 2>&1 | log_debug
         HAS_ERROR="true"
+        return 1
+    else
+        kill "$ulogd_pid" && wait "$ulogd_pid" 2>/dev/null
+        log_ok "Синтаксис конфигурации ulogd успешно проверен."
     fi
+    # Конец проверки ulogd
 
     if [[ "$HAS_ERROR" == "true" ]]; then
         return 1
