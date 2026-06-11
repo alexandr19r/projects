@@ -2,7 +2,7 @@
 logfile="stdout"
 loglevel=3
 
-lugin="/usr/lib/x86_64-linux-gnu/ulogd/ulogd_inppkt_NFLOG.so"
+plugin="/usr/lib/x86_64-linux-gnu/ulogd/ulogd_inppkt_NFLOG.so"
 plugin="/usr/lib/x86_64-linux-gnu/ulogd/ulogd_filter_IFINDEX.so"
 plugin="/usr/lib/x86_64-linux-gnu/ulogd/ulogd_filter_IP2STR.so"
 plugin="/usr/lib/x86_64-linux-gnu/ulogd/ulogd_output_JSON.so"
