@@ -83,7 +83,7 @@ nftables_validate() {
 nftables_install() {
     load_env "$PROJECT_NAME"
     log_debug "Значение переменной: $NFTABLES_SERVICES"
-    deploy_install "nftables" "${NFTABLES_PACKAGES}" "${NFTABLES_LIST}" NFTABLES_SERVICES "nftables_pre_clean"
+    deploy_install "nftables" "${NFTABLES_PACKAGES}" "${NFTABLES_LIST}" $NFTABLES_SERVICES "nftables_pre_clean"
 }
 
 # Доработать
@@ -96,12 +96,12 @@ nftables_backup() {
 nftables_update_config() {
     local source_file="${1:?Не указан путь к новому файлу настроек}"
     load_env "$PROJECT_NAME"
-    deploy_update_config "nftables" "/etc/nftables.conf" "$source_file" NFTABLES_SERVICES
+    deploy_update_config "nftables" "/etc/nftables.conf" "$source_file" $NFTABLES_SERVICES
 }
 
 nftables_update_app() {
     load_env "$PROJECT_NAME"
-    deploy_update_app "nftables" "${NFTABLES_PACKAGES}" "${NFTABLES_LIST}" NFTABLES_SERVICES
+    deploy_update_app "nftables" "${NFTABLES_PACKAGES}" "${NFTABLES_LIST}" $NFTABLES_SERVICES
 }
 
 nftables_uninstall() {
