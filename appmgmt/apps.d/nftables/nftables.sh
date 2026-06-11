@@ -37,7 +37,8 @@ nftables_validate() {
     # Запускаем ulogd БЕЗ флага -d, с указанием нашего конфига на 1 секунду в фоне.
     # Если в конфиге ошибка — он упадет мгновенно. Если всё ок — будет работать.
     # БЕЗ флага -d гарантирует, что переменная $! будет создана и strict-режим не упадет
-    ulogd -c /etc/ulogd.conf >/dev/null 2>&1 &
+    # Сохраняем вывод ошибок в лог-файл, чтобы прочитать причину падения
+    ulogd -c /etc/ulogd.conf > /tmp/ulogd_error.log 2>&1 &
     local ulogd_pid=$!
 
     # Даем демону 1 секунду на инициализацию парсером ядра
@@ -46,12 +47,18 @@ nftables_validate() {
     # Проверяем, жив ли процесс. Если процесс умер — значит конфиг невалиден.
     if ! kill -0 "$ulogd_pid" 2>/dev/null; then
         log_error "Критическая ошибка в конфигурации ulogd"
+        if [[ -f /tmp/ulogd_error.log ]]; then
+            log_debug "--- ТЕХНИЧЕСКИЙ ЛОГ СБОЯ ULOGD ---"
+            cat /tmp/ulogd_error.log >&2
+            rm -f /tmp/ulogd_error.log
+        fi
         HAS_ERROR="true"
         return 1
     else
         # Конфигурация валидна. Убиваем тестовый фоновый процесс.
         kill "$ulogd_pid" >/dev/null 2>&1
         wait "$ulogd_pid" 2>/dev/null || true
+        rm -f /tmp/ulogd_error.log
         log_ok "Синтаксис конфигурации ulogd успешно проверен."
     fi
     # Конец проверки ulogd
