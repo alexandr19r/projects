@@ -55,10 +55,10 @@ _deploy_manager() {
 # Внутренний триггер управления системными демонами (Health-Check)
 _deploy_control_services() {
     local services_array_ref="$1"
-    local -n TargetServices="$services_array_ref"
+    local -a svc_list=($services_array_ref)
 
     log_info "--- Активация и запуск системных служб ---"
-    for svc in "${TargetServices[@]}"; do
+    for svc in "${svc_list[@]}"; do
         systemctl enable "$svc" 2>&1 | log_debug || true
         if systemctl restart "$svc" && systemctl is-active --quiet "$svc"; then
             log_ok "Служба [$svc] успешно запущена и работает стабильно."
