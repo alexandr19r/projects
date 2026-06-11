@@ -117,6 +117,7 @@ deploy_install() {
     finalize_backup
     commit_transaction
 
+    log_debug "Значение переменнной $services_array_ref"
     _deploy_control_services "$services_array_ref" || return 1
     log_ok ">>> [INSTALL] Компонент [${app_name^^}] успешно установлен и запущен <<<"
 }

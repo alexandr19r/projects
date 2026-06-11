@@ -82,6 +82,7 @@ nftables_validate() {
 
 nftables_install() {
     load_env "$PROJECT_NAME"
+    log_debug "Значение переменной: $NFTABLES_SERVICES"
     deploy_install "nftables" "${NFTABLES_PACKAGES}" "${NFTABLES_LIST}" NFTABLES_SERVICES "nftables_pre_clean"
 }
 
