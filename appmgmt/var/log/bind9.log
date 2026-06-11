@@ -1,0 +1,1558 @@
+[2026-04-20 23:43:53] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-20 23:43:53] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-20 23:43:53] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-20 23:43:53] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-20 23:43:53] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-20 23:43:53] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-20 23:43:53] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-20 23:43:53] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-20 23:43:53] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-20 23:43:53] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-20 23:43:53] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-20 23:43:53] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-20 23:43:53] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-20 23:43:53] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-20 23:43:53] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-20 23:43:53] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-20 23:43:53] [INFO] --- Проверка наличия прав root ---
+[2026-04-20 23:43:53] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-20 23:43:53] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-20 23:43:53] [INFO] Остановка systemd-resolved...
+[2026-04-20 23:43:53] [INFO] Удаление пакета resolvconf...
+[2026-04-20 23:48:54] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-20 23:48:54] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-20 23:48:54] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-20 23:48:54] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-20 23:48:54] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-20 23:48:54] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-20 23:48:54] [INFO] Выполнение установки: bind9...
+[2026-04-20 23:48:54] [INFO] Обновление кэша...
+[2026-04-20 23:48:55] [INFO] Установка пакетов...
+[2026-04-20 23:48:59] [OK] Пакеты успешно установлены: bind9
+[2026-04-20 23:48:59] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-20 23:48:59] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-20 23:48:59] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-20 23:48:59] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-20 23:48:59] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-20 23:48:59] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-20 23:48:59] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-20 23:48:59] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-20 23:48:59] [INFO] --- Создаем backup версию ---
+[2026-04-20 23:48:59] [INFO] --- Настройка инфраструктуры DNS (bind) ---
+[2026-04-20 23:48:59] [INFO] >>> Настройка: | [none]
+[2026-04-20 23:48:59] [WARN] Пользователь [/var/log/named] не найден. Создаю системного пользователя...
+[2026-04-20 23:48:59] [OK] Пользователь [/var/log/named] успешно создан.
+[2026-04-20 23:48:59] [ERROR] Ошибка chmod |: none
+[2026-04-20 23:48:59] [ERROR] Сбой при настройке: |
+[2026-04-20 23:48:59] [WARN] !!! ОТКАТ ИЗМЕНЕНИЙ (ROLLBACK) !!!
+[2026-04-20 23:48:59] [INFO] Удаление созданного объекта: none
+[2026-04-20 23:56:00] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-20 23:56:00] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-20 23:56:00] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-20 23:56:00] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-20 23:56:00] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-20 23:56:00] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-20 23:56:00] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-20 23:56:00] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-20 23:56:00] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-20 23:56:00] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-20 23:56:00] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-20 23:56:00] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-20 23:56:00] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-20 23:56:00] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-20 23:56:00] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-20 23:56:00] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-20 23:56:00] [INFO] --- Проверка наличия прав root ---
+[2026-04-20 23:56:00] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-20 23:56:00] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-20 23:56:00] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-20 23:56:01] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-20 23:56:01] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-20 23:56:01] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-20 23:56:01] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-20 23:56:01] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-20 23:56:01] [INFO] Выполнение установки: bind9...
+[2026-04-20 23:56:01] [INFO] Обновление кэша...
+[2026-04-20 23:56:01] [INFO] Установка пакетов...
+[2026-04-20 23:56:04] [OK] Пакеты успешно установлены: bind9
+[2026-04-20 23:56:04] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-20 23:56:04] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-20 23:56:04] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-20 23:56:04] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-20 23:56:04] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-20 23:56:04] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-20 23:56:04] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-20 23:56:04] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-20 23:56:04] [INFO] --- Создаем backup версию ---
+[2026-04-20 23:56:04] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-20 23:56:04] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-20 23:56:04] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-20 23:56:04] [DEBUG] Добавление bind в группу adm
+[2026-04-20 23:56:04] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-20 23:56:04] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-20 23:56:04] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-20 23:56:04] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-20 23:56:04] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-20 23:56:04] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-20 23:56:04] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-20 23:56:04] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-20 23:56:04] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-20 23:56:04] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-20 23:56:04] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-20 23:56:04] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-20 23:56:04] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-20 23:56:04] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-20 23:56:04] [ERROR] Шаблон не найден: /home/aleksandr_ruban/projects/default/template/system/resolv.conf.tpl
+[2026-04-20 23:56:04] [ERROR] Сбой при настройке: Системный резолвер
+[2026-04-20 23:56:04] [WARN] !!! ОТКАТ ИЗМЕНЕНИЙ (ROLLBACK) !!!
+[2026-04-20 23:56:04] [INFO] Восстановление оригинала: /etc/resolv.conf
+[2026-04-20 23:56:04] [INFO] Удаление созданного объекта: /etc/bind/zones
+[2026-04-20 23:56:04] [INFO] Удаление созданного объекта: /etc/logrotate.d/named
+[2026-04-20 23:56:04] [INFO] Удаление созданного объекта: /etc/rsyslog.d/named.conf
+[2026-04-20 23:56:04] [INFO] Удаление созданного объекта: /var/log/named/queries.log
+[2026-04-20 23:56:04] [INFO] Удаление созданного объекта: /var/log/named/named.log
+[2026-04-20 23:56:04] [INFO] Удаление созданного объекта: /var/log/named
+[2026-04-21 00:00:23] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 00:00:23] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 00:00:23] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 00:00:23] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 00:00:23] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 00:00:23] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 00:00:23] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 00:00:23] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 00:00:23] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 00:00:23] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 00:00:23] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 00:00:23] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 00:00:23] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 00:00:23] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 00:00:23] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 00:00:23] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 00:00:23] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 00:00:23] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 00:00:23] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 00:00:23] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 00:00:23] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 00:00:23] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 00:00:23] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 00:00:23] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 00:00:23] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 00:00:23] [INFO] Выполнение установки: bind9...
+[2026-04-21 00:00:23] [INFO] Обновление кэша...
+[2026-04-21 00:00:23] [INFO] Установка пакетов...
+[2026-04-21 00:00:26] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 00:00:26] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 00:00:26] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 00:00:26] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 00:00:26] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 00:00:26] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 00:00:26] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 00:00:26] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 00:00:26] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 00:00:26] [INFO] --- Создаем backup версию ---
+[2026-04-21 00:00:26] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 00:00:26] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 00:00:26] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 00:00:26] [DEBUG] Добавление bind в группу adm
+[2026-04-21 00:00:26] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 00:00:26] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 00:00:26] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 00:00:26] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 00:00:26] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 00:00:26] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 00:00:26] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 00:00:26] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 00:00:26] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 00:00:26] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 00:00:26] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 00:00:26] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 00:00:26] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 00:00:27] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 00:00:27] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 00:00:27] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 00:00:27] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 00:00:27] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 00:00:27] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 00:00:27] [INFO] Проверка системных зон (internal)...
+[2026-04-21 00:00:27] [ERROR] Ошибка валидации системной зоны: localhost (/etc/bind/zones/internal/db.localhost)
+[2026-04-21 00:00:27] [DEBUG] dns_master_load: /etc/bind/zones/internal/db.localhost:8: unexpected end of line
+dns_master_load: /etc/bind/zones/internal/db.localhost:8: unexpected end of input
+dns_rdata_fromtext: /etc/bind/zones/internal/db.localhost:16: near eol: unexpected end of input
+/etc/bind/zones/internal/db.localhost:19: using RFC1035 TTL semantics
+/etc/bind/zones/internal/db.localhost:23: file does not end with newline
+zone localhost/IN: loading from master file /etc/bind/zones/internal/db.localhost failed: unexpected end of input
+zone localhost/IN: not loaded due to errors.
+[2026-04-21 00:07:57] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 00:07:57] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 00:07:57] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 00:07:57] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 00:07:57] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 00:07:57] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 00:07:57] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 00:07:57] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 00:07:57] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 00:07:57] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 00:07:57] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 00:07:57] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 00:07:57] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 00:07:57] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 00:07:57] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 00:07:57] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 00:07:57] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 00:07:57] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 00:07:57] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 00:07:57] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 00:07:57] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 00:07:57] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 00:07:57] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 00:07:57] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 00:07:57] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 00:07:57] [INFO] Выполнение установки: bind9...
+[2026-04-21 00:07:57] [INFO] Обновление кэша...
+[2026-04-21 00:07:58] [INFO] Установка пакетов...
+[2026-04-21 00:08:01] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 00:08:01] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 00:08:01] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 00:08:01] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 00:08:01] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 00:08:01] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 00:08:01] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 00:08:01] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 00:08:01] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 00:08:01] [INFO] --- Создаем backup версию ---
+[2026-04-21 00:08:01] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 00:08:01] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 00:08:01] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 00:08:01] [DEBUG] Добавление bind в группу adm
+[2026-04-21 00:08:01] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 00:08:01] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 00:08:01] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 00:08:01] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 00:08:01] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 00:08:01] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 00:08:01] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 00:08:01] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 00:08:01] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 00:08:01] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 00:08:01] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 00:08:01] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 00:08:01] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 00:08:01] [ERROR] Ошибка chmod 644: /etc/resolv.conf
+[2026-04-21 00:08:01] [ERROR] Сбой при настройке: Системный резолвер
+[2026-04-21 00:08:01] [WARN] !!! ОТКАТ ИЗМЕНЕНИЙ (ROLLBACK) !!!
+[2026-04-21 00:08:01] [INFO] Восстановление оригинала: /etc/resolv.conf
+[2026-04-21 00:08:01] [INFO] Удаление созданного объекта: /etc/bind/zones
+[2026-04-21 00:08:01] [INFO] Восстановление оригинала: /etc/logrotate.d/named
+[2026-04-21 00:08:01] [INFO] Восстановление оригинала: /etc/rsyslog.d/named.conf
+[2026-04-21 00:08:01] [INFO] Восстановление оригинала: /var/log/named/queries.log
+[2026-04-21 00:08:01] [INFO] Восстановление оригинала: /var/log/named/named.log
+[2026-04-21 00:08:01] [INFO] Удаление созданного объекта: /var/log/named
+[2026-04-21 00:17:48] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 00:17:48] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 00:17:48] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 00:17:48] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 00:17:48] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 00:17:48] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 00:17:48] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 00:17:48] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 00:17:48] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 00:17:48] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 00:17:48] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 00:17:48] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 00:17:48] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 00:17:48] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 00:17:48] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 00:17:48] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 00:17:48] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 00:17:48] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 00:17:48] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 00:17:48] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 00:17:48] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 00:17:48] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 00:17:48] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 00:17:48] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 00:17:48] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 00:17:49] [INFO] Выполнение установки: bind9...
+[2026-04-21 00:17:49] [INFO] Обновление кэша...
+[2026-04-21 00:17:49] [INFO] Установка пакетов...
+[2026-04-21 00:17:52] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 00:17:52] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 00:17:52] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 00:17:52] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 00:17:52] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 00:17:52] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 00:17:52] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 00:17:52] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 00:17:52] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 00:17:52] [INFO] --- Создаем backup версию ---
+[2026-04-21 00:17:52] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 00:17:52] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 00:17:52] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 00:17:52] [DEBUG] Добавление bind в группу adm
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 00:17:53] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 00:17:53] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 00:17:53] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 00:17:53] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 00:17:53] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 00:17:53] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 00:17:53] [INFO] Проверка системных зон (internal)...
+[2026-04-21 00:17:53] [ERROR] Ошибка валидации системной зоны: localhost (/etc/bind/zones/internal/db.localhost)
+[2026-04-21 00:17:53] [DEBUG] dns_master_load: /etc/bind/zones/internal/db.localhost:8: unexpected end of line
+dns_master_load: /etc/bind/zones/internal/db.localhost:8: unexpected end of input
+dns_rdata_fromtext: /etc/bind/zones/internal/db.localhost:16: near eol: unexpected end of input
+/etc/bind/zones/internal/db.localhost:19: using RFC1035 TTL semantics
+zone localhost/IN: loading from master file /etc/bind/zones/internal/db.localhost failed: unexpected end of input
+zone localhost/IN: not loaded due to errors.
+[2026-04-21 00:34:49] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 00:34:49] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 00:34:49] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 00:34:49] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 00:34:49] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 00:34:49] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 00:34:49] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 00:34:49] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 00:34:49] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 00:34:49] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 00:34:49] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 00:34:49] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 00:34:49] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 00:34:49] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 00:34:49] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 00:34:49] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 00:34:49] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 00:34:49] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 00:34:49] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 00:34:49] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 00:34:49] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 00:34:49] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 00:34:49] [INFO] [no message]
+[2026-04-21 00:34:49] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 00:34:49] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 00:34:49] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 00:34:49] [INFO] Выполнение установки: bind9...
+[2026-04-21 00:34:49] [INFO] Обновление кэша...
+[2026-04-21 00:34:50] [INFO] Установка пакетов...
+[2026-04-21 00:34:52] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 00:34:52] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 00:34:52] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 00:34:52] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 00:34:52] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 00:34:52] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 00:34:52] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 00:34:52] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 00:34:52] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 00:34:52] [INFO] --- Создаем backup версию ---
+[2026-04-21 00:34:52] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 00:34:52] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 00:34:52] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 00:34:52] [DEBUG] Добавление bind в группу adm
+[2026-04-21 00:34:52] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 00:34:52] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 00:34:52] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 00:34:52] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 00:34:53] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 00:34:53] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 00:34:53] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 00:34:53] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 00:34:53] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 00:34:53] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 00:34:53] [INFO] Проверка системных зон (internal)...
+[2026-04-21 00:34:53] [ERROR] Ошибка валидации системной зоны: localhost (/etc/bind/zones/internal/db.localhost)
+[2026-04-21 00:34:53] [DEBUG] dns_master_load: /etc/bind/zones/internal/db.localhost:8: unexpected end of line
+dns_master_load: /etc/bind/zones/internal/db.localhost:8: unexpected end of input
+dns_rdata_fromtext: /etc/bind/zones/internal/db.localhost:16: near eol: unexpected end of input
+/etc/bind/zones/internal/db.localhost:19: using RFC1035 TTL semantics
+zone localhost/IN: loading from master file /etc/bind/zones/internal/db.localhost failed: unexpected end of input
+zone localhost/IN: not loaded due to errors.
+[2026-04-21 00:41:32] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 00:41:32] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 00:41:32] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 00:41:32] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 00:41:32] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 00:41:32] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 00:41:32] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 00:41:32] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 00:41:32] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 00:41:32] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 00:41:32] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 00:41:32] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 00:41:32] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 00:41:32] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 00:41:32] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 00:41:32] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 00:41:32] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 00:41:32] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 00:41:32] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 00:41:32] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 00:41:32] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 00:41:32] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 00:41:32] [INFO] 2026042101
+[2026-04-21 00:41:32] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 00:41:32] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 00:41:32] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 00:41:32] [INFO] Выполнение установки: bind9...
+[2026-04-21 00:41:32] [INFO] Обновление кэша...
+[2026-04-21 00:41:33] [INFO] Установка пакетов...
+[2026-04-21 00:41:35] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 00:41:35] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 00:41:35] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 00:41:35] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 00:41:35] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 00:41:35] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 00:41:35] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 00:41:35] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 00:41:35] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 00:41:35] [INFO] --- Создаем backup версию ---
+[2026-04-21 00:41:35] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 00:41:36] [DEBUG] Добавление bind в группу adm
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 00:41:36] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 00:41:36] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 00:41:36] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 00:41:36] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 00:41:36] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 00:41:36] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 00:41:36] [INFO] Проверка системных зон (internal)...
+[2026-04-21 00:41:36] [ERROR] Ошибка валидации системной зоны: localhost (/etc/bind/zones/internal/db.localhost)
+[2026-04-21 00:41:36] [DEBUG] dns_master_load: /etc/bind/zones/internal/db.localhost:8: unexpected end of line
+dns_master_load: /etc/bind/zones/internal/db.localhost:8: unexpected end of input
+/etc/bind/zones/internal/db.localhost:11: using RFC1035 TTL semantics
+zone localhost/IN: loading from master file /etc/bind/zones/internal/db.localhost failed: unexpected end of input
+zone localhost/IN: not loaded due to errors.
+[2026-04-21 00:49:32] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 00:49:32] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 00:49:32] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 00:49:32] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 00:49:32] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 00:49:32] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 00:49:32] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 00:49:32] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 00:49:32] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 00:49:32] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 00:49:32] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 00:49:32] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 00:49:32] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 00:49:32] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 00:49:32] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 00:49:32] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 00:49:32] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 00:49:32] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 00:49:32] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 00:49:32] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 00:49:32] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 00:49:32] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 00:49:32] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 00:49:32] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 00:49:32] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 00:49:32] [INFO] Выполнение установки: bind9...
+[2026-04-21 00:49:32] [INFO] Обновление кэша...
+[2026-04-21 00:49:33] [INFO] Установка пакетов...
+[2026-04-21 00:49:35] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 00:49:35] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 00:49:35] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 00:49:35] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 00:49:35] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 00:49:35] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 00:49:35] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 00:49:35] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 00:49:35] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 00:49:35] [INFO] --- Создаем backup версию ---
+[2026-04-21 00:49:35] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 00:49:35] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 00:49:35] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 00:49:35] [DEBUG] Добавление bind в группу adm
+[2026-04-21 00:49:35] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 00:49:35] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 00:49:35] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 00:49:35] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 00:49:36] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 00:49:36] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 00:49:36] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 00:49:36] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 00:49:36] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 00:49:36] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 00:49:36] [INFO] Проверка системных зон (internal)...
+[2026-04-21 00:49:36] [INFO] Проверка рабочих зон (master)...
+[2026-04-21 00:49:36] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 00:49:36] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 00:49:36] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/bind9
+[2026-04-21 00:49:36] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 00:49:36] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 00:49:36] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 00:49:36] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 00:49:37] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 00:57:48] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 00:57:48] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 00:57:48] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 00:57:48] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 00:57:48] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 00:57:48] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 00:57:48] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 00:57:48] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 00:57:48] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 00:57:48] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 00:57:48] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 00:57:48] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 00:57:48] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 00:57:48] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 00:57:48] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 00:57:48] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 00:57:48] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 00:57:48] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 00:57:48] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 00:57:48] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 00:57:48] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 00:57:48] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 00:57:48] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 00:57:48] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 00:57:48] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 00:57:48] [INFO] Выполнение установки: bind9...
+[2026-04-21 00:57:48] [INFO] Обновление кэша...
+[2026-04-21 00:57:49] [INFO] Установка пакетов...
+[2026-04-21 00:57:52] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 00:57:52] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 00:57:52] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 00:57:52] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 00:57:52] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 00:57:52] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 00:57:52] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 00:57:52] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 00:57:52] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 00:57:52] [INFO] --- Создаем backup версию ---
+[2026-04-21 00:57:52] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 00:57:52] [DEBUG] Добавление bind в группу adm
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 00:57:52] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 00:57:52] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 00:57:52] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 00:57:52] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 00:57:52] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 00:57:52] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 00:57:52] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 00:57:52] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 00:57:52] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 00:57:52] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 00:57:52] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 00:57:52] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 00:57:52] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 00:57:53] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 00:57:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 00:57:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 00:57:53] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 00:57:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 00:57:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 00:57:53] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 00:57:53] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 00:57:53] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 00:57:53] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 00:57:53] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 00:57:53] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 00:57:53] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 00:57:53] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 00:57:53] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 00:57:53] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 00:57:53] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 00:57:53] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 00:57:53] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 00:57:53] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 00:57:53] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 00:57:53] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 00:57:53] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 00:57:53] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 00:57:53] [INFO] Проверка системных зон (internal)...
+[2026-04-21 00:57:53] [INFO] Проверка рабочих зон (master)...
+[2026-04-21 00:57:53] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 00:57:53] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 00:57:53] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/bind9
+[2026-04-21 00:57:53] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 00:57:53] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 00:57:53] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 00:57:53] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 00:57:53] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 01:03:21] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 01:03:21] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 01:03:21] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 01:03:21] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 01:03:21] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 01:03:21] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 01:03:21] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 01:03:21] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 01:03:21] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 01:03:21] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 01:03:21] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 01:03:21] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 01:03:21] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 01:03:21] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 01:03:21] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 01:03:21] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 01:03:21] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 01:03:21] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 01:03:21] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 01:03:21] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 01:03:21] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 01:03:21] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 01:03:21] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 01:03:21] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 01:03:21] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 01:03:21] [INFO] Выполнение установки: bind9...
+[2026-04-21 01:03:21] [INFO] Обновление кэша...
+[2026-04-21 01:03:22] [INFO] Установка пакетов...
+[2026-04-21 01:03:25] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 01:03:25] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 01:03:25] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 01:03:25] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:03:25] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 01:03:25] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 01:03:25] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 01:03:25] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 01:03:25] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 01:03:25] [INFO] --- Создаем backup версию ---
+[2026-04-21 01:03:25] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 01:03:25] [DEBUG] Добавление bind в группу adm
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 01:03:25] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 01:03:25] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 01:03:25] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 01:03:25] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 01:03:25] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 01:03:25] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 01:03:25] [INFO] Проверка системных зон (internal)...
+[2026-04-21 01:03:25] [INFO] Проверка рабочих зон (master)...
+[2026-04-21 01:03:25] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 01:03:25] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:03:25] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/bind9
+[2026-04-21 01:03:25] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 01:03:25] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 01:03:25] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 01:03:25] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 01:03:26] [INFO] Перезапуск службы [rsyslog]...
+[2026-04-21 01:03:26] [OK] Служба [rsyslog] успешно запущена.
+[2026-04-21 01:06:50] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 01:06:50] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 01:06:50] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 01:06:50] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 01:06:50] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 01:06:50] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 01:06:50] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 01:06:50] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 01:06:50] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 01:06:50] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 01:06:50] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 01:06:50] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 01:06:50] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 01:06:50] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 01:06:50] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 01:06:50] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 01:06:50] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 01:06:50] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 01:06:50] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 01:06:50] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 01:06:50] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 01:06:50] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 01:06:50] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 01:06:50] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 01:06:50] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 01:06:50] [INFO] Выполнение установки: bind9...
+[2026-04-21 01:06:50] [INFO] Обновление кэша...
+[2026-04-21 01:06:51] [INFO] Установка пакетов...
+[2026-04-21 01:06:54] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 01:06:54] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 01:06:54] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 01:06:54] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:06:54] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 01:06:54] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 01:06:54] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 01:06:54] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 01:06:54] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 01:06:54] [INFO] --- Создаем backup версию ---
+[2026-04-21 01:06:54] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 01:06:54] [DEBUG] Добавление bind в группу adm
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 01:06:54] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 01:06:54] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 01:06:54] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 01:06:54] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 01:06:54] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 01:06:54] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 01:06:54] [INFO] Проверка системных зон (internal)...
+[2026-04-21 01:06:54] [INFO] Проверка рабочих зон (master)...
+[2026-04-21 01:06:54] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 01:06:54] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:06:54] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/bind9
+[2026-04-21 01:06:54] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 01:06:54] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 01:06:54] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 01:06:54] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 01:06:54] [DEBUG] [no message]
+[2026-04-21 01:06:55] [INFO] Перезапуск службы [rsyslog]...
+[2026-04-21 01:06:55] [OK] Служба [rsyslog] успешно запущена.
+[2026-04-21 01:06:55] [DEBUG] [no message]
+[2026-04-21 01:16:10] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 01:16:10] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 01:16:10] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 01:16:10] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 01:16:10] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 01:16:10] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 01:16:10] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 01:16:10] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 01:16:10] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 01:16:10] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 01:16:10] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 01:16:10] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 01:16:10] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 01:16:10] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 01:16:10] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 01:16:10] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 01:16:10] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 01:16:10] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 01:16:10] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 01:16:10] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 01:16:10] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 01:16:10] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 01:16:10] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 01:16:10] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 01:16:10] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 01:16:10] [INFO] Выполнение установки: bind9...
+[2026-04-21 01:16:10] [INFO] Обновление кэша...
+[2026-04-21 01:16:11] [INFO] Установка пакетов...
+[2026-04-21 01:16:14] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 01:16:14] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 01:16:14] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 01:16:14] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:16:14] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 01:16:14] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 01:16:14] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 01:16:14] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 01:16:14] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 01:16:14] [INFO] --- Создаем backup версию ---
+[2026-04-21 01:16:14] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 01:16:14] [DEBUG] Добавление bind в группу adm
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 01:16:14] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 01:16:14] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 01:16:14] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 01:16:14] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 01:16:14] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 01:16:14] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 01:16:14] [INFO] Проверка системных зон (internal)...
+[2026-04-21 01:16:14] [INFO] Проверка рабочих зон (master)...
+[2026-04-21 01:16:14] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 01:16:14] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:16:14] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/bind9
+[2026-04-21 01:16:14] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 01:16:14] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 01:16:14] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 01:16:14] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 01:16:15] [DEBUG] [no message]
+[2026-04-21 01:16:15] [INFO] Перезапуск службы [rsyslog]...
+[2026-04-21 01:16:15] [OK] Служба [rsyslog] успешно запущена.
+[2026-04-21 01:16:15] [DEBUG] [no message]
+[2026-04-21 01:18:43] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 01:18:43] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 01:18:43] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 01:18:43] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 01:18:43] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 01:18:43] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 01:18:43] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 01:18:43] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 01:18:43] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 01:18:43] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 01:18:43] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 01:18:43] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 01:18:43] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 01:18:43] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 01:18:43] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 01:18:43] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 01:18:43] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 01:18:43] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 01:18:43] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 01:18:43] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 01:18:43] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 01:18:43] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 01:18:43] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 01:18:43] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 01:18:43] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 01:18:43] [INFO] Выполнение установки: bind9...
+[2026-04-21 01:18:43] [INFO] Обновление кэша...
+[2026-04-21 01:18:44] [INFO] Установка пакетов...
+[2026-04-21 01:18:47] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 01:18:47] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 01:18:47] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 01:18:47] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:18:47] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 01:18:47] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 01:18:47] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 01:18:47] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 01:18:47] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 01:18:47] [INFO] --- Создаем backup версию ---
+[2026-04-21 01:18:47] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 01:18:47] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 01:18:47] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 01:18:47] [DEBUG] Добавление bind в группу adm
+[2026-04-21 01:18:47] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 01:18:47] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 01:18:47] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 01:18:47] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 01:18:47] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 01:18:47] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 01:18:47] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 01:18:47] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 01:18:47] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 01:18:47] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 01:18:47] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 01:18:47] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 01:18:47] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 01:18:47] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 01:18:47] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 01:18:47] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 01:18:47] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 01:18:47] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 01:18:47] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 01:18:47] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 01:18:48] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 01:18:48] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 01:18:48] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 01:18:48] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 01:18:48] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 01:18:48] [INFO] Проверка системных зон (internal)...
+[2026-04-21 01:18:48] [INFO] Проверка рабочих зон (master)...
+[2026-04-21 01:18:48] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 01:18:48] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:18:48] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/bind9
+[2026-04-21 01:18:48] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 01:18:48] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 01:18:48] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 01:18:48] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 01:18:48] [DEBUG] [no message]
+[2026-04-21 01:18:48] [INFO] Перезапуск службы [rsyslog]...
+[2026-04-21 01:18:48] [OK] Служба [rsyslog] успешно запущена.
+[2026-04-21 01:18:48] [DEBUG] [no message]
+[2026-04-21 01:19:37] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 01:19:37] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 01:19:37] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 01:19:37] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 01:19:37] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 01:19:37] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 01:19:37] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 01:19:37] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 01:19:37] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 01:19:37] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 01:19:37] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 01:19:37] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 01:19:37] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 01:19:37] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 01:19:37] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 01:19:37] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 01:19:37] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 01:19:37] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 01:19:37] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 01:19:37] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 01:19:37] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 01:19:37] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 01:19:37] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 01:19:37] [INFO] Анализ зависимостей bind9 rsyslog
+[2026-04-21 01:19:37] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 01:19:37] [INFO] Выполнение установки: bind9...
+[2026-04-21 01:19:37] [INFO] Обновление кэша...
+[2026-04-21 01:19:38] [INFO] Установка пакетов...
+[2026-04-21 01:19:41] [OK] Пакеты успешно установлены: bind9
+[2026-04-21 01:19:41] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 01:19:41] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 01:19:41] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:19:41] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 01:19:41] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 01:19:41] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 01:19:41] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 01:19:41] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 01:19:41] [INFO] --- Создаем backup версию ---
+[2026-04-21 01:19:41] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 01:19:41] [DEBUG] Добавление bind в группу adm
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 01:19:41] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 01:19:41] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 01:19:41] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 01:19:41] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 01:19:41] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 01:19:41] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 01:19:41] [INFO] Проверка системных зон (internal)...
+[2026-04-21 01:19:41] [INFO] Проверка рабочих зон (master)...
+[2026-04-21 01:19:41] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 01:19:41] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:19:41] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/bind9
+[2026-04-21 01:19:41] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 01:19:41] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 01:19:41] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 01:19:41] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 01:19:42] [DEBUG] [no message]
+[2026-04-21 01:19:42] [INFO] Перезапуск службы [rsyslog]...
+[2026-04-21 01:19:42] [OK] Служба [rsyslog] успешно запущена.
+[2026-04-21 01:19:42] [DEBUG] [no message]
+[2026-04-21 01:19:42] [INFO] Перезапуск службы [named]...
+[2026-04-21 01:19:42] [OK] Служба [named] успешно запущена.
+[2026-04-21 01:19:42] [INFO] --- Тестирование DNS-сервера (Валидация ответов) ---
+[2026-04-21 01:19:42] [INFO] Тест: Прямая зона (A) -> home.local
+[2026-04-21 01:19:42] [ERROR] Ошибка резолвинга home.local через 10.10.100.1
+[2026-04-21 01:19:42] [INFO] Тест: Прямая зона (AAAA) -> home.local
+[2026-04-21 01:19:42] [WARN] Запись AAAA для home.local не найдена или неверна.
+[2026-04-21 01:19:42] [INFO] Тест: Обратная зона IPv4 (PTR) -> 10.10.100.1
+[2026-04-21 01:19:42] [ERROR] Ошибка PTR записи для 10.10.100.1
+[2026-04-21 01:19:42] [INFO] Тест: Рекурсия (Forwarding) -> google.com
+[2026-04-21 01:19:42] [WARN] Сервер не смог разрешить google.com. Проверьте FORWARDER_DNS.
+[2026-04-21 01:19:42] [ERROR] DNS тесты завершились с критическими ошибками.
+[2026-04-21 01:25:51] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 01:25:51] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 01:25:51] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 01:25:51] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 01:25:51] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 01:25:51] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 01:25:51] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 01:25:51] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 01:25:51] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 01:25:51] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 01:25:51] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 01:25:51] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 01:25:51] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 01:25:51] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 01:25:51] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 01:25:51] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DNS (IPv4/IPv6) <<<
+[2026-04-21 01:25:51] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 01:25:51] [INFO] --- Отключаем умные службы resolv ---
+[2026-04-21 01:25:51] [INFO] --- Отключение системных менеджеров DNS ---
+[2026-04-21 01:25:51] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 01:25:51] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/bind/bind.env
+[2026-04-21 01:25:51] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/bind/bind.env] успешно применен.
+[2026-04-21 01:25:51] [INFO] --- Установка DNS (bind9) и зависимостей ---
+[2026-04-21 01:25:51] [INFO] Анализ зависимостей bind9 dnsutils rsyslog
+[2026-04-21 01:25:51] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 01:25:51] [INFO] Выполнение установки: bind9 dnsutils...
+[2026-04-21 01:25:51] [INFO] Обновление кэша...
+[2026-04-21 01:25:51] [INFO] Установка пакетов...
+[2026-04-21 01:25:55] [OK] Пакеты успешно установлены: bind9 dnsutils
+[2026-04-21 01:25:55] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 01:25:55] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 01:25:55] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:25:55] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 01:25:55] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 01:25:55] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 01:25:55] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 01:25:55] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 01:25:55] [INFO] --- Создаем backup версию ---
+[2026-04-21 01:25:55] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Папка логов DNS [/var/log/named]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /var/log/named (dir, syslog:adm, 770)}
+[2026-04-21 01:25:55] [DEBUG] Добавление bind в группу adm
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Файл логов DNS [/var/log/named/named.log]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /var/log/named/named.log (file, syslog:adm, 640)}
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Файл запросов DNS [/var/log/named/queries.log]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /var/log/named/queries.log (file, bind:adm, 640)}
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Настройка логов BIND9 (local6) [/etc/rsyslog.d/named.conf]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/rsyslog.d/named.conf (file, root:root, 644)}
+[2026-04-21 01:25:55] [OK] Конфиг обновлен: /etc/rsyslog.d/named.conf
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Ротация логов BIND9 [/etc/logrotate.d/named]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/logrotate.d/named (file, root:root, 644)}
+[2026-04-21 01:25:55] [OK] Конфиг обновлен: /etc/logrotate.d/named
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Папка зон DNS [/etc/bind/zones]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/bind/zones (dir, root:bind, 2750)}
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Системный резолвер [/etc/resolv.conf]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/resolv.conf (file, root:root, 644)}
+[2026-04-21 01:25:55] [OK] Конфиг обновлен: /etc/resolv.conf
+[2026-04-21 01:25:55] [DEBUG] Установка immutable флага на /etc/resolv.conf
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Главный файл конфигурации [/etc/bind/named.conf]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/bind/named.conf (file, root:bind, 644)}
+[2026-04-21 01:25:55] [OK] Конфиг обновлен: /etc/bind/named.conf
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Настройка ACL trusted [/etc/bind/named.conf.options]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/bind/named.conf.options (file, root:bind, 644)}
+[2026-04-21 01:25:55] [OK] Конфиг обновлен: /etc/bind/named.conf.options
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Настройка логирования [/etc/bind/named.conf.logging]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/bind/named.conf.logging (file, root:bind, 644)}
+[2026-04-21 01:25:55] [OK] Конфиг обновлен: /etc/bind/named.conf.logging
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Папка системных зон [/etc/bind/zones/internal]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/bind/zones/internal (dir, root:bind, 2750)}
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Описание локальных зон [/etc/bind/zones/internal/named.conf.internal]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/bind/zones/internal/named.conf.internal (file, root:bind, 644)}
+[2026-04-21 01:25:55] [OK] Конфиг обновлен: /etc/bind/zones/internal/named.conf.internal
+[2026-04-21 01:25:55] [INFO] >>> Настройка: База данных localhost (Loopback) [/etc/bind/zones/internal/db.localhost]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/bind/zones/internal/db.localhost (file, root:bind, 644)}
+[2026-04-21 01:25:55] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.localhost
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Обратная зона localhost IPv4 (Loopback) [/etc/bind/zones/internal/db.127]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/bind/zones/internal/db.127 (file, root:bind, 644)}
+[2026-04-21 01:25:55] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.127
+[2026-04-21 01:25:55] [INFO] >>> Настройка: Обратная зона localhost IPv6 (::1) [/etc/bind/zones/internal/db.ip6.0]
+[2026-04-21 01:25:55] [DEBUG] Объект готов: /etc/bind/zones/internal/db.ip6.0 (file, root:bind, 644)}
+[2026-04-21 01:25:56] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.ip6.0
+[2026-04-21 01:25:56] [INFO] >>> Настройка: Системная зона для широковещательных адресов (0.0.0.0) [/etc/bind/zones/internal/db.0]
+[2026-04-21 01:25:56] [DEBUG] Объект готов: /etc/bind/zones/internal/db.0 (file, root:bind, 644)}
+[2026-04-21 01:25:56] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.0
+[2026-04-21 01:25:56] [INFO] >>> Настройка: Системная зона для широковещательных адресов (255.255.255.255) [/etc/bind/zones/internal/db.255]
+[2026-04-21 01:25:56] [DEBUG] Объект готов: /etc/bind/zones/internal/db.255 (file, root:bind, 644)}
+[2026-04-21 01:25:56] [OK] Конфиг обновлен: /etc/bind/zones/internal/db.255
+[2026-04-21 01:25:56] [INFO] >>> Настройка: Папка пользовательских зон [/etc/bind/zones/master]
+[2026-04-21 01:25:56] [DEBUG] Объект готов: /etc/bind/zones/master (dir, bind:bind, 2770)}
+[2026-04-21 01:25:56] [INFO] >>> Настройка: Описание рабочих зон сети $LOCAL_DOMAIN [/etc/bind/zones/master/named.conf.master]
+[2026-04-21 01:25:56] [DEBUG] Объект готов: /etc/bind/zones/master/named.conf.master (file, root:bind, 644)}
+[2026-04-21 01:25:56] [OK] Конфиг обновлен: /etc/bind/zones/master/named.conf.master
+[2026-04-21 01:25:56] [INFO] >>> Настройка: Прямая зона $LOCAL_DOMAIN [/etc/bind/zones/master/db.home.local]
+[2026-04-21 01:25:56] [DEBUG] Объект готов: /etc/bind/zones/master/db.home.local (file, bind:bind, 644)}
+[2026-04-21 01:25:56] [OK] Конфиг обновлен: /etc/bind/zones/master/db.home.local
+[2026-04-21 01:25:56] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V4.in-addr.arpa [/etc/bind/zones/master/db.rev4.home.local]
+[2026-04-21 01:25:56] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev4.home.local (file, bind:bind, 644)}
+[2026-04-21 01:25:56] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev4.home.local
+[2026-04-21 01:25:56] [INFO] >>> Настройка: Обратная зона $REVERSE_OCTET_V6.ip6.arpa [/etc/bind/zones/master/db.rev6.home.local]
+[2026-04-21 01:25:56] [DEBUG] Объект готов: /etc/bind/zones/master/db.rev6.home.local (file, bind:bind, 644)}
+[2026-04-21 01:25:56] [OK] Конфиг обновлен: /etc/bind/zones/master/db.rev6.home.local
+[2026-04-21 01:25:56] [INFO] Валидация конфигурации BIND9...
+[2026-04-21 01:25:56] [INFO] Проверка системных зон (internal)...
+[2026-04-21 01:25:56] [INFO] Проверка рабочих зон (master)...
+[2026-04-21 01:25:56] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 01:25:56] [DEBUG] Модуль бэкапа готов. Проект: bind9
+[2026-04-21 01:25:56] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/bind9
+[2026-04-21 01:25:56] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 01:25:56] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 01:25:56] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 01:25:56] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 01:25:56] [DEBUG] [no message]
+[2026-04-21 01:25:56] [INFO] Перезапуск службы [rsyslog]...
+[2026-04-21 01:25:56] [OK] Служба [rsyslog] успешно запущена.
+[2026-04-21 01:25:57] [DEBUG] [no message]
+[2026-04-21 01:25:57] [INFO] Перезапуск службы [named]...
+[2026-04-21 01:25:57] [OK] Служба [named] успешно запущена.
+[2026-04-21 01:25:57] [INFO] --- Тестирование DNS-сервера (Валидация ответов) ---
+[2026-04-21 01:25:57] [INFO] Тест: Прямая зона (A) -> home.local
+[2026-04-21 01:26:02] [OK] IPv4 резолвинг работает корректно.
+[2026-04-21 01:26:02] [INFO] Тест: Прямая зона (AAAA) -> home.local
+[2026-04-21 01:26:02] [OK] IPv6 резолвинг работает корректно.
+[2026-04-21 01:26:02] [INFO] Тест: Обратная зона IPv4 (PTR) -> 10.10.100.1
+[2026-04-21 01:26:02] [OK] Обратный резолвинг IPv4 работает.
+[2026-04-21 01:26:02] [INFO] Тест: Рекурсия (Forwarding) -> google.com
+[2026-04-21 01:26:05] [OK] Внешние запросы (Forwarders) работают.
+[2026-04-21 01:26:05] [OK] DNS-сервер полностью функционален.
+[2026-04-21 01:26:05] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ DNS (bind9) <<<

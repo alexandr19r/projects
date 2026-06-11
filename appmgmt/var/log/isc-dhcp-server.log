@@ -1,0 +1,1354 @@
+[2026-04-21 08:44:35] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 08:44:35] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 08:44:35] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 08:44:35] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 08:44:35] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 08:44:35] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 08:44:35] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 08:44:35] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 08:44:35] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 08:44:35] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 08:44:35] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 08:44:35] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 08:44:35] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 08:44:35] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 08:44:35] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 08:44:35] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 08:44:35] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 08:44:35] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 08:44:35] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 08:44:35] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 08:44:35] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 08:44:35] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 08:44:35] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 08:44:35] [DEBUG] Пакет [isc-dhcp-server] уже присутствует в системе.
+[2026-04-21 08:44:35] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 08:44:35] [INFO] Выполнение установки: radvd...
+[2026-04-21 08:44:35] [INFO] Обновление кэша...
+[2026-04-21 08:44:36] [INFO] Установка пакетов...
+[2026-04-21 08:44:37] [OK] Пакеты успешно установлены: radvd
+[2026-04-21 08:44:37] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 08:44:37] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 08:44:37] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 08:44:37] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 08:44:37] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 08:44:37] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 08:44:37] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 08:44:37] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 08:44:37] [INFO] --- Создаем backup версию ---
+[2026-04-21 08:44:37] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 08:44:38] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 08:44:38] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 08:44:38] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 08:44:38] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 08:44:38] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 08:44:38] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 08:44:38] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 08:44:38] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 08:44:38] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 08:44:38] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 08:44:38] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 08:44:38] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 08:44:38] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 08:44:38] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 08:44:38] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 08:44:38] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 08:44:38] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 08:44:38] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 08:44:38] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 08:44:38] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 08:44:38] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 08:44:38] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 08:44:38] [INFO] Валидация DHCPv4...
+[2026-04-21 08:44:38] [ERROR] Синтаксическая ошибка в /etc/dhcp/dhcpd.conf
+[2026-04-21 08:44:38] [DEBUG] Internet Systems Consortium DHCP Server 4.4.1
+Copyright 2004-2018 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+/etc/dhcp/dhcpd.conf line 22: Expecting netmask
+subnet 10.10.100.0/
+                   ^
+Configuration file errors encountered -- exiting
+
+If you think you have received this message due to a bug rather
+than a configuration issue please read the section on submitting
+bugs on either our web page at www.isc.org or in the README file
+before submitting a bug.  These pages explain the proper
+process and the information we find helpful for debugging.
+
+exiting.
+[2026-04-21 09:13:07] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 09:13:07] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 09:13:07] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 09:13:07] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 09:13:07] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 09:13:07] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 09:13:07] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 09:13:07] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 09:13:07] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 09:13:07] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 09:13:07] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 09:13:07] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 09:13:07] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 09:13:07] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 09:13:07] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 09:13:07] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 09:13:07] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 09:13:07] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 09:13:07] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 09:13:07] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 09:13:07] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 09:13:07] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 09:13:07] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 09:13:07] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 09:13:07] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 09:13:07] [INFO] Обновление кэша...
+[2026-04-21 09:13:08] [INFO] Установка пакетов...
+[2026-04-21 09:13:13] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 09:13:13] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 09:13:13] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 09:13:13] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 09:13:13] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 09:13:13] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 09:13:13] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 09:13:13] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 09:13:13] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 09:13:13] [INFO] --- Создаем backup версию ---
+[2026-04-21 09:13:13] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 09:13:13] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 09:13:13] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 09:13:14] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 09:13:14] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 09:13:14] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 09:13:14] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 09:13:14] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 09:13:14] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 09:13:14] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 09:13:14] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 09:13:14] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 09:13:14] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 09:13:14] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 09:13:14] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 09:13:14] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 09:13:14] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 09:13:14] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 09:13:14] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 09:13:14] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 09:13:14] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 09:13:14] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 09:13:14] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 09:13:14] [INFO] Валидация DHCPv4...
+[2026-04-21 09:13:14] [INFO] Валидация DHCPv6...
+[2026-04-21 09:13:14] [INFO] Валидация RADVD...
+[2026-04-21 09:13:14] [INFO] Валидация Rsyslog...
+[2026-04-21 09:13:14] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 09:13:14] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 09:13:14] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 09:13:14] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 09:13:14] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 09:13:14] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 09:13:14] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 09:13:14] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 09:13:14] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 09:13:15] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 09:13:15] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 09:13:15] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 09:13:17] [ERROR] Критический сбой при запуске isc-dhcp-server. Код ошибки: 1
+[2026-04-21 09:13:17] [DEBUG] Вывод диагностики: -- Journal begins at Tue 2025-11-04 20:11:57 CET, ends at Tue 2026-04-21 09:13:17 CEST. --
+Apr 21 09:13:15 debsrv dhcpd[45472]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 09:13:15 debsrv dhcpd[45472]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 09:13:15 debsrv dhcpd[45472]: All rights reserved.
+Apr 21 09:13:15 debsrv dhcpd[45472]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 09:13:15 debsrv dhcpd[45478]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 09:13:15 debsrv dhcpd[45478]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 09:13:15 debsrv dhcpd[45478]: All rights reserved.
+Apr 21 09:13:15 debsrv dhcpd[45478]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 09:13:15 debsrv dhcpd[45478]: Wrote 0 deleted host decls to leases file.
+Apr 21 09:13:15 debsrv dhcpd[45478]: Wrote 0 new dynamic host decls to leases file.
+Apr 21 09:13:15 debsrv dhcpd[45478]: Wrote 0 leases to leases file.
+Apr 21 09:13:15 debsrv dhcpd[45478]: Server starting service.
+Apr 21 09:13:17 debsrv isc-dhcp-server[45469]: Starting ISC DHCPv4 server: dhcpdcheck syslog for diagnostics. ...
+Apr 21 09:13:17 debsrv isc-dhcp-server[45483]:  failed!
+Apr 21 09:13:17 debsrv isc-dhcp-server[45484]:  failed!
+Apr 21 09:13:17 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 09:13:17 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 09:13:17 debsrv systemd[1]: isc-dhcp-server.service: Unit process 636 (dhcpd) remains running after unit stopped.
+Apr 21 09:13:17 debsrv systemd[1]: isc-dhcp-server.service: Unit process 45478 (dhcpd) remains running after unit stopped.
+Apr 21 09:13:17 debsrv systemd[1]: Failed to start LSB: DHCP server.
+[2026-04-21 09:13:17] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 09:49:02] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 09:49:02] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 09:49:02] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 09:49:02] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 09:49:02] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 09:49:02] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 09:49:02] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 09:49:02] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 09:49:02] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 09:49:02] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 09:49:02] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 09:49:02] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 09:49:02] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 09:49:02] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 09:49:02] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 09:49:02] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 09:49:02] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 09:49:02] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 09:49:02] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 09:49:02] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 09:49:02] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 09:49:02] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 09:49:02] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 09:49:02] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 09:49:02] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 09:49:02] [INFO] Обновление кэша...
+[2026-04-21 09:49:03] [INFO] Установка пакетов...
+[2026-04-21 09:49:07] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 09:49:07] [INFO] Очистка окружения DHCP...
+[2026-04-21 10:03:59] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 10:03:59] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 10:03:59] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 10:03:59] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 10:03:59] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 10:03:59] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 10:03:59] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 10:03:59] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 10:03:59] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 10:03:59] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 10:03:59] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 10:03:59] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 10:03:59] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 10:03:59] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 10:03:59] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 10:03:59] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 10:03:59] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 10:03:59] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 10:03:59] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 10:03:59] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 10:03:59] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 10:03:59] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 10:03:59] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 10:03:59] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 10:03:59] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 10:03:59] [INFO] Обновление кэша...
+[2026-04-21 10:04:00] [INFO] Установка пакетов...
+[2026-04-21 10:04:04] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 10:04:04] [INFO] Очистка окружения DHCP...
+[2026-04-21 10:04:05] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 10:04:05] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 10:04:05] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 10:04:05] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 10:04:05] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 10:04:06] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 10:04:06] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 10:04:06] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 10:04:06] [INFO] --- Создаем backup версию ---
+[2026-04-21 10:04:06] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 10:04:06] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 10:04:06] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 10:04:06] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 10:04:06] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 10:04:06] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 10:04:06] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 10:04:06] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 10:04:06] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 10:04:06] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 10:04:06] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 10:04:06] [INFO] >>> Настройка: База аренды DHCPv4 [/var/lib/dhcp/dhcpd.leases]
+[2026-04-21 10:04:06] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd.leases (file, root:root, 644)}
+[2026-04-21 10:04:06] [INFO] >>> Настройка: База аренды DHCPv6 [/var/lib/dhcp/dhcpd6.leases]
+[2026-04-21 10:04:06] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd6.leases (file, root:root, 644)}
+[2026-04-21 10:04:06] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 10:04:06] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 10:04:06] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 10:04:06] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 10:04:06] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 10:04:06] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 10:04:06] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 10:04:06] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 10:04:06] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 10:04:06] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 10:04:06] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 10:04:06] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 10:04:06] [INFO] Валидация DHCPv4...
+[2026-04-21 10:04:06] [INFO] Валидация DHCPv6...
+[2026-04-21 10:04:06] [INFO] Валидация RADVD...
+[2026-04-21 10:04:06] [INFO] Валидация Rsyslog...
+[2026-04-21 10:04:06] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 10:04:06] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 10:04:06] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 10:04:06] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 10:04:06] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 10:04:06] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 10:04:06] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 10:04:06] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 10:04:06] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 10:04:07] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 10:04:07] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 10:04:07] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 10:04:09] [ERROR] Критический сбой при запуске isc-dhcp-server. Код ошибки: 1
+[2026-04-21 10:04:09] [DEBUG] Вывод диагностики: -- Journal begins at Tue 2025-11-04 20:11:57 CET, ends at Tue 2026-04-21 10:04:09 CEST. --
+Apr 21 10:04:07 debsrv isc-dhcp-server[48128]: Launching IPv4 server only.
+Apr 21 10:04:07 debsrv dhcpd[48131]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 10:04:07 debsrv dhcpd[48131]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 10:04:07 debsrv dhcpd[48131]: All rights reserved.
+Apr 21 10:04:07 debsrv dhcpd[48131]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 10:04:07 debsrv dhcpd[48137]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 10:04:07 debsrv dhcpd[48137]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 10:04:07 debsrv dhcpd[48137]: All rights reserved.
+Apr 21 10:04:07 debsrv dhcpd[48137]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 10:04:07 debsrv dhcpd[48137]: Wrote 0 deleted host decls to leases file.
+Apr 21 10:04:07 debsrv dhcpd[48137]: Wrote 0 new dynamic host decls to leases file.
+Apr 21 10:04:07 debsrv dhcpd[48137]: Wrote 0 leases to leases file.
+Apr 21 10:04:07 debsrv dhcpd[48137]: Server starting service.
+Apr 21 10:04:09 debsrv isc-dhcp-server[48128]: Starting ISC DHCPv4 server: dhcpdcheck syslog for diagnostics. ...
+Apr 21 10:04:09 debsrv isc-dhcp-server[48142]:  failed!
+Apr 21 10:04:09 debsrv isc-dhcp-server[48143]:  failed!
+Apr 21 10:04:09 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 10:04:09 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 10:04:09 debsrv systemd[1]: isc-dhcp-server.service: Unit process 48137 (dhcpd) remains running after unit stopped.
+Apr 21 10:04:09 debsrv systemd[1]: Failed to start LSB: DHCP server.
+[2026-04-21 10:04:09] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 10:29:05] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 10:29:05] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 10:29:05] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 10:29:05] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 10:29:05] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 10:29:05] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 10:29:05] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 10:29:05] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 10:29:05] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 10:29:05] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 10:29:05] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 10:29:05] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 10:29:05] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 10:29:05] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 10:29:05] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 10:29:05] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 10:29:05] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 10:29:05] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 10:29:05] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 10:29:05] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 10:29:05] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 10:29:05] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 10:29:05] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 10:29:05] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 10:29:05] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 10:29:05] [INFO] Обновление кэша...
+[2026-04-21 10:29:06] [INFO] Установка пакетов...
+[2026-04-21 10:29:10] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 10:29:10] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 10:29:10] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 10:29:10] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 10:29:10] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 10:29:10] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 10:29:10] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 10:29:10] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 10:29:10] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 10:29:10] [INFO] --- Создаем backup версию ---
+[2026-04-21 10:29:10] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 10:29:10] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 10:29:10] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 10:29:10] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 10:29:10] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 10:29:10] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 10:29:10] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 10:29:10] [INFO] >>> Настройка: Папка баз аренды DHCP [/var/lib/dhcpd]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /var/lib/dhcpd (dir, root:root, 755)}
+[2026-04-21 10:29:10] [INFO] >>> Настройка: База аренды DHCPv4 [/var/lib/dhcp/dhcpd.leases]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd.leases (file, root:root, 644)}
+[2026-04-21 10:29:10] [INFO] >>> Настройка: База аренды DHCPv6 [/var/lib/dhcp/dhcpd6.leases]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd6.leases (file, root:root, 644)}
+[2026-04-21 10:29:10] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 10:29:10] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 10:29:10] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 10:29:10] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 10:29:10] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 10:29:10] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 10:29:10] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 10:29:10] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 10:29:10] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 10:29:10] [INFO] Валидация DHCPv4...
+[2026-04-21 10:29:10] [INFO] Валидация DHCPv6...
+[2026-04-21 10:29:10] [INFO] Валидация RADVD...
+[2026-04-21 10:29:10] [INFO] Валидация Rsyslog...
+[2026-04-21 10:29:10] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 10:29:10] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 10:29:10] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 10:29:10] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 10:29:10] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 10:29:10] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 10:29:10] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 10:29:11] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 10:29:11] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 10:29:11] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 10:29:11] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 10:29:11] [INFO] Жесткая очистка процессов dhcpd перед запуском...
+[2026-04-21 10:29:11] [DEBUG] [no message]
+[2026-04-21 10:29:13] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 10:29:15] [ERROR] Критический сбой при запуске isc-dhcp-server. Код ошибки: 1
+[2026-04-21 10:29:15] [DEBUG] Вывод диагностики: -- Journal begins at Tue 2025-11-04 20:11:57 CET, ends at Tue 2026-04-21 10:29:15 CEST. --
+Apr 21 10:29:13 debsrv isc-dhcp-server[49945]: Launching IPv4 server only.
+Apr 21 10:29:13 debsrv dhcpd[49948]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 10:29:13 debsrv dhcpd[49948]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 10:29:13 debsrv dhcpd[49948]: All rights reserved.
+Apr 21 10:29:13 debsrv dhcpd[49948]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 10:29:13 debsrv dhcpd[49954]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 10:29:13 debsrv dhcpd[49954]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 10:29:13 debsrv dhcpd[49954]: All rights reserved.
+Apr 21 10:29:13 debsrv dhcpd[49954]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 10:29:13 debsrv dhcpd[49954]: Wrote 0 deleted host decls to leases file.
+Apr 21 10:29:13 debsrv dhcpd[49954]: Wrote 0 new dynamic host decls to leases file.
+Apr 21 10:29:13 debsrv dhcpd[49954]: Wrote 0 leases to leases file.
+Apr 21 10:29:13 debsrv dhcpd[49954]: Server starting service.
+Apr 21 10:29:15 debsrv isc-dhcp-server[49945]: Starting ISC DHCPv4 server: dhcpdcheck syslog for diagnostics. ...
+Apr 21 10:29:15 debsrv isc-dhcp-server[49959]:  failed!
+Apr 21 10:29:15 debsrv isc-dhcp-server[49960]:  failed!
+Apr 21 10:29:15 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 10:29:15 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 10:29:15 debsrv systemd[1]: isc-dhcp-server.service: Unit process 49954 (dhcpd) remains running after unit stopped.
+Apr 21 10:29:15 debsrv systemd[1]: Failed to start LSB: DHCP server.
+[2026-04-21 10:29:15] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 10:59:46] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 10:59:46] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 10:59:46] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 10:59:46] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 10:59:46] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 10:59:46] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 10:59:46] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 10:59:46] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 10:59:46] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 10:59:46] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 10:59:46] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 10:59:46] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 10:59:46] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 10:59:46] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 10:59:46] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 10:59:46] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 10:59:46] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 10:59:46] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 10:59:46] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 10:59:46] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 10:59:46] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 10:59:46] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 10:59:46] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 10:59:46] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 10:59:46] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 10:59:46] [INFO] Обновление кэша...
+[2026-04-21 10:59:47] [INFO] Установка пакетов...
+[2026-04-21 10:59:51] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 10:59:51] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 10:59:51] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 10:59:51] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 10:59:51] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 10:59:51] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 10:59:51] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 10:59:51] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 10:59:51] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 10:59:51] [INFO] --- Создаем backup версию ---
+[2026-04-21 10:59:51] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 10:59:51] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 10:59:51] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 10:59:51] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 10:59:51] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 10:59:51] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 10:59:51] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 10:59:51] [INFO] >>> Настройка: Папка баз аренды DHCP [/var/lib/dhcpd]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /var/lib/dhcpd (dir, root:root, 755)}
+[2026-04-21 10:59:51] [INFO] >>> Настройка: База аренды DHCPv4 [/var/lib/dhcp/dhcpd.leases]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd.leases (file, root:root, 644)}
+[2026-04-21 10:59:51] [INFO] >>> Настройка: База аренды DHCPv6 [/var/lib/dhcp/dhcpd6.leases]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd6.leases (file, root:root, 644)}
+[2026-04-21 10:59:51] [INFO] >>> Настройка: Папка PID-файлов DHCP [/run/dhcp-server]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /run/dhcp-server (dir, root:root, 775)}
+[2026-04-21 10:59:51] [INFO] >>> Настройка: PID файл DHCPv4 [/run/dhcp-server/dhcpd.pid]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /run/dhcp-server/dhcpd.pid (file, root:root, 644)}
+[2026-04-21 10:59:51] [INFO] >>> Настройка: PID файл DHCPv6 [/run/dhcp-server/dhcpd6.pid]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /run/dhcp-server/dhcpd6.pid (file, root:root, 644)}
+[2026-04-21 10:59:51] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 10:59:51] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 10:59:51] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 10:59:51] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 10:59:51] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 10:59:51] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 10:59:51] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 10:59:51] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 10:59:51] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 10:59:51] [INFO] Валидация DHCPv4...
+[2026-04-21 10:59:51] [INFO] Валидация DHCPv6...
+[2026-04-21 10:59:51] [INFO] Валидация RADVD...
+[2026-04-21 10:59:51] [INFO] Валидация Rsyslog...
+[2026-04-21 10:59:51] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 10:59:51] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 10:59:51] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 10:59:51] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 10:59:51] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 10:59:51] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 10:59:51] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 10:59:52] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 10:59:52] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 10:59:52] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 10:59:52] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 10:59:52] [DEBUG] sudo: fuser: command not found
+[2026-04-21 10:59:53] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 10:59:55] [ERROR] Критический сбой при запуске isc-dhcp-server. Код ошибки: 1
+[2026-04-21 10:59:55] [DEBUG] Вывод диагностики: -- Journal begins at Tue 2025-11-04 20:11:57 CET, ends at Tue 2026-04-21 10:59:55 CEST. --
+Apr 21 10:59:53 debsrv isc-dhcp-server[51937]: Launching IPv4 server only.
+Apr 21 10:59:53 debsrv dhcpd[51940]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 10:59:53 debsrv dhcpd[51940]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 10:59:53 debsrv dhcpd[51940]: All rights reserved.
+Apr 21 10:59:53 debsrv dhcpd[51940]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 10:59:53 debsrv dhcpd[51946]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 10:59:53 debsrv dhcpd[51946]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 10:59:53 debsrv dhcpd[51946]: All rights reserved.
+Apr 21 10:59:53 debsrv dhcpd[51946]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 10:59:53 debsrv dhcpd[51946]: Wrote 0 deleted host decls to leases file.
+Apr 21 10:59:53 debsrv dhcpd[51946]: Wrote 0 new dynamic host decls to leases file.
+Apr 21 10:59:53 debsrv dhcpd[51946]: Wrote 0 leases to leases file.
+Apr 21 10:59:53 debsrv dhcpd[51946]: Server starting service.
+Apr 21 10:59:55 debsrv isc-dhcp-server[51937]: Starting ISC DHCPv4 server: dhcpdcheck syslog for diagnostics. ...
+Apr 21 10:59:55 debsrv isc-dhcp-server[51951]:  failed!
+Apr 21 10:59:55 debsrv isc-dhcp-server[51952]:  failed!
+Apr 21 10:59:55 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 10:59:55 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 10:59:55 debsrv systemd[1]: isc-dhcp-server.service: Unit process 51946 (dhcpd) remains running after unit stopped.
+Apr 21 10:59:55 debsrv systemd[1]: Failed to start LSB: DHCP server.
+[2026-04-21 10:59:55] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 11:21:24] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 11:21:24] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 11:21:24] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 11:21:24] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 11:21:24] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 11:21:24] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 11:21:24] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 11:21:24] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 11:21:24] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 11:21:24] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 11:21:24] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 11:21:24] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 11:21:24] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 11:21:24] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 11:21:24] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 11:21:24] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 11:21:24] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 11:21:24] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 11:21:24] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 11:21:24] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 11:21:24] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 11:21:24] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 11:21:24] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 11:21:24] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 11:21:24] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 11:21:24] [INFO] Обновление кэша...
+[2026-04-21 11:21:25] [INFO] Установка пакетов...
+[2026-04-21 11:21:29] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 11:21:29] [INFO] Жесткая очистка процессов dhcpd...
+[2026-04-21 11:21:29] [DEBUG] Failed to stop dhcpd.service: Unit dhcpd.service not loaded.
+[2026-04-21 11:21:29] [DEBUG] sudo: killall: command not found
+[2026-04-21 11:21:31] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 11:21:31] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 11:21:31] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 11:21:31] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 11:21:31] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 11:21:31] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 11:21:31] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 11:21:31] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 11:21:31] [INFO] --- Создаем backup версию ---
+[2026-04-21 11:21:31] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 11:21:31] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 11:21:31] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 11:21:31] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 11:21:31] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 11:21:31] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 11:21:31] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 11:21:31] [INFO] >>> Настройка: Папка баз аренды DHCP [/var/lib/dhcpd]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /var/lib/dhcpd (dir, root:root, 755)}
+[2026-04-21 11:21:31] [INFO] >>> Настройка: База аренды DHCPv4 [/var/lib/dhcp/dhcpd.leases]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd.leases (file, root:root, 644)}
+[2026-04-21 11:21:31] [INFO] >>> Настройка: База аренды DHCPv6 [/var/lib/dhcp/dhcpd6.leases]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd6.leases (file, root:root, 644)}
+[2026-04-21 11:21:31] [INFO] >>> Настройка: Папка PID-файлов DHCP [/run/dhcp-server]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /run/dhcp-server (dir, root:root, 775)}
+[2026-04-21 11:21:31] [INFO] >>> Настройка: PID файл DHCPv4 [/run/dhcp-server/dhcpd.pid]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /run/dhcp-server/dhcpd.pid (file, root:root, 644)}
+[2026-04-21 11:21:31] [INFO] >>> Настройка: PID файл DHCPv6 [/run/dhcp-server/dhcpd6.pid]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /run/dhcp-server/dhcpd6.pid (file, root:root, 644)}
+[2026-04-21 11:21:31] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 11:21:31] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 11:21:31] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 11:21:31] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 11:21:31] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 11:21:31] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 11:21:32] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 11:21:32] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 11:21:32] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 11:21:32] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 11:21:32] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 11:21:32] [INFO] Валидация DHCPv4...
+[2026-04-21 11:21:32] [INFO] Валидация DHCPv6...
+[2026-04-21 11:21:32] [INFO] Валидация RADVD...
+[2026-04-21 11:21:32] [INFO] Валидация Rsyslog...
+[2026-04-21 11:21:32] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 11:21:32] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 11:21:32] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 11:21:32] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 11:21:32] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 11:21:32] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 11:21:32] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 11:21:32] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 11:21:32] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 11:21:33] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 11:21:33] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 11:21:33] [DEBUG] sudo: fuser: command not found
+[2026-04-21 11:21:33] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 11:21:33] [ERROR] Критический сбой при запуске isc-dhcp-server. Код ошибки: 1
+[2026-04-21 11:21:33] [DEBUG] Вывод диагностики: -- Journal begins at Tue 2025-11-04 20:11:57 CET, ends at Tue 2026-04-21 11:21:33 CEST. --
+Apr 21 11:21:27 debsrv dhcpd[52789]: process and the information we find helpful for debugging.
+Apr 21 11:21:27 debsrv dhcpd[52789]: 
+Apr 21 11:21:27 debsrv dhcpd[52789]: exiting.
+Apr 21 11:21:29 debsrv isc-dhcp-server[52774]: Starting ISC DHCPv4 server: dhcpdcheck syslog for diagnostics. ...
+Apr 21 11:21:29 debsrv isc-dhcp-server[52794]:  failed!
+Apr 21 11:21:29 debsrv isc-dhcp-server[52795]:  failed!
+Apr 21 11:21:29 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 11:21:29 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 11:21:29 debsrv systemd[1]: Failed to start LSB: DHCP server.
+Apr 21 11:21:33 debsrv systemd[1]: Starting LSB: DHCP server...
+Apr 21 11:21:33 debsrv isc-dhcp-server[53909]: Launching IPv4 server only.
+Apr 21 11:21:33 debsrv dhcpd[53912]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 11:21:33 debsrv dhcpd[53912]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 11:21:33 debsrv dhcpd[53912]: All rights reserved.
+Apr 21 11:21:33 debsrv dhcpd[53912]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 11:21:33 debsrv isc-dhcp-server[53909]: Starting ISC DHCPv4 server: dhcpddhcpd service already running (pid file /run/dhcp-server/dhcpd.pid currenty exists) ...
+Apr 21 11:21:33 debsrv isc-dhcp-server[53916]:  failed!
+Apr 21 11:21:33 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 11:21:33 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 11:21:33 debsrv systemd[1]: Failed to start LSB: DHCP server.
+[2026-04-21 11:21:33] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 11:53:57] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 11:53:57] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 11:53:57] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 11:53:57] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 11:53:57] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 11:53:57] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 11:53:57] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 11:53:57] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 11:53:57] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 11:53:57] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 11:53:57] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 11:53:57] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 11:53:57] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 11:53:57] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 11:53:57] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 11:53:57] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 11:53:57] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 11:53:57] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 11:53:57] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 11:53:57] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 11:53:57] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 11:53:57] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 11:53:57] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 11:53:57] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 11:53:57] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 11:53:57] [INFO] Обновление кэша...
+[2026-04-21 11:53:57] [INFO] Установка пакетов...
+[2026-04-21 11:54:02] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 11:54:02] [INFO] Жесткая очистка процессов dhcpd...
+[2026-04-21 11:54:02] [DEBUG] Failed to stop dhcpd.service: Unit dhcpd.service not loaded.
+[2026-04-21 11:54:02] [DEBUG] sudo: killall: command not found
+[2026-04-21 11:54:04] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 11:54:04] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 11:54:04] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 11:54:04] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 11:54:04] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 11:54:04] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 11:54:04] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 11:54:04] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 11:54:04] [INFO] --- Создаем backup версию ---
+[2026-04-21 11:54:04] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 11:54:04] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 11:54:04] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 11:54:04] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 11:54:04] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 11:54:04] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 11:54:04] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 11:54:04] [INFO] >>> Настройка: Папка баз аренды DHCP [/var/lib/dhcpd]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /var/lib/dhcpd (dir, root:root, 755)}
+[2026-04-21 11:54:04] [INFO] >>> Настройка: База аренды DHCPv4 [/var/lib/dhcp/dhcpd.leases]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd.leases (file, root:root, 644)}
+[2026-04-21 11:54:04] [INFO] >>> Настройка: База аренды DHCPv6 [/var/lib/dhcp/dhcpd6.leases]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd6.leases (file, root:root, 644)}
+[2026-04-21 11:54:04] [INFO] >>> Настройка: Папка PID-файлов DHCP [/run/dhcp-server]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /run/dhcp-server (dir, root:root, 775)}
+[2026-04-21 11:54:04] [INFO] >>> Настройка: PID файл DHCPv4 [/run/dhcp-server/dhcpd.pid]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /run/dhcp-server/dhcpd.pid (file, root:root, 644)}
+[2026-04-21 11:54:04] [INFO] >>> Настройка: PID файл DHCPv6 [/run/dhcp-server/dhcpd6.pid]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /run/dhcp-server/dhcpd6.pid (file, root:root, 644)}
+[2026-04-21 11:54:04] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 11:54:04] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 11:54:04] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 11:54:04] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 11:54:04] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 11:54:04] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 11:54:04] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 11:54:04] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 11:54:04] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 11:54:04] [INFO] Валидация DHCPv4...
+[2026-04-21 11:54:04] [INFO] Валидация DHCPv6...
+[2026-04-21 11:54:04] [INFO] Валидация RADVD...
+[2026-04-21 11:54:04] [INFO] Валидация Rsyslog...
+[2026-04-21 11:54:04] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 11:54:04] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 11:54:04] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 11:54:04] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 11:54:04] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 11:54:04] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 11:54:04] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 11:54:05] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 11:54:05] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 11:54:05] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 11:54:05] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 11:54:05] [DEBUG] sudo: fuser: command not found
+[2026-04-21 11:54:06] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 11:54:06] [ERROR] Критический сбой при запуске isc-dhcp-server. Код ошибки: 1
+[2026-04-21 11:54:06] [DEBUG] Вывод диагностики: -- Journal begins at Tue 2025-11-04 20:11:57 CET, ends at Tue 2026-04-21 11:54:06 CEST. --
+Apr 21 11:53:59 debsrv dhcpd[55000]: process and the information we find helpful for debugging.
+Apr 21 11:53:59 debsrv dhcpd[55000]: 
+Apr 21 11:53:59 debsrv dhcpd[55000]: exiting.
+Apr 21 11:54:01 debsrv isc-dhcp-server[54985]: Starting ISC DHCPv4 server: dhcpdcheck syslog for diagnostics. ...
+Apr 21 11:54:01 debsrv isc-dhcp-server[55005]:  failed!
+Apr 21 11:54:01 debsrv isc-dhcp-server[55006]:  failed!
+Apr 21 11:54:01 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 11:54:01 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 11:54:01 debsrv systemd[1]: Failed to start LSB: DHCP server.
+Apr 21 11:54:06 debsrv systemd[1]: Starting LSB: DHCP server...
+Apr 21 11:54:06 debsrv isc-dhcp-server[56119]: Launching IPv4 server only.
+Apr 21 11:54:06 debsrv dhcpd[56122]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 11:54:06 debsrv dhcpd[56122]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 11:54:06 debsrv dhcpd[56122]: All rights reserved.
+Apr 21 11:54:06 debsrv dhcpd[56122]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 11:54:06 debsrv isc-dhcp-server[56119]: Starting ISC DHCPv4 server: dhcpddhcpd service already running (pid file /run/dhcp-server/dhcpd.pid currenty exists) ...
+Apr 21 11:54:06 debsrv isc-dhcp-server[56126]:  failed!
+Apr 21 11:54:06 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 11:54:06 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 11:54:06 debsrv systemd[1]: Failed to start LSB: DHCP server.
+[2026-04-21 11:54:06] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 11:56:13] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 11:56:13] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 11:56:13] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 11:56:13] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 11:56:13] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 11:56:13] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 11:56:13] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 11:56:13] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 11:56:13] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 11:56:13] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 11:56:13] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 11:56:13] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 11:56:13] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 11:56:13] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 11:56:13] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 11:57:56] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 11:57:56] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 11:57:56] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 11:57:56] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 11:57:56] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 11:57:56] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 11:57:56] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 11:57:56] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 11:57:56] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 11:57:56] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 11:57:56] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 11:57:56] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 11:57:56] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 11:57:56] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 11:57:56] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 11:57:56] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 11:57:56] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 11:57:56] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 11:57:56] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 11:57:56] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 11:57:56] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 11:57:56] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 11:57:56] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 11:57:56] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 11:57:56] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 11:57:56] [INFO] Обновление кэша...
+[2026-04-21 11:57:57] [INFO] Установка пакетов...
+[2026-04-21 11:58:01] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 11:58:01] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 11:58:01] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 11:58:01] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 11:58:01] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 11:58:01] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 11:58:01] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 11:58:01] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 11:58:01] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 11:58:01] [INFO] --- Создаем backup версию ---
+[2026-04-21 11:58:01] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 11:58:01] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 11:58:01] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 11:58:01] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 11:58:01] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 11:58:02] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 11:58:02] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 11:58:02] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 11:58:02] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 11:58:02] [INFO] >>> Настройка: Папка баз аренды DHCP [/var/lib/dhcpd]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /var/lib/dhcpd (dir, root:root, 755)}
+[2026-04-21 11:58:02] [INFO] >>> Настройка: База аренды DHCPv4 [/var/lib/dhcp/dhcpd.leases]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd.leases (file, root:root, 644)}
+[2026-04-21 11:58:02] [INFO] >>> Настройка: База аренды DHCPv6 [/var/lib/dhcp/dhcpd6.leases]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd6.leases (file, root:root, 644)}
+[2026-04-21 11:58:02] [INFO] >>> Настройка: Папка PID-файлов DHCP [/var/run/dhcpd]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /var/run/dhcpd (dir, root:root, 775)}
+[2026-04-21 11:58:02] [INFO] >>> Настройка: PID файл DHCPv4 [/var/run/dhcpd/dhcpd.pid]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /var/run/dhcpd/dhcpd.pid (file, root:root, 644)}
+[2026-04-21 11:58:02] [INFO] >>> Настройка: PID файл DHCPv6 [/var/run/dhcpd/dhcpd6.pid]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /var/run/dhcpd/dhcpd6.pid (file, root:root, 644)}
+[2026-04-21 11:58:02] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 11:58:02] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 11:58:02] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 11:58:02] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 11:58:02] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 11:58:02] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 11:58:02] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 11:58:02] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 11:58:02] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 11:58:02] [INFO] Валидация DHCPv4...
+[2026-04-21 11:58:02] [INFO] Валидация DHCPv6...
+[2026-04-21 11:58:02] [INFO] Валидация RADVD...
+[2026-04-21 11:58:02] [INFO] Валидация Rsyslog...
+[2026-04-21 11:58:02] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 11:58:02] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 11:58:02] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 11:58:02] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 11:58:02] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 11:58:02] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 11:58:02] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 11:58:02] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 11:58:02] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 11:58:03] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 11:58:03] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 11:58:03] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 11:58:03] [ERROR] Критический сбой при запуске isc-dhcp-server. Код ошибки: 1
+[2026-04-21 11:58:03] [DEBUG] Вывод диагностики: -- Journal begins at Tue 2025-11-04 20:11:57 CET, ends at Tue 2026-04-21 11:58:03 CEST. --
+Apr 21 11:57:59 debsrv dhcpd[56967]: process and the information we find helpful for debugging.
+Apr 21 11:57:59 debsrv dhcpd[56967]: 
+Apr 21 11:57:59 debsrv dhcpd[56967]: exiting.
+Apr 21 11:58:01 debsrv isc-dhcp-server[56952]: Starting ISC DHCPv4 server: dhcpdcheck syslog for diagnostics. ...
+Apr 21 11:58:01 debsrv isc-dhcp-server[56972]:  failed!
+Apr 21 11:58:01 debsrv isc-dhcp-server[56973]:  failed!
+Apr 21 11:58:01 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 11:58:01 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 11:58:01 debsrv systemd[1]: Failed to start LSB: DHCP server.
+Apr 21 11:58:03 debsrv systemd[1]: Starting LSB: DHCP server...
+Apr 21 11:58:03 debsrv isc-dhcp-server[58058]: Launching IPv4 server only.
+Apr 21 11:58:03 debsrv dhcpd[58061]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 11:58:03 debsrv dhcpd[58061]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 11:58:03 debsrv dhcpd[58061]: All rights reserved.
+Apr 21 11:58:03 debsrv dhcpd[58061]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 11:58:03 debsrv isc-dhcp-server[58058]: Starting ISC DHCPv4 server: dhcpddhcpd service already running (pid file /var/run/dhcpd/dhcpd.pid currenty exists) ...
+Apr 21 11:58:03 debsrv isc-dhcp-server[58065]:  failed!
+Apr 21 11:58:03 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 11:58:03 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 11:58:03 debsrv systemd[1]: Failed to start LSB: DHCP server.
+[2026-04-21 11:58:03] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 12:03:44] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 12:03:44] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 12:03:44] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 12:03:44] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 12:03:44] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 12:03:44] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 12:03:44] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 12:03:44] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 12:03:44] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 12:03:44] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 12:03:44] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 12:03:44] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 12:03:44] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 12:03:44] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 12:03:44] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 12:03:44] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 12:03:44] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 12:03:44] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 12:03:44] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 12:03:44] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 12:03:44] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 12:03:44] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 12:03:44] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 12:03:44] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 12:03:44] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 12:03:44] [INFO] Обновление кэша...
+[2026-04-21 12:03:45] [INFO] Установка пакетов...
+[2026-04-21 12:03:49] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 12:03:49] [INFO] Жесткая очистка процессов dhcpd...
+[2026-04-21 12:03:49] [DEBUG] [no message]
+[2026-04-21 12:03:49] [DEBUG] [no message]
+[2026-04-21 12:03:51] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 12:03:51] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 12:03:51] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 12:03:51] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 12:03:51] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 12:03:51] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 12:03:51] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 12:03:51] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 12:03:51] [INFO] --- Создаем backup версию ---
+[2026-04-21 12:03:51] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 12:03:51] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 12:03:51] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 12:03:51] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 12:03:51] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 12:03:51] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 12:03:51] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 12:03:51] [INFO] >>> Настройка: Папка баз аренды DHCP [/var/lib/dhcpd]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /var/lib/dhcpd (dir, root:root, 755)}
+[2026-04-21 12:03:51] [INFO] >>> Настройка: База аренды DHCPv4 [/var/lib/dhcp/dhcpd.leases]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd.leases (file, root:root, 644)}
+[2026-04-21 12:03:51] [INFO] >>> Настройка: База аренды DHCPv6 [/var/lib/dhcp/dhcpd6.leases]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd6.leases (file, root:root, 644)}
+[2026-04-21 12:03:51] [INFO] >>> Настройка: Папка PID-файлов DHCP [/var/run/dhcpd]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /var/run/dhcpd (dir, root:root, 775)}
+[2026-04-21 12:03:51] [INFO] >>> Настройка: PID файл DHCPv4 [/var/run/dhcpd/dhcpd.pid]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /var/run/dhcpd/dhcpd.pid (file, root:root, 644)}
+[2026-04-21 12:03:51] [INFO] >>> Настройка: PID файл DHCPv6 [/var/run/dhcpd/dhcpd6.pid]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /var/run/dhcpd/dhcpd6.pid (file, root:root, 644)}
+[2026-04-21 12:03:51] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 12:03:51] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 12:03:51] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 12:03:51] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 12:03:51] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 12:03:51] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 12:03:51] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 12:03:51] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 12:03:51] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 12:03:51] [INFO] Валидация DHCPv4...
+[2026-04-21 12:03:51] [INFO] Валидация DHCPv6...
+[2026-04-21 12:03:51] [INFO] Валидация RADVD...
+[2026-04-21 12:03:51] [INFO] Валидация Rsyslog...
+[2026-04-21 12:03:51] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 12:03:51] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 12:03:51] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 12:03:51] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 12:03:51] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 12:03:51] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 12:03:51] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 12:03:52] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 12:03:52] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 12:03:52] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 12:03:52] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 12:03:53] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 12:03:53] [ERROR] Критический сбой при запуске isc-dhcp-server. Код ошибки: 1
+[2026-04-21 12:03:53] [DEBUG] Вывод диагностики: -- Journal begins at Tue 2025-11-04 20:11:57 CET, ends at Tue 2026-04-21 12:03:53 CEST. --
+Apr 21 12:03:47 debsrv dhcpd[58858]: process and the information we find helpful for debugging.
+Apr 21 12:03:47 debsrv dhcpd[58858]: 
+Apr 21 12:03:47 debsrv dhcpd[58858]: exiting.
+Apr 21 12:03:49 debsrv isc-dhcp-server[58843]: Starting ISC DHCPv4 server: dhcpdcheck syslog for diagnostics. ...
+Apr 21 12:03:49 debsrv isc-dhcp-server[58863]:  failed!
+Apr 21 12:03:49 debsrv isc-dhcp-server[58864]:  failed!
+Apr 21 12:03:49 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 12:03:49 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 12:03:49 debsrv systemd[1]: Failed to start LSB: DHCP server.
+Apr 21 12:03:53 debsrv systemd[1]: Starting LSB: DHCP server...
+Apr 21 12:03:53 debsrv isc-dhcp-server[59970]: Launching IPv4 server only.
+Apr 21 12:03:53 debsrv dhcpd[59973]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 12:03:53 debsrv dhcpd[59973]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 12:03:53 debsrv dhcpd[59973]: All rights reserved.
+Apr 21 12:03:53 debsrv dhcpd[59973]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 12:03:53 debsrv isc-dhcp-server[59970]: Starting ISC DHCPv4 server: dhcpddhcpd service already running (pid file /var/run/dhcpd/dhcpd.pid currenty exists) ...
+Apr 21 12:03:53 debsrv isc-dhcp-server[59977]:  failed!
+Apr 21 12:03:53 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 12:03:53 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 12:03:53 debsrv systemd[1]: Failed to start LSB: DHCP server.
+[2026-04-21 12:03:53] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 12:10:27] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 12:10:27] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 12:10:27] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 12:10:27] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 12:10:27] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 12:10:27] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 12:10:27] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 12:10:27] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 12:10:27] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 12:10:27] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 12:10:27] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 12:10:27] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 12:10:27] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 12:10:27] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 12:10:27] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 12:10:27] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 12:10:27] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 12:10:27] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 12:10:27] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 12:10:27] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 12:10:27] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 12:10:27] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 12:10:27] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 12:10:27] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 12:10:27] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 12:10:27] [INFO] Обновление кэша...
+[2026-04-21 12:10:28] [INFO] Установка пакетов...
+[2026-04-21 12:10:32] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 12:10:32] [INFO] Жесткая очистка процессов dhcpd...
+[2026-04-21 12:10:32] [DEBUG] [no message]
+[2026-04-21 12:10:32] [DEBUG] [no message]
+[2026-04-21 12:10:34] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 12:10:34] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 12:10:34] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 12:10:34] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 12:10:34] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 12:10:34] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 12:10:34] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 12:10:34] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 12:10:34] [INFO] --- Создаем backup версию ---
+[2026-04-21 12:10:34] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 12:10:34] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 12:10:34] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 12:10:34] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 12:10:34] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 12:10:34] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 12:10:34] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 12:10:34] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 12:10:34] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 12:10:34] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 12:10:34] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 12:10:34] [INFO] >>> Настройка: Папка баз аренды DHCP [/var/lib/dhcpd]
+[2026-04-21 12:10:34] [DEBUG] Объект готов: /var/lib/dhcpd (dir, root:root, 755)}
+[2026-04-21 12:10:34] [INFO] >>> Настройка: База аренды DHCPv4 [/var/lib/dhcp/dhcpd.leases]
+[2026-04-21 12:10:34] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd.leases (file, root:root, 644)}
+[2026-04-21 12:10:34] [INFO] >>> Настройка: База аренды DHCPv6 [/var/lib/dhcp/dhcpd6.leases]
+[2026-04-21 12:10:34] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd6.leases (file, root:root, 644)}
+[2026-04-21 12:10:34] [INFO] >>> Настройка: Папка PID-файлов DHCP [/var/run/dhcpd]
+[2026-04-21 12:10:34] [DEBUG] Объект готов: /var/run/dhcpd (dir, root:root, 775)}
+[2026-04-21 12:10:34] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 12:10:34] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 12:10:34] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 12:10:34] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 12:10:34] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 12:10:35] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 12:10:35] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 12:10:35] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 12:10:35] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 12:10:35] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 12:10:35] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 12:10:35] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 12:10:35] [INFO] Валидация DHCPv4...
+[2026-04-21 12:10:35] [INFO] Валидация DHCPv6...
+[2026-04-21 12:10:35] [INFO] Валидация RADVD...
+[2026-04-21 12:10:35] [INFO] Валидация Rsyslog...
+[2026-04-21 12:10:35] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 12:10:35] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 12:10:35] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 12:10:35] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 12:10:35] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 12:10:35] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 12:10:35] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 12:10:35] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 12:10:35] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 12:10:36] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 12:10:36] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 12:10:36] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 12:10:38] [ERROR] Критический сбой при запуске isc-dhcp-server. Код ошибки: 1
+[2026-04-21 12:10:38] [DEBUG] Вывод диагностики: -- Journal begins at Tue 2025-11-04 20:11:57 CET, ends at Tue 2026-04-21 12:10:38 CEST. --
+Apr 21 12:10:36 debsrv isc-dhcp-server[61796]: Launching IPv4 server only.
+Apr 21 12:10:36 debsrv dhcpd[61799]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 12:10:36 debsrv dhcpd[61799]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 12:10:36 debsrv dhcpd[61799]: All rights reserved.
+Apr 21 12:10:36 debsrv dhcpd[61799]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 12:10:36 debsrv dhcpd[61805]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 12:10:36 debsrv dhcpd[61805]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 12:10:36 debsrv dhcpd[61805]: All rights reserved.
+Apr 21 12:10:36 debsrv dhcpd[61805]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 12:10:36 debsrv dhcpd[61805]: Wrote 0 deleted host decls to leases file.
+Apr 21 12:10:36 debsrv dhcpd[61805]: Wrote 0 new dynamic host decls to leases file.
+Apr 21 12:10:36 debsrv dhcpd[61805]: Wrote 0 leases to leases file.
+Apr 21 12:10:36 debsrv dhcpd[61805]: Server starting service.
+Apr 21 12:10:38 debsrv isc-dhcp-server[61796]: Starting ISC DHCPv4 server: dhcpdcheck syslog for diagnostics. ...
+Apr 21 12:10:38 debsrv isc-dhcp-server[61810]:  failed!
+Apr 21 12:10:38 debsrv isc-dhcp-server[61811]:  failed!
+Apr 21 12:10:38 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 12:10:38 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 12:10:38 debsrv systemd[1]: isc-dhcp-server.service: Unit process 61805 (dhcpd) remains running after unit stopped.
+Apr 21 12:10:38 debsrv systemd[1]: Failed to start LSB: DHCP server.
+[2026-04-21 12:10:38] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 12:24:03] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 12:24:03] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 12:24:03] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 12:24:03] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 12:24:03] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 12:24:03] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 12:24:03] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 12:24:03] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 12:24:03] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 12:24:03] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 12:24:03] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 12:24:03] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 12:24:03] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 12:24:03] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 12:24:03] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 12:24:03] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 12:24:03] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 12:24:03] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 12:24:03] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 12:24:03] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 12:24:03] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 12:24:03] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 12:24:03] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 12:24:03] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 12:24:03] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 12:24:03] [INFO] Обновление кэша...
+[2026-04-21 12:24:04] [INFO] Установка пакетов...
+[2026-04-21 12:24:09] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 12:24:09] [INFO] Жесткая очистка процессов dhcpd...
+[2026-04-21 12:24:09] [INFO] Остановка процессов dhcpd...
+[2026-04-21 12:24:09] [DEBUG] [no message]
+[2026-04-21 12:24:09] [INFO] Удаление из автозапуска процессов dhcpd...
+[2026-04-21 12:24:09] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install disable isc-dhcp-server
+[2026-04-21 12:24:09] [INFO] Удаление из памяти процессов dhcpd...
+[2026-04-21 12:24:09] [DEBUG] [no message]
+[2026-04-21 12:24:09] [INFO] Удаление файлов процессов...
+[2026-04-21 12:24:11] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 12:24:11] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 12:24:11] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 12:24:11] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 12:24:11] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 12:24:11] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 12:24:11] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 12:24:11] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 12:24:11] [INFO] --- Создаем backup версию ---
+[2026-04-21 12:24:11] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 12:24:11] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 12:24:11] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 12:24:11] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 12:24:11] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 12:24:11] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 12:24:11] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 12:24:11] [INFO] >>> Настройка: Папка баз аренды DHCP [/var/lib/dhcpd]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /var/lib/dhcpd (dir, root:root, 755)}
+[2026-04-21 12:24:11] [INFO] >>> Настройка: База аренды DHCPv4 [/var/lib/dhcp/dhcpd.leases]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd.leases (file, root:root, 644)}
+[2026-04-21 12:24:11] [INFO] >>> Настройка: База аренды DHCPv6 [/var/lib/dhcp/dhcpd6.leases]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd6.leases (file, root:root, 644)}
+[2026-04-21 12:24:11] [INFO] >>> Настройка: Папка PID-файлов DHCP [/var/run/dhcpd]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /var/run/dhcpd (dir, root:root, 775)}
+[2026-04-21 12:24:11] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 12:24:11] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 12:24:11] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 12:24:11] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 12:24:11] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 12:24:11] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 12:24:11] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 12:24:11] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 12:24:11] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 12:24:11] [INFO] Валидация DHCPv4...
+[2026-04-21 12:24:11] [INFO] Валидация DHCPv6...
+[2026-04-21 12:24:11] [INFO] Валидация RADVD...
+[2026-04-21 12:24:11] [INFO] Валидация Rsyslog...
+[2026-04-21 12:24:11] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 12:24:11] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 12:24:11] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 12:24:11] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 12:24:11] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 12:24:11] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 12:24:11] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 12:24:12] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 12:24:12] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 12:24:12] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 12:24:12] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 12:24:13] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 12:24:15] [ERROR] Критический сбой при запуске isc-dhcp-server. Код ошибки: 1
+[2026-04-21 12:24:15] [DEBUG] Вывод диагностики: -- Journal begins at Tue 2025-11-04 20:11:57 CET, ends at Tue 2026-04-21 12:24:15 CEST. --
+Apr 21 12:24:13 debsrv isc-dhcp-server[63789]: Launching IPv4 server only.
+Apr 21 12:24:13 debsrv dhcpd[63792]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 12:24:13 debsrv dhcpd[63792]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 12:24:13 debsrv dhcpd[63792]: All rights reserved.
+Apr 21 12:24:13 debsrv dhcpd[63792]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 12:24:13 debsrv dhcpd[63798]: Internet Systems Consortium DHCP Server 4.4.1
+Apr 21 12:24:13 debsrv dhcpd[63798]: Copyright 2004-2018 Internet Systems Consortium.
+Apr 21 12:24:13 debsrv dhcpd[63798]: All rights reserved.
+Apr 21 12:24:13 debsrv dhcpd[63798]: For info, please visit https://www.isc.org/software/dhcp/
+Apr 21 12:24:13 debsrv dhcpd[63798]: Wrote 0 deleted host decls to leases file.
+Apr 21 12:24:13 debsrv dhcpd[63798]: Wrote 0 new dynamic host decls to leases file.
+Apr 21 12:24:13 debsrv dhcpd[63798]: Wrote 0 leases to leases file.
+Apr 21 12:24:13 debsrv dhcpd[63798]: Server starting service.
+Apr 21 12:24:15 debsrv isc-dhcp-server[63789]: Starting ISC DHCPv4 server: dhcpdcheck syslog for diagnostics. ...
+Apr 21 12:24:15 debsrv isc-dhcp-server[63803]:  failed!
+Apr 21 12:24:15 debsrv isc-dhcp-server[63804]:  failed!
+Apr 21 12:24:15 debsrv systemd[1]: isc-dhcp-server.service: Control process exited, code=exited, status=1/FAILURE
+Apr 21 12:24:15 debsrv systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Apr 21 12:24:15 debsrv systemd[1]: isc-dhcp-server.service: Unit process 63798 (dhcpd) remains running after unit stopped.
+Apr 21 12:24:15 debsrv systemd[1]: Failed to start LSB: DHCP server.
+[2026-04-21 12:24:15] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 12:35:42] [DEBUG] Конфигурация [settings.conf] успешно загружена.
+[2026-04-21 12:35:42] [DEBUG] Применена конфигурация: settings.conf
+[2026-04-21 12:35:42] [DEBUG] Выполнена пост-инициализация init_logger
+[2026-04-21 12:35:42] [DEBUG] Библиотека [utils] успешно импортирована
+[2026-04-21 12:35:42] [DEBUG] Модуль [utils] инициализирован.
+[2026-04-21 12:35:42] [DEBUG] Библиотека [backup] успешно импортирована
+[2026-04-21 12:35:42] [DEBUG] Модуль [backup] инициализирован.
+[2026-04-21 12:35:42] [DEBUG] Библиотека [installer] успешно импортирована
+[2026-04-21 12:35:42] [DEBUG] Модуль [installer] инициализирован.
+[2026-04-21 12:35:42] [DEBUG] Библиотека [transaction] успешно импортирована
+[2026-04-21 12:35:42] [DEBUG] Модуль [transaction] инициализирован.
+[2026-04-21 12:35:42] [DEBUG] Библиотека [provisioner] успешно импортирована
+[2026-04-21 12:35:42] [DEBUG] Модуль [provisioner] инициализирован.
+[2026-04-21 12:35:42] [DEBUG] Ядро системы инициализировано. Strict mode: ON.
+[2026-04-21 12:35:42] [INFO] --- Ядро успешно подключено в защищенном режиме. ---
+[2026-04-21 12:35:42] [INFO] >>> НАЧАЛО РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
+[2026-04-21 12:35:42] [INFO] --- Проверка наличия прав root ---
+[2026-04-21 12:35:42] [INFO] --- Загрузка переменных из настроек приложения ---
+[2026-04-21 12:35:42] [DEBUG] Загрузка переменных окружения из: /home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env
+[2026-04-21 12:35:42] [OK] Файл окружения [/home/aleksandr_ruban/projects/default/config/dhcp/dhcp.env] успешно применен.
+[2026-04-21 12:35:42] [INFO] --- Проверка и автоматическое определение интерфейса ---
+[2026-04-21 12:35:42] [INFO] --- Установка DCHP сервера (isc-dhcp-server) и зависимостей ---
+[2026-04-21 12:35:42] [INFO] Анализ зависимостей isc-dhcp-server radvd rsyslog
+[2026-04-21 12:35:42] [DEBUG] Пакет [rsyslog] уже присутствует в системе.
+[2026-04-21 12:35:42] [INFO] Выполнение установки: isc-dhcp-server radvd...
+[2026-04-21 12:35:42] [INFO] Обновление кэша...
+[2026-04-21 12:35:43] [INFO] Установка пакетов...
+[2026-04-21 12:35:47] [OK] Пакеты успешно установлены: isc-dhcp-server radvd
+[2026-04-21 12:35:47] [INFO] Жесткая очистка процессов dhcpd...
+[2026-04-21 12:35:47] [INFO] Остановка процессов dhcpd...
+[2026-04-21 12:35:47] [DEBUG] [no message]
+[2026-04-21 12:35:47] [INFO] Удаление из автозапуска процессов dhcpd...
+[2026-04-21 12:35:48] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install disable isc-dhcp-server
+[2026-04-21 12:35:48] [INFO] Удаление из памяти процессов dhcpd...
+[2026-04-21 12:35:48] [DEBUG] [no message]
+[2026-04-21 12:35:48] [INFO] Удаление файлов процессов...
+[2026-04-21 12:35:50] [INFO] === ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИИ ===
+[2026-04-21 12:35:50] [INFO] === ЗАПУСК BACKUP ===
+[2026-04-21 12:35:50] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 12:35:50] [DEBUG] Путь не задан, создаю временную директорию...
+[2026-04-21 12:35:50] [DEBUG] Используется существующее хранилище бэкапов: /home/aleksandr_ruban/projects/default/var/backups
+[2026-04-21 12:35:50] [WARN] Связка 'tar -I 'zstd -T0'' + '.tar.zst' не работает (ошибка флагов).
+[2026-04-21 12:35:50] [INFO] Переключаюсь на стандартный gzip: tar -cz
+[2026-04-21 12:35:50] [INFO] === Инициализация бэкапа завершена ===
+[2026-04-21 12:35:50] [INFO] --- Создаем backup версию ---
+[2026-04-21 12:35:50] [INFO] --- Настройка инфраструктуры Firewall (nftables) ---
+[2026-04-21 12:35:50] [INFO] >>> Настройка: Папка логов DHCP [/var/log/dhcp]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /var/log/dhcp (dir, syslog:adm, 750)}
+[2026-04-21 12:35:50] [INFO] >>> Настройка: Файл логов DHCP [/var/log/dhcp/dhcp.log]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /var/log/dhcp/dhcp.log (file, syslog:adm, 640)}
+[2026-04-21 12:35:50] [INFO] >>> Настройка: Настройка логов (local7) [/etc/rsyslog.d/dhcpd.conf]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /etc/rsyslog.d/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 12:35:50] [OK] Конфиг обновлен: /etc/rsyslog.d/dhcpd.conf
+[2026-04-21 12:35:50] [INFO] >>> Настройка: Ротация логов DHCP [/etc/logrotate.d/dhcpd]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /etc/logrotate.d/dhcpd (file, root:root, 644)}
+[2026-04-21 12:35:50] [OK] Конфиг обновлен: /etc/logrotate.d/dhcpd
+[2026-04-21 12:35:50] [INFO] >>> Настройка: Папка баз аренды DHCP [/var/lib/dhcpd]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /var/lib/dhcpd (dir, root:root, 755)}
+[2026-04-21 12:35:50] [INFO] >>> Настройка: База аренды DHCPv4 [/var/lib/dhcp/dhcpd.leases]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd.leases (file, root:root, 644)}
+[2026-04-21 12:35:50] [INFO] >>> Настройка: База аренды DHCPv6 [/var/lib/dhcp/dhcpd6.leases]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /var/lib/dhcp/dhcpd6.leases (file, root:root, 644)}
+[2026-04-21 12:35:50] [INFO] >>> Настройка: Папка PID-файлов DHCP [/var/run/dhcpd]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /var/run/dhcpd (dir, root:root, 775)}
+[2026-04-21 12:35:50] [INFO] >>> Настройка: Анонсы IPv6 (RADVD) [/etc/radvd.conf]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /etc/radvd.conf (file, root:root, 644)}
+[2026-04-21 12:35:50] [OK] Конфиг обновлен: /etc/radvd.conf
+[2026-04-21 12:35:50] [INFO] >>> Настройка: Интерфейсы DHCP [/etc/default/isc-dhcp-server]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /etc/default/isc-dhcp-server (file, root:root, 644)}
+[2026-04-21 12:35:50] [OK] Конфиг обновлен: /etc/default/isc-dhcp-server
+[2026-04-21 12:35:50] [INFO] >>> Настройка: Конфигурация DHCPv4 [/etc/dhcp/dhcpd.conf]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /etc/dhcp/dhcpd.conf (file, root:root, 644)}
+[2026-04-21 12:35:50] [OK] Конфиг обновлен: /etc/dhcp/dhcpd.conf
+[2026-04-21 12:35:50] [INFO] >>> Настройка: Конфигурация DHCPv6 [/etc/dhcp/dhcpd6.conf]
+[2026-04-21 12:35:50] [DEBUG] Объект готов: /etc/dhcp/dhcpd6.conf (file, root:root, 644)}
+[2026-04-21 12:35:50] [OK] Конфиг обновлен: /etc/dhcp/dhcpd6.conf
+[2026-04-21 12:35:50] [INFO] Валидация DHCPv4...
+[2026-04-21 12:35:50] [INFO] Валидация DHCPv6...
+[2026-04-21 12:35:50] [INFO] Валидация RADVD...
+[2026-04-21 12:35:50] [INFO] Валидация Rsyslog...
+[2026-04-21 12:35:50] [OK] Все тесты пройдены. Фиксация изменений...
+[2026-04-21 12:35:50] [DEBUG] Модуль бэкапа готов. Проект: isc-dhcp-server
+[2026-04-21 12:35:50] [INFO] Создание целевой директории: /home/aleksandr_ruban/projects/default/var/backups/isc-dhcp-server
+[2026-04-21 12:35:50] [WARN] Временный каталог пуст. Бэкап не будет создан.
+[2026-04-21 12:35:50] [INFO] === ФИКСАЦИЯ ИЗМЕНЕНИЙ (COMMIT) ===
+[2026-04-21 12:35:50] [OK] === ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО ===
+[2026-04-21 12:35:50] [INFO] --- Активация и проверка сервисов ---
+[2026-04-21 12:35:50] [DEBUG] Synchronizing state of rsyslog.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable rsyslog
+[2026-04-21 12:35:50] [OK] Служба [rsyslog] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 12:35:51] [DEBUG] Synchronizing state of radvd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable radvd
+[2026-04-21 12:35:51] [OK] Служба [radvd] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 12:35:51] [DEBUG] isc-dhcp-server.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable isc-dhcp-server
+[2026-04-21 12:35:56] [OK] Служба [isc-dhcp-server] успешно запущена и добавлена в автозагрузку.
+[2026-04-21 12:35:56] [INFO] >>> ЗАВЕРШЕНИЕ РАЗВЕРТЫВАНИЯ СЛУЖБ DHCP (IPv4/IPv6) <<<
