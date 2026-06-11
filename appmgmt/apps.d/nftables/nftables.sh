@@ -34,9 +34,10 @@ nftables_validate() {
     # Проверка ulogd
     log_info "Валидация ulogd..."
 
-    # Запускаем ulogd с указанием нашего конфига на 1 секунду в фоне.
+    # Запускаем ulogd БЕЗ флага -d, с указанием нашего конфига на 1 секунду в фоне.
     # Если в конфиге ошибка — он упадет мгновенно. Если всё ок — будет работать.
-    ulogd -c /etc/ulogd.conf -d >/dev/null 2>&1
+    # БЕЗ флага -d гарантирует, что переменная $! будет создана и strict-режим не упадет
+    ulogd -c /etc/ulogd.conf >/dev/null 2>&1 &
     local ulogd_pid=$!
 
     # Даем демону 1 секунду на инициализацию парсером ядра
@@ -48,7 +49,9 @@ nftables_validate() {
         HAS_ERROR="true"
         return 1
     else
-        kill "$ulogd_pid" && wait "$ulogd_pid" 2>/dev/null
+        # Конфигурация валидна. Убиваем тестовый фоновый процесс.
+        kill "$ulogd_pid" >/dev/null 2>&1
+        wait "$ulogd_pid" 2>/dev/null || true
         log_ok "Синтаксис конфигурации ulogd успешно проверен."
     fi
     # Конец проверки ulogd
