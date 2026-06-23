@@ -58,12 +58,6 @@ install_list() {
         return 0
     fi
 
-    # Проверка DRY_RUN перед любыми действиями
-    if [[ "${DRY_RUN:-false}" == "true" ]]; then
-        log_warn "[DRY-RUN] Имитация установки: ${to_install[*]}"
-        return 0
-    fi
-
     # Проверка прав доступа
     if ! check_root; then
         log_error "Права root необходимы для установки: ${to_install[*]}"
@@ -80,13 +74,12 @@ install_list() {
 
     # Обновление кэша (только если нужно) и установка
     # Используем блоки if вместо && для чистого логирования ошибок
-    log_info "Обновление кэша..."
-    if ! DEBIAN_FRONTEND=noninteractive $PKG_MANAGER update $PKG_OPTS; then
+    # Обернутый вызов обновления кэша репозиториев
+    if ! _exec "Обновление кэша пакетов ..." env DEBIAN_FRONTEND=noninteractive $PKG_MANAGER update $PKG_OPTS; then
         log_warn "Не удалось обновить кэш пакетов, пробуем установить так..."
     fi
 
-    log_info "Установка пакетов..."
-    if DEBIAN_FRONTEND=noninteractive $PKG_MANAGER install $PKG_OPTS "${to_install[@]}"; then
+    if _exec "Установка пакетов..." env DEBIAN_FRONTEND=noninteractive $PKG_MANAGER install $PKG_OPTS "${to_install[@]}"; then
         log_ok "Пакеты успешно установлены: ${to_install[*]}"
         return 0
     else
@@ -126,12 +119,6 @@ uninstall_list() {
         return 0
     fi
 
-    # --- DRY_RUN CHECK ---
-    if [[ "${DRY_RUN:-false}" == "true" ]]; then
-        log_warn "[DRY-RUN] Имитация ПОЛНОГО удаления (purge): ${to_purge[*]}"
-        return 0
-    fi
-
     # Проверка прав доступа
     if ! check_root; then
         log_error "Нужны права root для удаления: ${to_purge[*]}"
@@ -149,12 +136,11 @@ uninstall_list() {
     # Удаление одной командой
     # purge — удаляет конфиги в /etc
     # --auto-remove — чистит ставшие ненужными зависимости
-    if DEBIAN_FRONTEND=noninteractive $PKG_MANAGER purge $PKG_OPTS --auto-remove "${to_purge[@]}"; then
+    if _exec "Удаление пакетов..." env DEBIAN_FRONTEND=noninteractive $PKG_MANAGER purge $PKG_OPTS --auto-remove "${to_purge[@]}"; then
         log_ok "Пакеты успешно удалены и зачищены: ${to_purge[*]}"
         
         # Очистка кэша .deb файлов для освобождения места
-        log_debug "Очистка локального архива пакетов (autoclean)..."
-        DEBIAN_FRONTEND=noninteractive $PKG_MANAGER autoclean $PKG_OPTS || true
+        _exec "Очистка локального архива пакетов (autoclean)..." env DEBIAN_FRONTEND=noninteractive $PKG_MANAGER autoclean $PKG_OPTS || true
         return 0
     else
         log_error "Критический сбой при удалении пакетов."
@@ -193,12 +179,6 @@ update_list() {
         return 0
     fi
 
-    # Проверка DRY_RUN перед любыми действиями
-    if [[ "${DRY_RUN:-false}" == "true" ]]; then
-        log_warn "[DRY-RUN] Имитация обновления пакетов: ${to_upgrade[*]}"
-        return 0
-    fi
-
     # Проверка прав доступа
     if ! check_root; then
         log_error "Права root необходимы для обновления: ${to_upgrade[*]}"
@@ -211,14 +191,12 @@ update_list() {
         return 1
     fi
 
-    log_info "--- Обновление системных репозиториев пакетов ---"
-    if ! DEBIAN_FRONTEND=noninteractive $PKG_MANAGER update $PKG_OPTS; then
+    if ! _exec "Обновление кэша пакетов ..." env DEBIAN_FRONTEND=noninteractive $PKG_MANAGER update $PKG_OPTS; then
         log_warn "Не удалось обновить кэш пакетов, пробуем запустить обновление так..."
     fi
 
-    log_info "--- Установка обновленных версий пакетов: ${to_upgrade[*]} ---"
     # Флаг --only-upgrade передается через PKG_OPTS или явно, гарантируя безопасность
-    if DEBIAN_FRONTEND=noninteractive $PKG_MANAGER install --only-upgrade $PKG_OPTS "${to_upgrade[@]}"; then
+    if _exec "Установка обновленных версий пакетов ..." env DEBIAN_FRONTEND=noninteractive $PKG_MANAGER install --only-upgrade $PKG_OPTS "${to_upgrade[@]}"; then
         log_ok "Пакеты успешно обновлены: ${to_install[*]}"
         return 0
     else

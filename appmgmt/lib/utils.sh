@@ -99,7 +99,10 @@ ensure_owner_exists() {
     if [[ -n "$group_name" && "$group_name" != "$user_name" ]]; then
         if ! getent group "$group_name" >/dev/null 2>&1; then
             log_warn "Группа [$group_name] не найдена. Создаю системную группу..."
-            groupadd -r "$group_name" || { log_error "Не удалось создать группу $group_name"; return 1; }
+            if ! _exec "Создание системной группы $group_name" groupadd -r "$group_name"; then
+                log_error "Не удалось создать группу: $group_name"
+                return 1
+            fi
         fi
     fi
 
@@ -112,14 +115,29 @@ ensure_owner_exists() {
         
         # Если группа была указана, привязываем пользователя к ней
         if [[ -n "$group_name" && "$group_name" != "$user_name" ]]; then
-            user_opts+=" -g $group_name"
+            if [[ "${DRY_RUN:-false}" == "true" ]] && ! getent group "$group_name" >/dev/null 2>&1; then
+                log_error "Критическая ошибка: Попытка создать пользователя с несуществующей группой [$group_name]"
+                return 1
+            fi
+            user_opts+=(-g "$group_name")
         fi
 
+        # Выполняем создание пользователя через прокси-перехватчик
+        if ! _exec "Создание системного пользователя $user_name" useradd "${user_opts[@]}" "$user_name"; then
+            log_error "Не удалось создать пользователя: $user_name"
+            return 1
+        fi
         useradd $user_opts "$user_name" || { 
             log_error "Не удалось создать пользователя $user_name"
             return 1 
         }
-        log_ok "Пользователь [$user_name] успешно создан."
+
+        # Выводим статус успеха (в DRY-RUN режиме пишем инфо-заглушку)
+        if [[ "${DRY_RUN:-false}" == "true" ]]; then
+            log_warn "[DRY-RUN] Имитация успешного создания пользователя [$user_name]"
+        else
+            log_ok "Пользователь [$user_name] успешно создан в системе."
+        fi
     fi
 
     return 0
@@ -145,7 +163,10 @@ ensure_path_exists() {
         parent_dir=$(dirname "$path")
 
         if [[ ! -d "$parent_dir" ]]; then
-            mkdir -p "$parent_dir" || { log_error "Ошибка mkdir для родительской папки: $parent_dir"; return 1; }
+            if ! _exec "Создание родительской папки для $path" mkdir -p "$parent_dir"; then
+                log_error "Ошибка создания родительской папки: $parent_dir"
+                return 1
+            fi        
         fi
     fi
 
@@ -154,18 +175,25 @@ ensure_path_exists() {
         dir)
             if [[ ! -d "$path" ]]; then
                 # Защита: если на месте папки файл или ссылка, удаляем их
-                [[ -e "$path" || -L "$path" ]] && rm -rf "$path"
-                mkdir -p "$path" || { log_error "Ошибка mkdir: $path"; return 1; }
+                if [[ -e "$path" || -L "$path" ]]; then
+                    _exec "Удаление конфликтующего объекта на месте папки $path" rm -rf "$path"
+                fi
+                _exec "Создание директории $path" mkdir -p "$path" || return 1
             fi
             ;;
         file)
             if [[ ! -f "$path" ]]; then
                 # Защита: если на месте файла папка или ссылка, удаляем их
-                [[ -e "$path" || -L "$path" ]] && rm -rf "$path"
-                touch "$path" || { log_error "Ошибка touch для файла: $path"; return 1; }
+                if [[ -e "$path" || -L "$path" ]]; then
+                    _exec "Удаление конфликтующего объекта на месте файла $path" rm -rf "$path"
+                fi
+                _exec "Создание пустого файла $path" touch "$path" || return 1
             fi
             # Снимаем защиту, если она есть (только для файлов)
-            chattr -i "$path" 2>/dev/null || true
+            if command -v chattr >/dev/null 2>&1; then
+                # Используем || true, так как в DRY-RUN файла нет, и chattr на боевом запуске без DRY_RUN не должен падать
+                _exec "Снятие защиты атрибутов с файла $path" chattr -i "$path" 2>/dev/null || true
+            fi
             ;;
         link)
             [[ -z "$target_path" ]] && { log_error "Для типа link обязательно указание target_path (аргумент 5)"; return 1; }
@@ -176,16 +204,18 @@ ensure_path_exists() {
                 current_target=$(readlink "$path")
                 if [[ "$current_target" != "$target_path" ]]; then
                     log_warn "Ссылка $path указывает на $current_target вместо $target_path. Пересоздаем..."
-                    rm -f "$path"
+                    _exec "Удаление старой неверной ссылки $path" rm -f "$path"
                 fi
             elif [[ -e "$path" ]]; then
                 log_warn "На месте ссылки $path обнаружен обычный объект. Удаляем его..."
-                rm -rf "$path"
+                _exec "Удаление конфликтующего объекта на месте ссылки $path" rm -rf "$path"
             fi
 
             # Создаем символическую ссылку (ln -sf)
             if [[ ! -L "$path" ]]; then
-                ln -sf "$target_path" "$path" || { log_error "Ошибка создания symlink $path -> $target_path"; return 1; }
+                if ! _exec "Создание символической ссылки $path -> $target_path" ln -sf "$target_path" "$path"; then
+                    log_error "Ошибка создания symlink $path -> $target_path"
+                fi
             fi
             ;;
         *)
@@ -198,9 +228,14 @@ ensure_path_exists() {
     if ensure_owner_exists "$owner"; then
         if [[ "$type" == "link" ]]; then
             # Для ссылок используем флаг -h, чтобы сменить владельца самой ссылки, а не целевого файла
-            chown -h "$owner" "$path" || { log_error "Ошибка chown -h $owner для ссылки: $path"; return 1; }
+            if ! _exec "Смена владельца ссылки $path на $owner" chown -h "$owner" "$path"; then
+                log_error "Ошибка chown -h $owner для ссылки: $path"
+                return 1
+            fi
         else
-            chown "$owner" "$path" || { log_error "Ошибка chown $owner для: $path"; return 1; }
+            if ! _exec "Смена владельца $path на $owner" chown "$owner" "$path"; then
+                log_error "Ошибка chown $owner для: $path"
+                return 1
         fi
     else
         log_error "Критическая ошибка: не удалось подготовить владельца $owner"
@@ -209,7 +244,10 @@ ensure_path_exists() {
 
     # Применение прав (для ссылок chmod обычно пропускают, так как они всегда 777, но делаем проверку)
     if [[ -n "$mode" && "$type" != "link" ]]; then
-        chmod "$mode" "$path" || { log_error "Ошибка chmod $mode: $path"; return 1; }
+        if ! _exec "Установка прав доступа $mode для $path" chmod "$mode" "$path"; then
+            log_error "Ошибка chmod $mode: $path"
+            return 1
+        fi
     fi
     
     log_debug "Объект готов: $path ($type, $owner, ${mode:-default})"}
@@ -264,18 +302,49 @@ update_configs() {
     local vars_to_subst
     # vars_to_subst=$(printf '$%s ' $(env | cut -d= -f1 | grep -E "^($var_list)"))
     vars_to_subst=$(compgen -v | grep -E "^($var_list)" | sed 's/^/$/' | tr '\n' ' ')
+    
+    local target_dir
+    target_dir=$(dirname "$dest_file")
 
     # Создание директории назначения, если её нет (например для ~/.ssh/config)
-    mkdir -p "$(dirname "$dest_file")"
+    if [[ ! -d "$target_dir" ]]; then
+        if ! _exec "Создание директории назначения конфигурации" mkdir -p "$target_dir"; then
+            log_error "Не удалось создать директорию: $target_dir"
+            return 1
+        fi
+    fi
+    
+    # Вспомогательная локальная функция для безопасного проксирования envsubst со стримами
+    _run_envsubst() {
+        envsubst "$vars_to_subst" < "$tpl_file" > "$1"
+    }
 
-    # Генерация через временный файл (атомарность)
     local tmp_file="${dest_file}.tmp"
-    if envsubst "$vars_to_subst" < "$tpl_file" > "$tmp_file"; then
-        mv "$tmp_file" "$dest_file"
-        log_ok "Конфиг обновлен: $dest_file"
+
+    # 4. Основной блок выполнения с защитой транзакции и DRY-RUN
+    if [[ "${DRY_RUN:-false}" == "true" ]]; then
+        # Имитируем весь процесс сборки и перемещения одной строкой для чистоты логов
+        _exec "Генерация конфигурации $dest_file из шаблона $(basename "$tpl_file")" true
+        log_warn "[DRY-RUN] Имитация успешной генерации файла: $dest_file"
+        return 0
+    fi
+
+    # Физический боевой режим (выполняется только если DRY_RUN=false)
+    # Запускаем сборку через прокси, передавая нашу локальную функцию
+    if _exec "Компиляция шаблона через envsubst" _run_envsubst "$tmp_file"; then
+        
+        # Атомарно подменяем старый файл новым
+        if _exec "Атомарное обновление конфигурационного файла" mv "$tmp_file" "$dest_file"; then
+            log_ok "Конфигурационный файл успешно обновлен: $dest_file"
+            return 0
+        else
+            log_error "Критический сбой mv при обновлении файла: $dest_file"
+            _exec "Очистка временного файла после сбоя mv" rm -f "$tmp_file"
+            return 1
+        fi
     else
-        rm -f "$tmp_file"
-        log_error "Сбой envsubst для: $dest_file"
+        log_error "Сбой компиляции envsubst для: $dest_file"
+        _exec "Очистка временного файла после сбоя envsubst" rm -f "$tmp_file"
         return 1
     fi
 }

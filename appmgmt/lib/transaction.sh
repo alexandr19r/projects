@@ -50,6 +50,26 @@ register_in_tx() {
         "dir")
             echo "dir|$dest" >> "$TRANSACTION_LOG"
             ;;
+        "link"|"symlink")
+            # Важно: используем -L для проверки существования самой ссылки, а не её цели
+            if [[ -L "$path" || -h "$dest" ]]; then
+                # Считываем, куда текущая ссылка РЕАЛЬНО указывает прямо сейчас
+                local old_target
+                old_target=$(readlink "$dest")
+                
+                # Записываем в лог транзакции тип операции, путь ссылки и её старую цель
+                echo "update_link|$dest|$old_target" >> "$TRANSACTION_LOG"
+                log_debug "Регистрация изменения существующей ссылки: $dest -> $old_target"
+            else
+                # Если ссылки не существовало — регистрируем как новую (при откате удалим)
+                echo "new_link|$dest" >> "$TRANSACTION_LOG"
+                log_debug "Регистрация создания новой ссылки: $dest"
+            fi
+            ;;
+        *)
+            log_error "Регистратор транзакций: неизвестный тип объекта [$type] для пути $dest"
+            return 1
+            ;;
     esac
 }
 
@@ -62,6 +82,15 @@ rollback_transaction() {
     
     $reverse_cmd "$TRANSACTION_LOG" | while IFS='|' read -r action dest extra; do
         case "$action" in
+            "new_link")
+                # Если ссылка была новой — просто стираем её
+                rm -f "$dest"
+                ;;
+            "update_link")
+                # Если ссылка изменялась — восстанавливаем её старую цель ($extra)
+                rm -f "$dest"
+                ln -sf "$extra" "$dest"
+                ;;
             "update")
                 log_info "Восстановление оригинала: $dest"
                 [ -e "$dest" ] && chattr -i "$dest" 2>/dev/null

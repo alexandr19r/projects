@@ -15,37 +15,61 @@ add_item() {
 
     log_info ">>> Настройка: $desc [$dest]"
 
-    # 1. Регистрация в транзакции (если модуль загружен)
+    # Регистрация в транзакции (если модуль загружен)
     if [[ $(type -t register_in_tx) == "function" ]]; then
         register_in_tx "$type" "$dest"
     fi
 
-    # 2. Подготовка объекта (используем ранее созданный utils.sh)
+    # Подготовка объекта (используем ранее созданный utils.sh)
     # ensure_path_exists берет на себя mkdir, touch, chown и chmod
     ensure_path_exists "$dest" "$type" "$owner" "$perms" "$tpl" || return 1
 
-    # 3. Обработка шаблона (только для файлов)
+    # Обработка шаблона (только для файлов)
     if [[ "$type" == "file" && "$tpl" != "none" ]]; then
         # local tpl_path="${ROOT_DIR}/template/${tpl}.tpl"
         local tpl_path=$(load_tpl "$tpl")
-        update_configs "$tpl_path" "$dest" "$vars" || return 1
-    fi
-
-    # 4. Групповые зависимости (usermod)
-    if [[ "$dep" != "none" && "$dep" != "" ]]; then
-        local target_group="${owner#*:}"
-        if getent group "$target_group" >/dev/null && id "$dep" >/dev/null; then
-            log_debug "Добавление $dep в группу $target_group"
-            usermod -aG "$target_group" "$dep"
-        else
-            log_warn "Не удалось привязать $dep к $target_group (объекты не найдены)"
+        if ! update_configs "$tpl_path" "$dest" "$vars"; then
+            log_error "Ошибка компиляции шаблона для файла: $dest"
+            return 1
         fi
     fi
 
-    # 5. Спец-атрибуты (immutable)
+    # Групповые зависимости (usermod)
+    if [[ "$dep" != "none" && "$dep" != "" ]]; then
+        local target_group="${owner#*:}"
+        # Переменная-флаг для валидации возможности привязки групп
+        local can_bind=false
+
+        if [[ "${DRY_RUN:-false}" == "true" ]]; then
+            # В режиме имитации безусловно разрешаем шаг
+            can_bind=true
+        else
+            # В боевом режиме строго проверяем наличие субъектов в ОС
+            if getent group "$target_group" >/dev/null && id "$dep" >/dev/null; then
+                can_bind=true
+            fi
+        fi
+        
+        if [[ "$can_bind" == "true" ]]; then
+            if ! _exec "Привязка пользователя $dep к группе $target_group" usermod -aG "$target_group" "$dep"; then
+                log_error "Не удалось добавить пользователя $dep в группу $target_group"
+                return 1
+            fi
+        else
+            log_warn "Пропущено: Не удалось привязать $dep к $target_group (объекты не найдены в системе)"
+        fi
+   fi
+
+    # Спец-атрибуты (immutable)
     if [[ "$attr" == "+i" ]]; then
-        log_debug "Установка immutable флага на $dest"
-        chattr +i "$dest" 2>/dev/null || log_warn "chattr +i не поддерживается ФС"
+        if command -v chattr >/dev/null 2>&1; then
+            # Используем || true, чтобы особенности ФС (например, контейнеры) не ломали боевой деплой
+            if ! _exec "Установка флага защиты immutable (+i) на $dest" chattr +i "$dest" 2>/dev/null; then
+                log_warn "Флаг chattr +i не смог примениться для $dest (возможно, ограничение контейнера/ФС)"
+            fi
+        else
+            log_debug "Утилита chattr недоступна в системе, пропускаю установку атрибута +i"
+        fi
     fi
 
     return 0
